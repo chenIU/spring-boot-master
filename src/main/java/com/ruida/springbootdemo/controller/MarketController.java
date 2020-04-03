@@ -19,7 +19,7 @@ public class MarketController {
 
     @RequestMapping("hello")
     public String hello(){
-        return "hello world...";
+        return "hello spring boot";
     }
 
 }
