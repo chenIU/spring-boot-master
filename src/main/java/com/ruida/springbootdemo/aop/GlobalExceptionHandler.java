@@ -6,6 +6,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 /**
@@ -17,15 +18,17 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 @Slf4j
 public class GlobalExceptionHandler {
 
-    @ExceptionHandler(BizException.class)
     @ResponseBody
+    @ExceptionHandler(BizException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
     public CommonResult bizExceptionHandler(BizException e){
         CommonResult commonResult = new CommonResult(e.getErrorCode(),e.getErrorMsg());
         return commonResult;
     }
 
-    @ExceptionHandler(Exception.class)
     @ResponseBody
+    @ExceptionHandler(Exception.class)
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     public CommonResult exceptionHandler(Exception e){
         CommonResult commonResult = new CommonResult(String.valueOf(HttpStatus.INTERNAL_SERVER_ERROR.value()),"操作失败");
         return commonResult;
