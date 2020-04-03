@@ -17,4 +17,9 @@ public class MarketController {
         return "market test......";
     }
 
+    @RequestMapping("hello")
+    public String hello(){
+        return "hello world...";
+    }
+
 }
