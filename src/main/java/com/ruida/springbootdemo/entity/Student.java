@@ -1,5 +1,6 @@
 package com.ruida.springbootdemo.entity;
 
+import com.ruida.springbootdemo.annotation.Alpha;
 import lombok.Data;
 
 /**
@@ -10,6 +11,9 @@ import lombok.Data;
 @Data
 public class Student {
     private int id;
+
+    @Alpha(name="jack",value = "hahaha")
     private String name;
+
     private int age;
 }
