@@ -103,6 +103,7 @@ public class UserController {
     @RequestMapping(value = "updateUserInfo", method = RequestMethod.PUT)
     public Map<String, Object> updateUserInfo(@RequestParam(name = "userName", required = false) String userName,
                                               @RequestParam(name = "password", required = false) String password) {
+        System.out.println("userName="+userName+",password="+password);
         Map<String, Object> map = new HashMap();
         map.put("errorCode", 200);
         map.put("errorMsg", "修改成功");
@@ -123,6 +124,12 @@ public class UserController {
         }else {
             return stu;
         }
+    }
+
+    @RequestMapping("submitForm")
+    public void submitForm(HttpServletRequest request,HttpServletResponse response){
+        String username = request.getParameter("username");
+        System.out.println(username);
     }
 
 }

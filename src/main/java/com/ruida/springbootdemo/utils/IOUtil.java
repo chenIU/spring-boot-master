@@ -10,8 +10,11 @@ import java.io.*;
 public class IOUtil {
 
     public static void main(String[] args) {
-        String source = "D:\\file\\from.txt";
-        String dest = "D:\\file\\to.txt";
+        String source = "D:\\IO\\from.txt";
+        String dest = "D:\\IO\\to.txt";
+        String objDest = "D:\\IO\\obj.txt";
+        String path = "D:\\apache-maven-3.6.3";
+        //Student student = new Student("chenjy",26);
         //System.out.println(readFileMethod1(source));
         //System.out.println(readFileMethod2(source));
         //System.out.println(readFileMethod3(source));
@@ -20,6 +23,9 @@ public class IOUtil {
         //readAndWriteMethod3(source,dest);
         //readAndWriteMethod4(source,dest);
         //readAndWriteMethod5(source,dest);
+        //writeObject(student,objDest);
+        //readOjbect(objDest);
+        listFile(path);
     }
 
     public static String readFileMethod1(String source){
@@ -163,5 +169,37 @@ public class IOUtil {
         }
     }
 
+    public static void writeObject(Object obj,String dest){
+        try {
+            ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(new File(dest)));
+            oos.writeObject(obj);
+            oos.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void readOjbect(String source){
+        try {
+            ObjectInputStream ois = new ObjectInputStream(new FileInputStream(new File(source)));
+            Object obj = ois.readObject();
+            System.out.println(obj);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void listFile(String path){
+        File file = new File(path);
+        File[] files = file.listFiles();
+        for (File f:files){
+            if(f.isDirectory()){
+                listFile(f.getPath());
+            }
+            System.out.println(f);
+        }
+    }
 
 }
