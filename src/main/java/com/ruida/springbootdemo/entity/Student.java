@@ -25,4 +25,9 @@ public class Student implements Serializable {
         this.age = age;
     }
 
+    public Student(int id, String name, Integer age) {
+        this.id = id;
+        this.name = name;
+        this.age = age;
+    }
 }

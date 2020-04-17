@@ -1,6 +1,8 @@
 package com.ruida.springbootdemo.utils;
 
 import com.google.common.base.Joiner;
+import com.ruida.springbootdemo.entity.Student;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,6 +33,11 @@ public class StringUtil {
         System.out.println(Joiner.on(",").join(list));
 
         System.out.println(getSuffix("Snipaste_2020-03-26_13-48-25.png"));
+
+        System.out.println(Student.class.getName());
+        System.out.println(Student.class.getSimpleName());
+        int i = 'A';
+        System.out.println(i);
     }
 
     /**

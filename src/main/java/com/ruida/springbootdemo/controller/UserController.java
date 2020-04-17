@@ -10,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -94,6 +96,7 @@ public class UserController {
 
     @RequestMapping("login")
     public Map<String, Object> login() {
+        log.info("login...111");
         Map<String, Object> map = new HashMap();
         map.put("errorCode", 200);
         map.put("errorMsg", "登录成功");
@@ -130,6 +133,24 @@ public class UserController {
     public void submitForm(HttpServletRequest request,HttpServletResponse response){
         String username = request.getParameter("username");
         System.out.println(username);
+    }
+
+    @RequestMapping("redirect")
+    public void redirect(@RequestParam("username")String username,
+                         @RequestParam("password")String password) throws IOException {
+        System.out.println("username="+username+",password="+password);
+        ServletRequestAttributes servletRequestAttributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
+        HttpServletRequest request = servletRequestAttributes.getRequest();
+        HttpServletResponse response = servletRequestAttributes.getResponse();
+        response.sendRedirect("https://www.baidu.com");
+    }
+
+    @RequestMapping("add/{type}")
+    public Map<String,Object> add(@PathVariable String type,String name){
+        Map<String,Object> map = new HashMap();
+        map.put("type",type);
+        map.put("name",name);
+        return map;
     }
 
 }
