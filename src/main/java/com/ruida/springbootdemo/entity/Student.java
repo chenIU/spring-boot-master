@@ -20,6 +20,9 @@ public class Student implements Serializable {
 
     private transient Integer age;
 
+    public Student() {
+    }
+
     public Student(String name, Integer age) {
         this.name = name;
         this.age = age;
@@ -30,4 +33,6 @@ public class Student implements Serializable {
         this.name = name;
         this.age = age;
     }
+
+
 }
