@@ -25,6 +25,7 @@ public class ObjectUtil {
         list.add(30);
         List<Integer> result = list.stream().filter(i->i>50).collect(Collectors.toList());
         System.out.println(result);
+        System.out.println(123);
     }
 
 }
