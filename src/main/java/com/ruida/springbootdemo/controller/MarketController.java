@@ -22,4 +22,9 @@ public class MarketController {
         return "hello spring boot";
     }
 
+    @RequestMapping("dev")
+    public String dev(){
+        return "dev commit something...";
+    }
+
 }
