@@ -3,6 +3,7 @@ package com.ruida.springbootdemo;
 import com.ruida.springbootdemo.entity.Student;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -23,9 +24,16 @@ public class ObjectUtil {
         list.add(55);
         list.add(15);
         list.add(30);
-        List<Integer> result = list.stream().filter(i->i>50).collect(Collectors.toList());
+        List<Integer> result = list.stream()
+                .filter(i->i>50)
+                .sorted(Integer::compareTo)
+                .collect(Collectors.toList());
         System.out.println(result);
         System.out.println(123);
+        String s = "410609,410602";
+        List<String> l = Arrays.asList(s.split(","));
+        System.out.println(l);
+
     }
 
 }
