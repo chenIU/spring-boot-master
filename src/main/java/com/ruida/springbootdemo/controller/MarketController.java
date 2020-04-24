@@ -19,7 +19,12 @@ public class MarketController {
 
     @RequestMapping("hello")
     public String hello(){
-        return "hello world...";
+        return "hello spring boot";
+    }
+
+    @RequestMapping("dev")
+    public String dev(){
+        return "dev commit something...";
     }
 
 }
