@@ -1,5 +1,6 @@
 package com.ruida.springbootdemo.controller;
 
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -12,17 +13,17 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/market/")
 public class MarketController {
 
-    @RequestMapping("test")
+    @GetMapping("test")
     public String test(){
         return "market test......";
     }
 
-    @RequestMapping("hello")
+    @GetMapping("hello")
     public String hello(){
         return "hello spring boot";
     }
 
-    @RequestMapping("dev")
+    @GetMapping("dev")
     public String dev(){
         return "dev commit something...";
     }

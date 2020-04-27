@@ -1,4 +1,4 @@
-package com.ruida.springbootdemo.beans;
+package com.ruida.springbootdemo.bean;
 
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;

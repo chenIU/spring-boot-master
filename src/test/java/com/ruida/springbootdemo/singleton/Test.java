@@ -1,4 +1,4 @@
-package com.ruida.springbootdemo.entity.singleton;
+package com.ruida.springbootdemo.singleton;
 
 /**
  * @description: 单例模式测试类

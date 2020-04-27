@@ -1,4 +1,4 @@
-package com.ruida.springbootdemo.entity.singleton;
+package com.ruida.springbootdemo.singleton;
 
 /**
  * @description: 懒汉模式

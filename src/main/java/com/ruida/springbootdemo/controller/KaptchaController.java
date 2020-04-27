@@ -4,6 +4,7 @@ import com.google.code.kaptcha.impl.DefaultKaptcha;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.tomcat.util.codec.binary.Base64;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
@@ -27,7 +28,7 @@ public class KaptchaController {
     @Resource
     private DefaultKaptcha producer;
 
-    @RequestMapping("")
+    @RequestMapping(value = "",method = RequestMethod.GET)
     public Map<String,Object> kapcha() throws IOException {
         Map<String,Object> map = new HashMap();
         log.info("开始生成二维码...");

@@ -1,4 +1,4 @@
-package com.ruida.springbootdemo.beans;
+package com.ruida.springbootdemo.bean;
 
 import lombok.Data;
 

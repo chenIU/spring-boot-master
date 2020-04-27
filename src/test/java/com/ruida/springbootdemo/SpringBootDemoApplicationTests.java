@@ -1,9 +1,7 @@
 package com.ruida.springbootdemo;
 
-import com.ruida.springbootdemo.beans.TestBean;
+import com.ruida.springbootdemo.bean.TestBean;
 import com.ruida.springbootdemo.config.ApplicationContextConfig;
-import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 

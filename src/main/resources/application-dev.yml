@@ -1,0 +1,26 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: ruida-dev-env
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/ruida?characterEncoding=utf8&useSSl=false&serverTimeZone=Asia/Shanghai
+    username: root
+    password: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+mybatis:
+  type-aliases-package: com.ruida.springbootdemo.entity
+  mapper-locations: classpath:mapper/*Mapper.xml
+  #开启驼峰转换
+  configuration:
+    map-underscore-to-camel-case: true
+
+#showSql
+logging:
+  level:
+    com:
+      ruida:
+        springbootdemo:
+          mapper: debug
