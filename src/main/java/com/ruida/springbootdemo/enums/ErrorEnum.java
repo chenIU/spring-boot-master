@@ -2,7 +2,11 @@ package com.ruida.springbootdemo.enums;
 
 public enum ErrorEnum {
 
-    E_10001("E_1001","客户端请求不合法",400);
+
+    OK("0000","操作成功",200),
+    ERROR("E_0000","操作失败",500),
+    NO_DATA("E_0001","无数据",200),
+    E_10001("E_1002","客户端请求不合法",400);
 
     private String errorCode;
 

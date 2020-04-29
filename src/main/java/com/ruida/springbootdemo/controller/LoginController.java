@@ -16,19 +16,19 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * @description: 二维码生成控制器
+ * @description: 登录控制器
  * @author: chenjy
- * @create: 2020-04-01 16:02
+ * @create: 2020-04-28 09:23
  */
 @RestController
-@RequestMapping("/kaptcha")
+@RequestMapping("/login/")
 @Slf4j
-public class KaptchaController {
+public class LoginController extends BaseController{
 
     @Resource
     private DefaultKaptcha producer;
 
-    @RequestMapping(value = "",method = RequestMethod.GET)
+    @RequestMapping(value = "kaptcha",method = RequestMethod.GET)
     public Map<String,Object> kapcha() throws IOException {
         Map<String,Object> map = new HashMap();
         log.info("开始生成二维码...");
@@ -38,8 +38,24 @@ public class KaptchaController {
         ImageIO.write(image,"jpg",out);
         map.put("errorCode","000000");
         map.put("errorMsg","请求成功!");
-        map.put("img", "data:image/jpg;base64,"+Base64.encodeBase64String(out.toByteArray()));
+        map.put("img", "data:image/jpg;base64,"+ Base64.encodeBase64String(out.toByteArray()));
         log.info("生成二维码完成...");
         return map;
     }
+
+    @RequestMapping(value = "test",method = RequestMethod.GET)
+    public String test(){
+        log.info("LoginController is running!");
+        return "login controller testing";
+    }
+
+    @RequestMapping(value = "base",method = RequestMethod.GET)
+    public String base(){
+        Map<String,Object> map = this.convertParam();
+        String username = (String) map.get("username");
+        String password = (String) map.get("password");
+        log.info("username=="+username+",password=="+password);
+        return "we are testing base controller...";
+    }
+
 }

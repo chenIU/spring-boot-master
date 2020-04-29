@@ -1,3 +1,18 @@
 spring:
   profiles:
     active: dev
+
+mybatis:
+  type-aliases-package: com.ruida.springbootdemo.entity
+  mapper-locations: classpath:mapper/*Mapper.xml
+  #开启驼峰转换
+  configuration:
+    map-underscore-to-camel-case: true
+
+#showSql
+logging:
+  level:
+    com:
+      ruida:
+        springbootdemo:
+          mapper: debug

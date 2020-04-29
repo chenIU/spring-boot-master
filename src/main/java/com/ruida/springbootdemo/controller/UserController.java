@@ -1,6 +1,7 @@
 package com.ruida.springbootdemo.controller;
 
 import com.alibaba.fastjson.JSONObject;
+import com.github.pagehelper.PageInfo;
 import com.ruida.springbootdemo.bean.CommonResult;
 import com.ruida.springbootdemo.config.AnnotationDataSource;
 import com.ruida.springbootdemo.constant.SystemConstant;
@@ -9,6 +10,8 @@ import com.ruida.springbootdemo.entity.User;
 import com.ruida.springbootdemo.exception.BizException;
 import com.ruida.springbootdemo.service.ISinger;
 import com.ruida.springbootdemo.service.IUserService;
+import com.ruida.springbootdemo.service.impl.UserService;
+import com.ruida.springbootdemo.utils.SpringUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -147,6 +150,24 @@ public class UserController {
         result.setErrorCode(SystemConstant.SUCCESS_CODE);
         result.setErrorMsg(SystemConstant.SUCCESS_MSG);
         return result;
+    }
+
+    @RequestMapping(value = "getUserByAware",method = RequestMethod.GET)
+    public User getUserByAware(@RequestParam("id")Integer id){
+        IUserService userService = SpringUtil.getBean(UserService.class);
+        return userService.selectUserById(id);
+    }
+
+    /**
+     * 分页查询下用户
+     * @param pageNum 页码
+     * @param pageSize 页的大小
+     * @return
+     */
+    @RequestMapping(value = "queryUserListForPage",method = RequestMethod.GET)
+    public PageInfo<User> queryUserListForPage(@RequestParam(value = "pageNum",defaultValue = "1") Integer pageNum,
+                                               @RequestParam(value = "pageSize",defaultValue = "5") Integer pageSize){
+        return userService.selectAllUserListForPage(pageNum,pageSize);
     }
 
 }
