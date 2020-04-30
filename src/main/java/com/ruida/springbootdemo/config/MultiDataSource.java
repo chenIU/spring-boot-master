@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
  */
 @Component
 @ConfigurationProperties(prefix = "spring.datasource.db01")
-public class AnnotationDataSource {
+public class MultiDataSource {
 
     private String username;
 

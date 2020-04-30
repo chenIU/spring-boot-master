@@ -1,10 +1,15 @@
 package com.ruida.springbootdemo.controller;
 
 import com.google.code.kaptcha.impl.DefaultKaptcha;
+import com.ruida.springbootdemo.bean.CommonResult;
+import com.ruida.springbootdemo.constant.SystemConstant;
+import com.ruida.springbootdemo.enums.ErrorEnum;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.tomcat.util.codec.binary.Base64;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
@@ -24,6 +29,9 @@ import java.util.Map;
 @RequestMapping("/login/")
 @Slf4j
 public class LoginController extends BaseController{
+
+    @Resource
+    private RedisTemplate<String,Object> redisTemplate;
 
     @Resource
     private DefaultKaptcha producer;
@@ -56,6 +64,18 @@ public class LoginController extends BaseController{
         String password = (String) map.get("password");
         log.info("username=="+username+",password=="+password);
         return "we are testing base controller...";
+    }
+
+    /**
+     * 登录
+     * @param username 用户名
+     * @param password 密码
+     * @return
+     */
+    @RequestMapping(value = "login",method = RequestMethod.POST)
+    public CommonResult login(@RequestParam("username")String username,@RequestParam("password") String password){
+        redisTemplate.opsForValue().set(String.format(SystemConstant.LOGIN_KEY,username),password);
+        return new CommonResult(ErrorEnum.OK);
     }
 
 }

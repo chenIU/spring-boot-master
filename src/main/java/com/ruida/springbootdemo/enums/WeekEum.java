@@ -10,7 +10,7 @@ public enum WeekEum {
     Monday(1, "Mon", "星期一"),
     Tuesday(2, "Tue", "星期二"),
     Wednesday(3, "Wed", "星期三"),
-    Thursay(4, "Thur", "星期四"),
+    Thursday(4, "Thur", "星期四"),
     Friday(5, "Fri", "星期五"),
     Saturday(6, "Sat", "星期六"),
     Sunday(7, "Sun", "星期日");

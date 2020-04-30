@@ -1,6 +1,11 @@
 spring:
   profiles:
     active: dev
+  redis:
+    database: 0
+    host: localhost
+    port: 6379
+    password:
 
 mybatis:
   type-aliases-package: com.ruida.springbootdemo.entity

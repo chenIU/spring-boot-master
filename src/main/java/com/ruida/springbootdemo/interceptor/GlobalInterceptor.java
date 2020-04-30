@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletResponse;
  */
 @Component
 public class GlobalInterceptor implements HandlerInterceptor {
+
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         return check(request,response);
@@ -30,6 +31,13 @@ public class GlobalInterceptor implements HandlerInterceptor {
 
     }
 
+    /**
+     *
+     * xxx/market请求校验header中是否有Authorization
+     * @param request
+     * @param response
+     * @return
+     */
     private boolean check(HttpServletRequest request,HttpServletResponse response){
         String requestHeader = request.getHeader("Authorization");
         if(null==requestHeader||"".equals(requestHeader)){

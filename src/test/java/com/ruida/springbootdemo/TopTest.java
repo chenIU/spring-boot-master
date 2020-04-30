@@ -1,5 +1,8 @@
 package com.ruida.springbootdemo;
 
+import com.ruida.springbootdemo.constant.SystemConstant;
+import com.ruida.springbootdemo.model.Father;
+import com.ruida.springbootdemo.model.Son;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import java.math.BigDecimal;
@@ -43,6 +46,25 @@ public class TopTest {
         add(100,200);
         logger.info("hello");
         logger.info("{}","hello world");
+
+        System.out.println(String.format(SystemConstant.LOGIN_KEY, "chenjy"));
+
+        //子类可以显示转换为父类
+        Father father = new Son();
+        father.say();
+        ((Son) father).eat();
+        System.out.println(father);
+
+        //父类转换成子类需要强转
+        Son son = (Son) father;
+        son.say();
+        son.eat();
+        System.out.println(son);
+
+        Father f = new Father();
+        Son so = (Son) f;
+        so.say();
+        so.eat();
 
     }
 

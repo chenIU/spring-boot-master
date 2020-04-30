@@ -11,4 +11,6 @@ public class SystemConstant {
 
     public static final String SUCCESS_MSG = "操作成功";
 
+    public static final String LOGIN_KEY = "LOGIN_KEY_%s";
+
 }

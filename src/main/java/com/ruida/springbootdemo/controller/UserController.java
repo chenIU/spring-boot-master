@@ -3,10 +3,11 @@ package com.ruida.springbootdemo.controller;
 import com.alibaba.fastjson.JSONObject;
 import com.github.pagehelper.PageInfo;
 import com.ruida.springbootdemo.bean.CommonResult;
-import com.ruida.springbootdemo.config.AnnotationDataSource;
+import com.ruida.springbootdemo.config.MultiDataSource;
 import com.ruida.springbootdemo.constant.SystemConstant;
 import com.ruida.springbootdemo.entity.Student;
 import com.ruida.springbootdemo.entity.User;
+import com.ruida.springbootdemo.enums.ErrorEnum;
 import com.ruida.springbootdemo.exception.BizException;
 import com.ruida.springbootdemo.service.ISinger;
 import com.ruida.springbootdemo.service.IUserService;
@@ -47,7 +48,7 @@ public class UserController {
     ISinger singer;
 
     @Autowired
-    private AnnotationDataSource dataSource;
+    private MultiDataSource dataSource;
 
     @Autowired
     IUserService userService;
@@ -167,6 +168,9 @@ public class UserController {
     @RequestMapping(value = "queryUserListForPage",method = RequestMethod.GET)
     public PageInfo<User> queryUserListForPage(@RequestParam(value = "pageNum",defaultValue = "1") Integer pageNum,
                                                @RequestParam(value = "pageSize",defaultValue = "5") Integer pageSize){
+        if(pageNum<=0){
+            throw new BizException(ErrorEnum.E_2001);
+        }
         return userService.selectAllUserListForPage(pageNum,pageSize);
     }
 
