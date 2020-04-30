@@ -1,6 +1,7 @@
 package com.ruida.springbootdemo.config;
 
 import com.ruida.springbootdemo.interceptor.GlobalInterceptor;
+import com.ruida.springbootdemo.interceptor.LoginInterceptor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
@@ -16,10 +17,13 @@ public class WebConfig implements WebMvcConfigurer {
 
     @Autowired
     private GlobalInterceptor globalInterceptor;
+    @Autowired
+    private LoginInterceptor loginInterceptor;
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(globalInterceptor).addPathPatterns("/market/**");
+        registry.addInterceptor(loginInterceptor).addPathPatterns("/login/**");
     }
 
 }
