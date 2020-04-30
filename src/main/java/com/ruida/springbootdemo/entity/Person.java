@@ -1,8 +1,6 @@
 package com.ruida.springbootdemo.entity;
 
-import com.mysql.cj.x.protobuf.MysqlxDatatypes;
 import lombok.Data;
-
 import java.io.Serializable;
 
 /**
@@ -13,7 +11,7 @@ import java.io.Serializable;
 public class Person implements Serializable {
     private Integer id;
 
-    private MysqlxDatatypes.Scalar.String firstName;
+    private String firstName;
 
     private String lastName;
 

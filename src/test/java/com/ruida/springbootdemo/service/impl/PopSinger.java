@@ -1,4 +1,6 @@
-package com.ruida.springbootdemo.service;
+package com.ruida.springbootdemo.service.impl;
+
+import com.ruida.springbootdemo.service.ISinger;
 
 /**
  * @description: 流行歌手

@@ -17,7 +17,7 @@ public class SpringBootDemoApplication implements WebMvcConfigurer {
 
 	public static void main(String[] args) {
 		SpringApplication.run(SpringBootDemoApplication.class, args);
-		log.error("application start successful...");
+		log.warn("application start successful...");
 	}
 
 	@Override

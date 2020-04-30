@@ -2,13 +2,15 @@ package com.ruida.springbootdemo.entity;
 
 import lombok.Data;
 
+import java.io.Serializable;
+
 /**
  * @description: 用户
  * @author: chenjy
  * @create: 2020-04-27 15:10
  */
 @Data
-public class User {
+public class User implements Serializable {
 
     private Integer id;
 
@@ -16,6 +18,6 @@ public class User {
 
     private Integer age;
 
-    private String deptId;
+    private Integer deptId;
 
 }

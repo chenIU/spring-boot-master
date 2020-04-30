@@ -14,12 +14,16 @@
     <!--</select>-->
 
 
-    <select id="selectUserById" resultType="com.ruida.springbootdemo.entity.User">
+    <select id="selectUserById" resultType="user" useCache="true">
         select * from t_user where id = #{id}
     </select>
 
     <select id="selectAllUserList" resultType="com.ruida.springbootdemo.entity.User">
         select * from t_user
+    </select>
+
+    <select id="selectDeptById" resultType="java.util.Map">
+        select dept_id as deptId,role_id as roleId from t_user where id = #{id}
     </select>
 
 </mapper>

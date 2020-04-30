@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @description:
@@ -34,6 +35,16 @@ public class UserService implements IUserService {
         List<User> userList = userMapper.selectAllUserList();
         PageInfo<User> pageInfo = new PageInfo<>(userList);
         return pageInfo;
+    }
+
+    @Override
+    public int insertUser(User user) {
+        return userMapper.insertUser(user);
+    }
+
+    @Override
+    public Map<String, Object> selectDeptById(Integer id) {
+        return userMapper.selectDeptById(id);
     }
 
 }

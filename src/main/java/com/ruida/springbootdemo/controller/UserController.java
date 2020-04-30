@@ -9,13 +9,11 @@ import com.ruida.springbootdemo.entity.Student;
 import com.ruida.springbootdemo.entity.User;
 import com.ruida.springbootdemo.enums.ErrorEnum;
 import com.ruida.springbootdemo.exception.BizException;
-import com.ruida.springbootdemo.service.ISinger;
 import com.ruida.springbootdemo.service.IUserService;
 import com.ruida.springbootdemo.service.impl.UserService;
 import com.ruida.springbootdemo.utils.SpringUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 
@@ -44,20 +42,10 @@ public class UserController {
     private Integer port;
 
     @Autowired
-    @Qualifier("operaSinger")
-    ISinger singer;
-
-    @Autowired
     private MultiDataSource dataSource;
 
     @Autowired
     IUserService userService;
-
-    @GetMapping("test")
-    public String test() {
-        singer.sing();
-        return "hello world from " + port;
-    }
 
     @GetMapping("use")
     public void useThrealLocal(Integer integer, HttpServletRequest request) throws InterruptedException {
@@ -172,6 +160,40 @@ public class UserController {
             throw new BizException(ErrorEnum.E_2001);
         }
         return userService.selectAllUserListForPage(pageNum,pageSize);
+    }
+
+    /**
+     * 增加用户
+     * @param user
+     * @return
+     */
+    @PostMapping
+    public CommonResult addUser(@RequestBody User user){
+        if(userService.insertUser(user)>0){
+            return new CommonResult(ErrorEnum.OK);
+        }else {
+            return new CommonResult(ErrorEnum.ERROR);
+        }
+    }
+
+    /**
+     * 通过用户id查询部门id
+     * @param id
+     * @return
+     */
+    @GetMapping("/queryDeptId/{id}")
+    public CommonResult queryDeptById(@PathVariable("id")Integer id){
+        Map<String,Object> map = userService.selectDeptById(id);
+
+       /* if(!CollectionUtils.isEmpty(map)){
+            return new CommonResult(map.get("deptId"),ErrorEnum.OK.getErrorCode(),ErrorEnum.OK.getErrorMsg());
+        }else {
+            return new CommonResult(ErrorEnum.ERROR);
+        }*/
+
+        System.out.println("deptId=="+map.get("deptId")+",roleId=="+map.get("roleId"));
+
+        return new CommonResult(ErrorEnum.OK);
     }
 
 }

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+    <settings>
+
+        <!--开启驼峰命名-->
+        <setting name="mapUnderscoreToCamelCase" value="true"/>
+
+        <!--开启懒加载-->
+        <setting name="lazyLoadingEnabled" value="true"/>
+
+        <!--开启二级缓存-->
+        <setting name="cacheEnabled" value="true"/>
+
+        <!--如果查询的字段时空值，在返回的map中找不到此字段对应的属性，通过设置callSettersOnNulls可解决此问题-->
+        <setting name="callSettersOnNulls" value="true"/>
+
+        <!--mybatis插入空值，需要指定jdbcType-->
+        <setting name="jdbcTypeForNull" value="NULL"/>
+
+    </settings>
+
+    <typeAliases>
+        <typeAlias type="com.ruida.springbootdemo.entity.User" alias="user"/>
+    </typeAliases>
+
+</configuration>
