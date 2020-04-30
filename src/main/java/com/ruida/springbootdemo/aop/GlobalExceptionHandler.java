@@ -1,6 +1,6 @@
 package com.ruida.springbootdemo.aop;
 
-import com.ruida.springbootdemo.beans.CommonResult;
+import com.ruida.springbootdemo.bean.CommonResult;
 import com.ruida.springbootdemo.exception.BizException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
