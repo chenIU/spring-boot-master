@@ -1,9 +1,9 @@
 package com.ruida.springbootdemo.utils;
 
 import com.google.common.base.Joiner;
-import com.ruida.springbootdemo.entity.Student;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -34,10 +34,12 @@ public class StringUtil {
 
         System.out.println(getSuffix("Snipaste_2020-03-26_13-48-25.png"));
 
-        System.out.println(Student.class.getName());
-        System.out.println(Student.class.getSimpleName());
-        int i = 'A';
-        System.out.println(i);
+        int a[] = {1, 2, 3};
+        System.out.println(Arrays.toString(a));
+        int b[][] = {{1, 2, 3}, {4, 5, 6}};
+        System.out.println(Arrays.toString(b));
+        System.out.println(Arrays.deepToString(b));
+
     }
 
     /**

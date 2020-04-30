@@ -1,5 +1,6 @@
-package com.ruida.springbootdemo.beans;
+package com.ruida.springbootdemo.bean;
 
+import com.ruida.springbootdemo.enums.ErrorEnum;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -31,6 +32,11 @@ public class CommonResult<T> implements Serializable {
     public CommonResult(String errorCode, String errorMsg) {
         this.errorCode = errorCode;
         this.errorMsg = errorMsg;
+    }
+
+    public CommonResult(ErrorEnum e){
+        this.errorCode = e.getErrorCode();
+        this.errorMsg = e.getErrorMsg();
     }
 
 }

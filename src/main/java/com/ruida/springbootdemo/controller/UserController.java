@@ -1,17 +1,23 @@
 package com.ruida.springbootdemo.controller;
 
 import com.alibaba.fastjson.JSONObject;
-import com.ruida.springbootdemo.config.DataSource;
+import com.github.pagehelper.PageInfo;
+import com.ruida.springbootdemo.bean.CommonResult;
+import com.ruida.springbootdemo.config.MultiDataSource;
+import com.ruida.springbootdemo.constant.SystemConstant;
 import com.ruida.springbootdemo.entity.Student;
+import com.ruida.springbootdemo.entity.User;
+import com.ruida.springbootdemo.enums.ErrorEnum;
 import com.ruida.springbootdemo.exception.BizException;
 import com.ruida.springbootdemo.service.ISinger;
+import com.ruida.springbootdemo.service.IUserService;
+import com.ruida.springbootdemo.service.impl.UserService;
+import com.ruida.springbootdemo.utils.SpringUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.context.request.RequestContextHolder;
-import org.springframework.web.context.request.ServletRequestAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -42,9 +48,12 @@ public class UserController {
     ISinger singer;
 
     @Autowired
-    private DataSource dataSource;
+    private MultiDataSource dataSource;
 
-    @RequestMapping("test")
+    @Autowired
+    IUserService userService;
+
+    @GetMapping("test")
     public String test() {
         singer.sing();
         return "hello world from " + port;
@@ -66,7 +75,7 @@ public class UserController {
         response.getWriter().close();
     }
 
-    @RequestMapping(value = "request")
+    @PostMapping(value = "request")
     public void request(HttpServletRequest request, HttpServletResponse response) {
         try {
             InputStream in = request.getInputStream();
@@ -86,7 +95,7 @@ public class UserController {
         }
     }
 
-    @RequestMapping("auth")
+    @GetMapping("auth")
     public void auth(HttpServletRequest request, HttpServletResponse response) {
         System.out.println(request.getServletPath());
         System.out.println(request.getRequestURL());
@@ -94,9 +103,8 @@ public class UserController {
         response.setContentType("text/html;charset=UTF-8");
     }
 
-    @RequestMapping("login")
+    @PostMapping("login")
     public Map<String, Object> login() {
-        log.info("login...111");
         Map<String, Object> map = new HashMap();
         map.put("errorCode", 200);
         map.put("errorMsg", "登录成功");
@@ -113,12 +121,12 @@ public class UserController {
         return map;
     }
 
-    @RequestMapping("exception")
+    @GetMapping("exception")
     public JSONObject exception() {
         throw new BizException("E_100500", "手机号码绑定失败", 500);
     }
 
-    @RequestMapping("getStudentInfo")
+    @GetMapping("getStudentInfo")
     public Student getStudentInfo(){
         Student stu = null;
         int i = 1/0;
@@ -129,28 +137,41 @@ public class UserController {
         }
     }
 
-    @RequestMapping("submitForm")
+    @PostMapping("submitForm")
     public void submitForm(HttpServletRequest request,HttpServletResponse response){
         String username = request.getParameter("username");
         System.out.println(username);
     }
 
-    @RequestMapping("redirect")
-    public void redirect(@RequestParam("username")String username,
-                         @RequestParam("password")String password) throws IOException {
-        System.out.println("username="+username+",password="+password);
-        ServletRequestAttributes servletRequestAttributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
-        HttpServletRequest request = servletRequestAttributes.getRequest();
-        HttpServletResponse response = servletRequestAttributes.getResponse();
-        response.sendRedirect("https://www.baidu.com");
+    @GetMapping("getUserById/{id}")
+    public CommonResult getUserById(@PathVariable("id") Integer id){
+        CommonResult result = new CommonResult();
+        User user = userService.selectUserById(id);
+        result.setContent(user);
+        result.setErrorCode(SystemConstant.SUCCESS_CODE);
+        result.setErrorMsg(SystemConstant.SUCCESS_MSG);
+        return result;
     }
 
-    @RequestMapping("add/{type}")
-    public Map<String,Object> add(@PathVariable String type,String name){
-        Map<String,Object> map = new HashMap();
-        map.put("type",type);
-        map.put("name",name);
-        return map;
+    @RequestMapping(value = "getUserByAware",method = RequestMethod.GET)
+    public User getUserByAware(@RequestParam("id")Integer id){
+        IUserService userService = SpringUtil.getBean(UserService.class);
+        return userService.selectUserById(id);
+    }
+
+    /**
+     * 分页查询下用户
+     * @param pageNum 页码
+     * @param pageSize 页的大小
+     * @return
+     */
+    @RequestMapping(value = "queryUserListForPage",method = RequestMethod.GET)
+    public PageInfo<User> queryUserListForPage(@RequestParam(value = "pageNum",defaultValue = "1") Integer pageNum,
+                                               @RequestParam(value = "pageSize",defaultValue = "5") Integer pageSize){
+        if(pageNum<=0){
+            throw new BizException(ErrorEnum.E_2001);
+        }
+        return userService.selectAllUserListForPage(pageNum,pageSize);
     }
 
 }
