@@ -75,6 +75,7 @@ public class LoginController extends BaseController{
     @RequestMapping(value = "login",method = RequestMethod.POST)
     public CommonResult login(@RequestParam("username")String username,@RequestParam("password") String password){
         redisTemplate.opsForValue().set(String.format(SystemConstant.LOGIN_KEY,username),password);
+        System.out.println("111");
         return new CommonResult(ErrorEnum.OK);
     }
 
