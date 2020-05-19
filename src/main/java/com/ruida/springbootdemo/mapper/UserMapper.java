@@ -2,13 +2,14 @@ package com.ruida.springbootdemo.mapper;
 
 import com.ruida.springbootdemo.entity.User;
 import org.apache.ibatis.annotations.Insert;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 import java.util.Map;
 
 public interface UserMapper {
 
-    User selectUserById(Integer id);
+    User selectUserById(@Param("id") Integer id);
 
     List<User> selectAllUserList();
 
