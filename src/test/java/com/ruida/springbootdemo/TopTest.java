@@ -1,13 +1,18 @@
+/*
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ */
+
 package com.ruida.springbootdemo;
 
-import com.ruida.springbootdemo.constant.SystemConstant;
-import com.ruida.springbootdemo.model.Father;
-import com.ruida.springbootdemo.model.Son;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import java.math.BigDecimal;
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * @description: 顶级测试类
@@ -20,6 +25,11 @@ public class TopTest {
 
 
     public static void main(String[] args) {
+
+    }
+
+
+    /*public static void main(String[] args) {
         String s = "100";
         int i = Integer.parseInt(s);
         int j = Integer.valueOf(s);
@@ -70,7 +80,7 @@ public class TopTest {
 
     private static void add(int a,int b){
         System.out.println("TopTest.add linenum:44, param:{a = [" + a + "], b = [" + b + "]} info:");
-    }
+    }*/
 
 
 
