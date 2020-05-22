@@ -188,6 +188,7 @@
         <appender-ref ref="STDOUT"/>
     </logger>
 
+    <!--多环境配置-->
     <springProfile name="dev,test">
         <root level="info">
             <appender-ref ref="STDOUT"/>
