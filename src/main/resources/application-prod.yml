@@ -4,3 +4,13 @@ server:
 spring:
   application:
     name: ruida-prod-env
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/ruida?characterEncoding=utf8&useSSl=false&serverTimeZone=Asia/Shanghai
+    username: root
+    password: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    jpa:
+      database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+      show-sql: true
+      hibernate:
+        ddl-auto: none

@@ -14,6 +14,11 @@ package com.ruida.springbootdemo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
+import java.util.TreeMap;
+
 /**
  * @description: 顶级测试类
  * @author: chenjy
@@ -25,6 +30,27 @@ public class TopTest {
 
 
     public static void main(String[] args) {
+        TreeMap<Integer, String> map = new TreeMap<>();
+        map.put(3, "val");
+        map.put(2, "val");
+        map.put(1, "val");
+        map.put(5, "val");
+        map.put(4, "val");
+        System.out.println(map); // {5=val, 4=val, 3=val, 2=val, 1=val}
+
+        Map<String,Object> hashMap = new HashMap();
+        hashMap.put("name1","chenjy");
+        hashMap.put("name3","wangman");
+        hashMap.put("name2","liuxy");
+        hashMap.put("school","MIT");
+        System.out.println(hashMap);
+
+        LinkedHashMap linkedHashMap = new LinkedHashMap();
+        linkedHashMap.put("name1","chenjy");
+        linkedHashMap.put("name2","liuxy");
+        linkedHashMap.put("name3","wangman");
+        System.out.println(linkedHashMap);
+
 
     }
 

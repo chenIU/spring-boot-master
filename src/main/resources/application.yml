@@ -18,8 +18,10 @@ mybatis:
   mapper-locations: classpath:mapper/*Mapper.xml
   config-location: classpath:config/mybatis-config.xml
 
+
 #showSql
 logging:
+  config: classpath:logback-spring.xml
   level:
     com:
       ruida:
