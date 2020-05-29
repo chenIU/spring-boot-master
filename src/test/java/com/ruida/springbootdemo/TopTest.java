@@ -14,10 +14,10 @@ package com.ruida.springbootdemo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.HashMap;
-import java.util.LinkedHashMap;
-import java.util.Map;
-import java.util.TreeMap;
+import java.math.BigDecimal;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 
 /**
  * @description: 顶级测试类
@@ -30,7 +30,13 @@ public class TopTest {
 
 
     public static void main(String[] args) {
-        TreeMap<Integer, String> map = new TreeMap<>();
+        System.out.println(BigDecimal.ZERO);
+        SimpleDateFormat sdf = new SimpleDateFormat("YYYY-MM-dd");
+        Calendar c = Calendar.getInstance();
+        c.set(2019,Calendar.DECEMBER,31);
+        Date date = c.getTime();
+        System.out.println(sdf.format(date));
+      /*  TreeMap<Integer, String> map = new TreeMap<>();
         map.put(3, "val");
         map.put(2, "val");
         map.put(1, "val");
@@ -49,9 +55,7 @@ public class TopTest {
         linkedHashMap.put("name1","chenjy");
         linkedHashMap.put("name2","liuxy");
         linkedHashMap.put("name3","wangman");
-        System.out.println(linkedHashMap);
-
-
+        System.out.println(linkedHashMap);*/
     }
 
 
