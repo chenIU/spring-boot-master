@@ -28,14 +28,29 @@ public class TopTest {
 
     private static final Logger logger = LoggerFactory.getLogger(TopTest.class);
 
+    int count;
 
     public static void main(String[] args) {
+        TopTest t = new TopTest();
         System.out.println(BigDecimal.ZERO);
         SimpleDateFormat sdf = new SimpleDateFormat("YYYY-MM-dd");
         Calendar c = Calendar.getInstance();
         c.set(2019,Calendar.DECEMBER,31);
         Date date = c.getTime();
         System.out.println(sdf.format(date));
+
+        int count = 0;
+        System.out.println(count);
+
+        t.dosomething();
+
+        BigDecimal a = new BigDecimal("9.789");
+        BigDecimal b = new BigDecimal("1.120");
+        System.out.println(a.subtract(b));
+
+        BigDecimal aa = new BigDecimal("0.01");
+        System.out.println(aa);
+        System.out.println(aa.compareTo(BigDecimal.ZERO)==0);
       /*  TreeMap<Integer, String> map = new TreeMap<>();
         map.put(3, "val");
         map.put(2, "val");
@@ -56,6 +71,32 @@ public class TopTest {
         linkedHashMap.put("name2","liuxy");
         linkedHashMap.put("name3","wangman");
         System.out.println(linkedHashMap);*/
+
+       /* String str = "123r";
+        long l = 0;
+        try {
+            l = Long.valueOf(str);
+        }catch (NumberFormatException e){
+            e.printStackTrace();
+        }
+        System.out.println(l);
+        System.out.println("end...");*/
+
+       /*Map<String,Object> map = new HashMap();
+       map.put("name",2.1d);
+       BigDecimal b = (BigDecimal) map.get("name");
+       System.out.println(b);*/
+
+       /*Map<String,Object> map = new HashMap();
+       map.put("name",null);
+       String name = String.valueOf(map.get("name"));
+       if("null".equals(name)){
+           System.out.println(1);
+       }else {
+           System.out.println(2);
+       }
+       System.out.println(name);*/
+
     }
 
 
@@ -111,6 +152,13 @@ public class TopTest {
     private static void add(int a,int b){
         System.out.println("TopTest.add linenum:44, param:{a = [" + a + "], b = [" + b + "]} info:");
     }*/
+
+
+
+    public void dosomething(){
+        System.out.println(count);
+    }
+
 
 
 

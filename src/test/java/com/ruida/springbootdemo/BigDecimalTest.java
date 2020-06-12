@@ -10,12 +10,21 @@ import java.math.BigDecimal;
 public class BigDecimalTest {
     public static void main(String[] args) {
 
-        BigDecimal a = BigDecimal.ZERO;
+        BigDecimal a = new BigDecimal("0.00");
+        BigDecimal b = new BigDecimal("0.0");
+
+        System.out.println(a.equals(b));
+
+        System.out.println(a.compareTo(b)==0);
+
+        System.out.println(BigDecimal.ZERO);
+
+      /*  BigDecimal a = BigDecimal.ZERO;
         BigDecimal b = new BigDecimal("0.1");
         System.out.println(a.add(b));
 
         Integer i = null;
-        System.out.println(i.equals(0));
+        System.out.println(i.equals(0));*/
 
       /*  BigDecimal b1 = new BigDecimal(0.1);
         System.out.println(b1);
