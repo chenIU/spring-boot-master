@@ -1,59 +1,54 @@
 package com.ruida.springbootdemo.utils;
 
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
+import lombok.extern.slf4j.Slf4j;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
 /**
- * @description: 配置文件工具类
+ * @description: 配置文件读取工具类
  * @author: chenjy
- * @create: 2020-04-07 11:07
+ * @create: 2020-06-12 11:21
  */
+@Slf4j
 public class PropertyUtil {
-
-    private static Logger log = LoggerFactory.getLogger(PropertyUtil.class);
 
     private static Properties props;
 
     static {
-        loadProps("dbconfig.properties");
+        loadProps("config/dbconfig.properties");
     }
 
-    synchronized static void loadProps(String file){
+    synchronized static private void loadProps(String fileName) {
+        log.info("开始加载dbconfig.properties配置文件内容");
         props = new Properties();
-        InputStream in;
-        in = PropertyUtil.class.getClassLoader().getResourceAsStream(file);
+        InputStream in = null;
         try {
+            in = PropertyUtil.class.getClassLoader().getResourceAsStream(fileName);
             props.load(in);
+        } catch (FileNotFoundException e) {
+            log.error("dbconfig.properties配置文件未找到");
         } catch (IOException e) {
-            log.error("出现了IO异常...");
-            e.printStackTrace();
+            log.error("出现IOException");
         } finally {
             try {
-                in.close();
+                if (null != in) {
+                    in.close();
+                }
             } catch (IOException e) {
-                log.error("流关闭异常...");
-                e.printStackTrace();
+                log.error("dbconfig.properties文件流关闭异常");
             }
         }
-        log.info("property文件内容读取成功！");
-        log.info("property文件内容为"+props);
+        log.info("加载dbconfig.properties配置文件完成");
+        log.info("properties配置文件内容：" + props);
     }
 
-    public static String getKey(String key){
-        if(props==null){
+    public static String getProperty(String key){
+        if(null == props){
             loadProps("dbconfig.properties");
         }
         return props.getProperty(key);
-    }
-
-    public static void main(String[] args) {
-        String dbname = PropertyUtil.getKey("dbname");
-        System.out.println(dbname);
     }
 
 }

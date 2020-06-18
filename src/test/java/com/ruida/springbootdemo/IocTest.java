@@ -1,6 +1,7 @@
 package com.ruida.springbootdemo;
 
 import com.ruida.springbootdemo.service.BlogService2;
+import com.ruida.springbootdemo.utils.PropertyUtil;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +26,8 @@ public class IocTest {
 
     @Test
     public void delete(){
-        service.delete(1);
+        //service.delete(1);
+        PropertyUtil.getProperty("username");
     }
 
 }

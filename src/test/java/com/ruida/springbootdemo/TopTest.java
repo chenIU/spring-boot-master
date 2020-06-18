@@ -31,6 +31,10 @@ public class TopTest {
     int count;
 
     public static void main(String[] args) {
+
+        String str = "chenjianyin+";
+        System.out.println(str.substring(0,str.length()-1));
+
         TopTest t = new TopTest();
         System.out.println(BigDecimal.ZERO);
         SimpleDateFormat sdf = new SimpleDateFormat("YYYY-MM-dd");
