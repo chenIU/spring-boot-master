@@ -2,7 +2,6 @@ package com.ruida.springbootdemo.controller;
 
 import com.google.code.kaptcha.impl.DefaultKaptcha;
 import com.ruida.springbootdemo.bean.CommonResult;
-import com.ruida.springbootdemo.constant.SystemConstant;
 import com.ruida.springbootdemo.enums.ErrorEnum;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.tomcat.util.codec.binary.Base64;
@@ -72,9 +71,11 @@ public class LoginController extends BaseController{
      * @param password 密码
      * @return
      */
-    @RequestMapping(value = "login",method = RequestMethod.POST)
+    @RequestMapping(value = "loginByUsername",method = RequestMethod.POST)
     public CommonResult login(@RequestParam("username")String username,@RequestParam("password") String password){
-        redisTemplate.opsForValue().set(String.format(SystemConstant.LOGIN_KEY,username),password);
+        //redisTemplate.opsForValue().set(String.format(SystemConstant.LOGIN_KEY,username),password);
+        System.out.println(username);
+        System.out.println(password);
         System.out.println("111");
         return new CommonResult(ErrorEnum.OK);
     }
