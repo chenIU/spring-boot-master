@@ -81,6 +81,7 @@ public class LoginController extends BaseController{
 
     @RequestMapping("sensitive")
     public void sensitive(HttpServletRequest request, HttpServletResponse response){
+        log.warn("login controller is running......");
         String username = request.getParameter("username");
         log.error(username);
     }
