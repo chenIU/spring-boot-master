@@ -86,4 +86,10 @@ public class LoginController extends BaseController{
         log.error(username);
     }
 
+    @RequestMapping("wrapper")
+    public void wrapper(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        String username = request.getParameter("username");
+        log.info(username);
+    }
+
 }
