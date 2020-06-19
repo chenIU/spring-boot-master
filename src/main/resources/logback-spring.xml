@@ -196,7 +196,7 @@
     </springProfile>
 
     <springProfile name="prod">
-        <root level="debug">
+        <root level="info">
             <appender-ref ref="STDOUT"/>
             <appender-ref ref="FILEERROR"/>
             <appender-ref ref="FILEWARN"/>

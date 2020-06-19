@@ -3,7 +3,6 @@ package com.ruida.springbootdemo.filter;
 import lombok.extern.slf4j.Slf4j;
 
 import javax.servlet.*;
-import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
@@ -32,13 +31,9 @@ public class InputFilter implements Filter {
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain filterChain) throws IOException, ServletException {
         log.info("InputFilter is running...");
-        HttpServletRequest req = (HttpServletRequest) request;
-        log.error("request uri is"+req.getRequestURI());
-        log.error("username"+request.getParameter("username"));
-        log.error("password"+request.getParameter("password"));
         ServletRequest proxy_req = (ServletRequest) Proxy.newProxyInstance(request.getClass().getClassLoader(), request.getClass().getInterfaces(), new InvocationHandler() {
+            @Override
             public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
-                log.info(method.getName());
                 if(method.getName().equals("getParameter")){
                     String value = (String) method.invoke(request,args);
                     if(value != null){

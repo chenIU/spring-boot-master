@@ -6,13 +6,12 @@ import com.ruida.springbootdemo.enums.ErrorEnum;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.tomcat.util.codec.binary.Base64;
 import org.springframework.data.redis.core.RedisTemplate;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.imageio.ImageIO;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -71,13 +70,19 @@ public class LoginController extends BaseController{
      * @param password 密码
      * @return
      */
-    @RequestMapping(value = "loginByUsername",method = RequestMethod.POST)
-    public CommonResult login(@RequestParam("username")String username,@RequestParam("password") String password){
+    @PostMapping("loginByUsername")
+    public CommonResult login(@RequestParam(value = "username",required = false)String username,
+                              @RequestParam(value = "password",required = false) String password){
         //redisTemplate.opsForValue().set(String.format(SystemConstant.LOGIN_KEY,username),password);
-        System.out.println(username);
-        System.out.println(password);
-        System.out.println("111");
+        log.error(username);
+        log.error(password);
         return new CommonResult(ErrorEnum.OK);
+    }
+
+    @RequestMapping("sensitive")
+    public void sensitive(HttpServletRequest request, HttpServletResponse response){
+        String username = request.getParameter("username");
+        log.error(username);
     }
 
 }
