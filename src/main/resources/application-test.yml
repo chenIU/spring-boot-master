@@ -5,9 +5,9 @@ spring:
   application:
     name: ruida-test-env
   datasource:
-    url: jdbc:mysql://127.0.0.1:3306/ruida?characterEncoding=utf8&useSSl=false&serverTimeZone=Asia/Shanghai
+    url: jdbc:mysql://47.101.129.111:3306/runoob?characterEncoding=utf8&useSSl=false&serverTimeZone=Asia/Shanghai
     username: root
-    password: root
+    password: Chenjy418.
     driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
     database-platform: org.hibernate.dialect.MySQL5InnoDBDialect

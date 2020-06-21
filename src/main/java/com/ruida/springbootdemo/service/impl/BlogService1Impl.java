@@ -26,7 +26,7 @@ public class BlogService1Impl implements BlogService1 {
 
     @Override
     public void save(Blog blog) {
-        String sql = "insert into blog values(?,?,?)";
+        String sql = "insert into t_blog values(?,?,?)";
         jdbcTemplate.update(sql,
                 new Object[]{blog.getId(), blog.getName(), blog.getUrl()},
                 new int[]{java.sql.Types.INTEGER, java.sql.Types.VARCHAR, java.sql.Types.VARCHAR});
@@ -36,7 +36,7 @@ public class BlogService1Impl implements BlogService1 {
 
     @Override
     public void update(Blog blog) {
-        String sql = "update blog set name = ? where id=?";
+        String sql = "update t_blog set name = ? where id=?";
         jdbcTemplate.update(sql, new Object[]{blog.getName(), blog.getId()},
                 new int[]{java.sql.Types.VARCHAR, java.sql.Types.INTEGER});
     }

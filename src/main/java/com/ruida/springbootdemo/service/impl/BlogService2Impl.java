@@ -21,7 +21,7 @@ public class BlogService2Impl implements BlogService2 {
 
     @Override
     public void delete(int id) {
-        String sql = "delete from blog where id=?";
+        String sql = "delete from t_blog where id=?";
         jdbcTemplate.update(sql, id);
         //throw new RuntimeException("出现异常");
     }
