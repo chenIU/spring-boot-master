@@ -1,5 +1,6 @@
 package com.ruida.springbootdemo.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -10,6 +11,7 @@ import java.io.Serializable;
  * @create: 2020-04-27 15:10
  */
 @Data
+@JsonIgnoreProperties(value = "age")
 public class User implements Serializable {
 
     private Integer id;

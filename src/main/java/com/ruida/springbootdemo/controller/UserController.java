@@ -16,7 +16,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -194,6 +193,20 @@ public class UserController {
         System.out.println("deptId=="+map.get("deptId")+",roleId=="+map.get("roleId"));
 
         return new CommonResult(ErrorEnum.OK);
+    }
+
+    /**
+     * 测试JsonIgnoreProperties注解，返回的实体类中去掉某些字段
+     * @return
+     */
+    @RequestMapping(value = "getUser",method = RequestMethod.GET)
+    public User getUser(){
+        User user =  new User();
+        user.setName("chenjy");
+        user.setAge(27);
+        user.setDeptId(1);
+        user.setId(100);
+        return user;
     }
 
 }
