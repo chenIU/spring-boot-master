@@ -4,7 +4,6 @@ import com.alibaba.fastjson.JSONObject;
 import com.github.pagehelper.PageInfo;
 import com.ruida.springbootdemo.bean.CommonResult;
 import com.ruida.springbootdemo.config.MultiDataSource;
-import com.ruida.springbootdemo.constant.SystemConstant;
 import com.ruida.springbootdemo.entity.Student;
 import com.ruida.springbootdemo.entity.User;
 import com.ruida.springbootdemo.enums.ErrorEnum;
@@ -16,6 +15,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -130,7 +130,7 @@ public class UserController {
         System.out.println(username);
     }
 
-    @GetMapping("getUserById/{id}")
+   /* @GetMapping("getUserById/{id}")
     public CommonResult getUserById(@PathVariable("id") Integer id){
         CommonResult result = new CommonResult();
         User user = userService.selectUserById(id);
@@ -138,6 +138,11 @@ public class UserController {
         result.setErrorCode(SystemConstant.SUCCESS_CODE);
         result.setErrorMsg(SystemConstant.SUCCESS_MSG);
         return result;
+    }*/
+
+    @GetMapping("getUserById/{id}")
+    public User getUserById(@PathVariable("id") Integer id){
+        return userService.selectUserById(id);
     }
 
     @RequestMapping(value = "getUserByAware",method = RequestMethod.GET)
