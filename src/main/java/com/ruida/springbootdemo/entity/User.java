@@ -2,9 +2,11 @@ package com.ruida.springbootdemo.entity;
 
 import com.fasterxml.jackson.annotation.*;
 import lombok.Data;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.Date;
 
 /**
  * @description: 用户
@@ -17,7 +19,7 @@ import java.time.LocalDate;
  * 4、JsonPropertyOrder指定序列化时属性的顺序
  * 5、JsonRootName指定json根属性的名称
  * 6、JsonProperty指定序列化为json时的属性名称
- * 7、JsonFormat指定输出的格式
+ * 7、JsonFormat格式化输出
  * </p>
  */
 @Data
@@ -34,10 +36,14 @@ public class User implements Serializable {
 
     private Integer age;
 
-    @JsonFormat(pattern = "yyyy/MM/dd")
+    //@JsonFormat(pattern = "yyyy/MM/dd")
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDate birthday;
 
     @JsonIgnore
     private Integer deptId;
+
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    private Date createTime;
 
 }

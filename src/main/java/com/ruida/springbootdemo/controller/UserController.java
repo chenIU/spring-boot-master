@@ -171,8 +171,9 @@ public class UserController {
      * @param user
      * @return
      */
-    @PostMapping
+    @PostMapping("addUser")
     public CommonResult addUser(@RequestBody User user){
+        log.info(user.toString());
         if(userService.insertUser(user)>0){
             return new CommonResult(ErrorEnum.OK);
         }else {
