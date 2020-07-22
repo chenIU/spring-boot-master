@@ -12,6 +12,8 @@ spring:
     hibernate:
       ddl-auto: none
     open-in-view: false
+  main:
+    allow-bean-definition-overriding: true # 解决bean重复注册的问题，继承自JpaRepository的dao会自动注册到IoC容器，从而导致重复注册的问题。
 
 mybatis:
   type-aliases-package: com.ruida.springbootdemo.entity

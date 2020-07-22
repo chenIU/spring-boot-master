@@ -1,4 +1,4 @@
-package com.ruida.springbootdemo.dao;
+package com.ruida.springbootdemo.mapper;
 
 import com.ruida.springbootdemo.entity.Course;
 import org.springframework.data.jpa.repository.JpaRepository;
