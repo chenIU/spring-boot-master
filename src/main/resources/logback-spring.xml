@@ -167,7 +167,7 @@
     </appender>-->
 
     <appender name="FILE" class="ch.qos.logback.core.FileAppender">
-        <file>springboot.log</file>
+        <file>/spring-boot-demo.log</file>
         <encoder>
             <pattern>
                 %date %level [%thread] %logger{10} [%file:%line] %msg%n
@@ -192,6 +192,7 @@
     <springProfile name="dev,test">
         <root level="info">
             <appender-ref ref="STDOUT"/>
+            <!--<appender-ref ref="FILE"/>-->
         </root>
     </springProfile>
 

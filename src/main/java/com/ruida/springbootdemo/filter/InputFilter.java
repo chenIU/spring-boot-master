@@ -24,13 +24,13 @@ public class InputFilter implements Filter {
 
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
-        log.warn("filter init......");
+        log.info("filter init......");
         list = Arrays.asList(array);
     }
 
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain filterChain) throws IOException, ServletException {
-        log.warn("something before doFilter....");
+        log.info("something before doFilter....");
         ServletRequest proxy_req = (ServletRequest) Proxy.newProxyInstance(request.getClass().getClassLoader(), request.getClass().getInterfaces(), new InvocationHandler() {
             @Override
             public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
@@ -51,12 +51,12 @@ public class InputFilter implements Filter {
 
         filterChain.doFilter(proxy_req,response);
 
-        log.warn("something after doFilter....");
+        log.info("something after doFilter....");
     }
 
     @Override
     public void destroy() {
-        log.warn("filter destroy......");
+        log.info("filter destroy......");
     }
 
 }

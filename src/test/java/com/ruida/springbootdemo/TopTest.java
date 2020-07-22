@@ -11,6 +11,7 @@
 
 package com.ruida.springbootdemo;
 
+import com.ruida.springbootdemo.entity.Employee;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -31,6 +32,12 @@ public class TopTest {
     int count;
 
     public static void main(String[] args) {
+
+        Employee e = new Employee(1,"chenjy");
+        System.out.println(e);
+
+        Employee employee = new Employee();
+        System.out.println(employee);
 
         Integer i1 = 22;
         Integer i2 = 22;

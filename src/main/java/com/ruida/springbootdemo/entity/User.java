@@ -43,7 +43,7 @@ public class User implements Serializable {
     @JsonIgnore
     private Integer deptId;
 
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",locale = "zh",timezone = "GMT+8")
     private Date createTime;
 
 }

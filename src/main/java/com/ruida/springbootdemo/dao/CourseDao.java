@@ -10,7 +10,7 @@ import org.springframework.data.repository.query.Param;
  * @author: chenjy
  * @create: 2020-04-29 14:02
  */
-public interface ICourseDao extends JpaRepository<Course,Integer> {
+public interface CourseDao extends JpaRepository<Course,Integer> {
 
     @Query(nativeQuery = true,value = "select * from t_course c where c.id = :id")
     Course selectById(@Param(value = "id") Integer id);

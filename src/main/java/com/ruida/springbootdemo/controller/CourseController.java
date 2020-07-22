@@ -1,7 +1,7 @@
 package com.ruida.springbootdemo.controller;
 
 import com.ruida.springbootdemo.bean.CommonResult;
-import com.ruida.springbootdemo.dao.ICourseDao;
+import com.ruida.springbootdemo.dao.CourseDao;
 import com.ruida.springbootdemo.entity.Course;
 import com.ruida.springbootdemo.enums.ErrorEnum;
 import lombok.extern.slf4j.Slf4j;
@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.*;
 public class CourseController {
 
     @Autowired
-    ICourseDao courseDao;
+    CourseDao courseDao;
 
     @RequestMapping(value = "/getCourseInfo",method = RequestMethod.GET)
     public String getCourseInfo(){
