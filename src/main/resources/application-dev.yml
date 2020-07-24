@@ -6,10 +6,13 @@ spring:
     name: ruida-dev-env
   datasource:
     url: jdbc:mysql://47.101.129.111:3306/runoob?characterEncoding=utf8&useSSl=false&serverTimezone=GMT%2B8
-    username: root
-    password: Chenjy418.
+    username: ENC(NdHmig0BNBVJGfh83AZMrg==)
+    password: ENC(fSjVUUW+WwSowqcDokT1ZClXwxKAp4o7)
     driver-class-name: com.mysql.cj.jdbc.Driver
 
+jasypt:
+  encryptor:
+    password: e9fbdb2d3b21 # 盐
 
 config:
   image:

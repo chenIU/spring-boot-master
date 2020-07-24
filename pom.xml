@@ -168,6 +168,13 @@
 			<artifactId>commons-lang3</artifactId>
 		</dependency>
 
+		<!--数据库加密-->
+		<dependency>
+			<groupId>com.github.ulisesbocchio</groupId>
+			<artifactId>jasypt-spring-boot-starter</artifactId>
+			<version>1.18</version>
+		</dependency>
+
 		<!--&lt;!&ndash; https://mvnrepository.com/artifact/org.slf4j/slf4j-log4j12 &ndash;&gt;
 		<dependency>
 			<groupId>org.slf4j</groupId>
