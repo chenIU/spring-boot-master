@@ -1,4 +1,4 @@
-package com.ruida.springbootdemo.controller;
+package com.ruida.springbootdemo.controller.course;
 
 import com.ruida.springbootdemo.bean.CommonResult;
 import com.ruida.springbootdemo.mapper.CourseDao;

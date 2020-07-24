@@ -1,4 +1,4 @@
-package com.ruida.springbootdemo.controller.Order;
+package com.ruida.springbootdemo.controller.order;
 
 import com.ruida.springbootdemo.entity.Order;
 import com.ruida.springbootdemo.service.OrderService;

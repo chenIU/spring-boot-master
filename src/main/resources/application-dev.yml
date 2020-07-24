@@ -10,3 +10,7 @@ spring:
     password: Chenjy418.
     driver-class-name: com.mysql.cj.jdbc.Driver
 
+
+config:
+  image:
+    path: E:/upload/image/

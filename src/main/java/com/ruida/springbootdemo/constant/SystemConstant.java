@@ -13,4 +13,6 @@ public class SystemConstant {
 
     public static final String LOGIN_KEY = "LOGIN_KEY_%s";
 
+    public static final String IMG_NAME = "IMG-NAME.%s";
+
 }

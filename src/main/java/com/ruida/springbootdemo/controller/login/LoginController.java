@@ -1,7 +1,8 @@
-package com.ruida.springbootdemo.controller;
+package com.ruida.springbootdemo.controller.login;
 
 import com.google.code.kaptcha.impl.DefaultKaptcha;
 import com.ruida.springbootdemo.bean.CommonResult;
+import com.ruida.springbootdemo.controller.BaseController;
 import com.ruida.springbootdemo.enums.ErrorEnum;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.tomcat.util.codec.binary.Base64;
@@ -26,7 +27,7 @@ import java.util.Map;
 @RestController
 @RequestMapping("/login/")
 @Slf4j
-public class LoginController extends BaseController{
+public class LoginController extends BaseController {
 
     @Resource
     private RedisTemplate<String,Object> redisTemplate;

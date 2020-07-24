@@ -1,4 +1,4 @@
-package com.ruida.springbootdemo.controller;
+package com.ruida.springbootdemo.controller.user;
 
 import com.alibaba.fastjson.JSONObject;
 import com.github.pagehelper.PageInfo;

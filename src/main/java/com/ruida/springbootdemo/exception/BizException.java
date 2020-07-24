@@ -48,6 +48,11 @@ public class BizException extends RuntimeException {
         super();
     }
 
+    public BizException(String errorCode,String errorMsg){
+        this.errorCode = errorCode;
+        this.errorMsg = errorMsg;
+    }
+
     public BizException(String errorCode, String errorMsg, int httpStatus){
         this.errorCode = errorCode;
         this.errorMsg = errorMsg;
@@ -55,8 +60,7 @@ public class BizException extends RuntimeException {
     }
 
     public BizException(ErrorEnum errorEnum){
-        //this(errorEnum.getErrorCode(),errorEnum.getErrorMsg(),errorEnum.getHttpStatus());
-        this.errorMsg = errorEnum.getErrorCode();
+        this.errorCode = errorEnum.getErrorCode();
         this.errorMsg = errorEnum.getErrorMsg();
         this.httpStatus = errorEnum.getHttpStatus();
     }

@@ -1,4 +1,4 @@
-package com.ruida.springbootdemo.controller;
+package com.ruida.springbootdemo.controller.other;
 
 import com.ruida.springbootdemo.entity.Blog;
 import com.ruida.springbootdemo.service.BlogService1;
