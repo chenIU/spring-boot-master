@@ -15,4 +15,6 @@ public interface IUserService {
 
     Map<String,Object> selectDeptById(Integer id);
 
+    Integer countUser();
+
 }

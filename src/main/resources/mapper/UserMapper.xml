@@ -32,5 +32,9 @@
         select dept_id as deptId,role_id as roleId from t_user where id = #{id}
     </select>
 
+    <select id="countUser" resultType="java.lang.Integer">
+        SELECT count(*) as total FROM t_user
+    </select>
+
 </mapper>
 

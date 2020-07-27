@@ -35,6 +35,7 @@ public class TopTest {
 
         Employee e = new Employee(1,"chenjy");
         System.out.println(e);
+        System.out.println(e.getEname().getClass().toString());
 
         Employee employee = new Employee();
         System.out.println(employee);

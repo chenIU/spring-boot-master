@@ -18,4 +18,6 @@ public interface UserMapper {
 
     Map<String,Object> selectDeptById(Integer id);
 
+    int countUser();
+
 }

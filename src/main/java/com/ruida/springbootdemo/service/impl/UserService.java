@@ -47,4 +47,9 @@ public class UserService implements IUserService {
         return userMapper.selectDeptById(id);
     }
 
+    @Override
+    public Integer countUser() {
+        return userMapper.countUser();
+    }
+
 }

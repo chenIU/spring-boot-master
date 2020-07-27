@@ -215,4 +215,11 @@ public class UserController {
         return user;
     }
 
+    @GetMapping("countUser")
+    public void countUser(){
+        Integer count = userService.countUser();
+        log.info("============"+count);
+        //log.info(map.get("total").getClass().toString());
+    }
+
 }
