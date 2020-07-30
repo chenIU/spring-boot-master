@@ -4,6 +4,7 @@ import com.ruida.springbootdemo.entity.User;
 import com.ruida.springbootdemo.service.UserService;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
 import javax.annotation.Resource;
 import java.util.List;
 
@@ -21,6 +22,8 @@ public class RedisController {
 
     @RequestMapping("queryAllUser")
     public List<User> queryAllUser(){
+        //OrderService orderService  = SpringUtil.getBean(OrderService.class);
+        //System.out.println(orderService);
         return userService.queryAllUser();
     }
 

@@ -11,6 +11,8 @@
 
 package com.ruida.springbootdemo;
 
+import com.ruida.springbootdemo.constant.SystemConstant;
+import org.apache.shiro.crypto.hash.Md5Hash;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -26,6 +28,18 @@ public class TopTest {
     int count;
 
     public static void main(String[] args) {
+
+        ThreadLocal<String> threadLocal = new ThreadLocal<String>(){
+            @Override
+            protected String initialValue() {
+                return Thread.currentThread().getName();
+            }
+        };
+        System.out.println(threadLocal.get());
+
+        // shiro MD5加盐hash算法
+        Md5Hash md5 = new Md5Hash(SystemConstant.DEFAULT_PASSWORD,SystemConstant.MD5_SALT,1);
+        System.out.println(md5);
 
         /*String html = "<html><body><h1>hello world</body></html>";
         System.out.println(html);

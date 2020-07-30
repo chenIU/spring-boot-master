@@ -15,4 +15,8 @@ public class SystemConstant {
 
     public static final String IMG_NAME = "IMG-NAME.%s";
 
+    public static final String DEFAULT_PASSWORD = "123456";
+
+    public static final String MD5_SALT = "1qaz2wsx3edc";
+
 }

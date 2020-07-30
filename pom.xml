@@ -175,6 +175,13 @@
 			<version>1.18</version>
 		</dependency>
 
+		<!--shiro-->
+		<dependency>
+			<groupId>org.apache.shiro</groupId>
+			<artifactId>shiro-core</artifactId>
+			<version>1.4.0</version>
+		</dependency>
+
 		<!--&lt;!&ndash; https://mvnrepository.com/artifact/org.slf4j/slf4j-log4j12 &ndash;&gt;
 		<dependency>
 			<groupId>org.slf4j</groupId>
