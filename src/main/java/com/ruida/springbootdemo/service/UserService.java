@@ -3,9 +3,10 @@ package com.ruida.springbootdemo.service;
 import com.github.pagehelper.PageInfo;
 import com.ruida.springbootdemo.entity.User;
 
+import java.util.List;
 import java.util.Map;
 
-public interface IUserService {
+public interface UserService {
 
     User selectUserById(Integer id);
 
@@ -16,5 +17,7 @@ public interface IUserService {
     Map<String,Object> selectDeptById(Integer id);
 
     Integer countUser();
+
+    List<User> queryAllUser();
 
 }

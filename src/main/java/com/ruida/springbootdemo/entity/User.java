@@ -25,18 +25,18 @@ import java.util.Date;
 @Data
 @JsonIgnoreProperties(value = "age")
 @JsonIgnoreType
-@JsonPropertyOrder({"name","id"})
+@JsonPropertyOrder({"id","name"})
 @JsonRootName("User")
 public class User implements Serializable {
 
     private Integer id;
 
-    @JsonProperty("Nickname")
     private String name;
 
     private Integer age;
 
     //@JsonFormat(pattern = "yyyy/MM/dd")
+    @JsonIgnore
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDate birthday;
 

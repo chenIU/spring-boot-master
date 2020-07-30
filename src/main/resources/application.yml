@@ -3,9 +3,9 @@ spring:
     active: dev
   redis:
     database: 0
-    host: localhost
-    port: 6379
-    password:
+    host: 47.101.129.111
+    port: 16379
+    password: Chenjy418.
   jpa:
     database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
     show-sql: true

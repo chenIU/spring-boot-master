@@ -11,7 +11,6 @@
 
 package com.ruida.springbootdemo;
 
-import org.apache.commons.lang3.StringEscapeUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -28,9 +27,9 @@ public class TopTest {
 
     public static void main(String[] args) {
 
-        String html = "<html><body><h1>hello world</body></html>";
+        /*String html = "<html><body><h1>hello world</body></html>";
         System.out.println(html);
-        System.out.println(StringEscapeUtils.escapeHtml4(html));
+        System.out.println(StringEscapeUtils.escapeHtml4(html));*/
 
         /*Employee e = new Employee(1,"chenjy");
         System.out.println(e);

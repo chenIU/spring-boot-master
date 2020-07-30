@@ -8,8 +8,8 @@ import com.ruida.springbootdemo.entity.Student;
 import com.ruida.springbootdemo.entity.User;
 import com.ruida.springbootdemo.enums.ErrorEnum;
 import com.ruida.springbootdemo.exception.BizException;
-import com.ruida.springbootdemo.service.IUserService;
-import com.ruida.springbootdemo.service.impl.UserService;
+import com.ruida.springbootdemo.service.UserService;
+import com.ruida.springbootdemo.service.impl.UserServiceImpl;
 import com.ruida.springbootdemo.utils.SpringUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,7 +44,7 @@ public class UserController {
     private MultiDataSource dataSource;
 
     @Autowired
-    IUserService userService;
+    UserService userService;
 
     @GetMapping("use")
     public void useThrealLocal(Integer integer, HttpServletRequest request) throws InterruptedException {
@@ -147,7 +147,7 @@ public class UserController {
 
     @RequestMapping(value = "getUserByAware",method = RequestMethod.GET)
     public User getUserByAware(@RequestParam("id")Integer id){
-        IUserService userService = SpringUtil.getBean(UserService.class);
+        UserService userService = SpringUtil.getBean(UserServiceImpl.class);
         return userService.selectUserById(id);
     }
 

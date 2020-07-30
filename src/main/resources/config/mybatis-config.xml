@@ -4,6 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
 
+    <!--settings标签必须防在最上面，不能乱序-->
     <settings>
 
         <!--开启驼峰命名-->
