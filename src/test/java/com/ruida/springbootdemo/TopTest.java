@@ -11,14 +11,9 @@
 
 package com.ruida.springbootdemo;
 
-import com.ruida.springbootdemo.entity.Employee;
+import org.apache.commons.lang3.StringEscapeUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import java.math.BigDecimal;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
 
 /**
  * @description: 顶级测试类
@@ -33,7 +28,11 @@ public class TopTest {
 
     public static void main(String[] args) {
 
-        Employee e = new Employee(1,"chenjy");
+        String html = "<html><body><h1>hello world</body></html>";
+        System.out.println(html);
+        System.out.println(StringEscapeUtils.escapeHtml4(html));
+
+        /*Employee e = new Employee(1,"chenjy");
         System.out.println(e);
         System.out.println(e.getEname().getClass().toString());
 
@@ -70,7 +69,8 @@ public class TopTest {
 
         BigDecimal aa = new BigDecimal("0.01");
         System.out.println(aa);
-        System.out.println(aa.compareTo(BigDecimal.ZERO)==0);
+        System.out.println(aa.compareTo(BigDecimal.ZERO)==0);*/
+
       /*  TreeMap<Integer, String> map = new TreeMap<>();
         map.put(3, "val");
         map.put(2, "val");
