@@ -1,7 +1,6 @@
 package com.ruida.springbootdemo;
 
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Map;
 
 /**
@@ -14,7 +13,7 @@ import java.util.Map;
  */
 public class MapTest {
     public static void main(String[] args) {
-        Map<String,Object> map = new HashMap();
+        /*Map<String,Object> map = new HashMap();
         map.put("name","chenjy");
         map.put("age",21);
         map.put("height",1.72);
@@ -25,6 +24,11 @@ public class MapTest {
             String key = (String) entry.getKey();
             Object value = entry.getValue();
             System.out.println("key=="+key+";value=="+value);
-        }
+        }*/
+
+        Map<String,Object> map = new HashMap();
+        map.put("name","chenjy");
+        map.put("age",26);
+        System.out.println(map);
     }
 }
