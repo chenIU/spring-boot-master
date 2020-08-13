@@ -11,10 +11,12 @@
 
 package com.ruida.springbootdemo;
 
-import com.ruida.springbootdemo.constant.SystemConstant;
-import org.apache.shiro.crypto.hash.Md5Hash;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 
 /**
  * @description: 顶级测试类
@@ -29,6 +31,56 @@ public class TopTest {
 
     public static void main(String[] args) {
 
+        StringBuffer sb = new StringBuffer("hello");
+        System.out.println(sb.deleteCharAt(0));
+
+        /*
+         *DecimalFormat
+         */
+        DecimalFormat df = new DecimalFormat("0");
+        df.setRoundingMode(RoundingMode.DOWN);
+        System.out.println(df.format(100.56545f));
+        System.out.println(df.format((float) 1/3));
+        System.out.println(NumberFormat.getCurrencyInstance().getCurrency().getDisplayName());
+        System.out.println(NumberFormat.getCurrencyInstance().getCurrency().getSymbol());
+
+        /*Student stu = new Student(1,"chenjy",27);
+        Student stu2 = stu;
+        stu2.setAge(100);
+        System.out.println(stu2.getAge());
+        System.out.println(stu.getAge());
+
+        int a=10;
+        int b=a;
+        System.out.println(b);
+        b = 100;
+        System.out.println(b);
+        System.out.println(a);
+
+        System.out.println("===================");
+        System.out.println(System.identityHashCode(stu));
+        System.out.println(System.identityHashCode(stu2));
+        System.out.println(stu==stu2);*/
+
+       /* Employee employee = new Employee(1,"chenjy");
+        System.out.println(employee.hashCode());
+        System.out.println(employee);
+
+        Employee clone = null;
+        Employee clone2 = null;
+        try {
+            clone = (Employee) employee.clone();
+            clone2 = (Employee) employee.clone();
+            System.out.println(clone.hashCode());
+            System.out.println(clone);
+        } catch (CloneNotSupportedException e) {
+            e.printStackTrace();
+        }
+
+        System.out.println(employee == clone);
+        System.out.println("克隆值比较==="+(clone == clone2));
+
+
         char c = '1';
         System.out.println(Character.isDigit(c));
 
@@ -42,7 +94,7 @@ public class TopTest {
 
         // shiro MD5加盐hash算法
         Md5Hash md5 = new Md5Hash(SystemConstant.DEFAULT_PASSWORD,SystemConstant.MD5_SALT,1);
-        System.out.println(md5);
+        System.out.println(md5);*/
 
         /*String html = "<html><body><h1>hello world</body></html>";
         System.out.println(html);
