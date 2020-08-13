@@ -41,5 +41,12 @@ public class StreamTest {
         System.out.println(list);
         Map<Integer,Object> convertMap = list.stream().collect(Collectors.toMap(Student::getId,Student::getName));
         System.out.println(convertMap);
+
+        List<Integer> nums = Arrays.asList(1,2,3,4,5,6,7,8,9);
+        nums.stream().forEach(n -> System.out.print(n));
+        System.out.println();
+        nums.parallelStream().forEach(n -> System.out.print(n));
+        System.out.println();
+        nums.parallelStream().forEach(n -> System.out.println(Thread.currentThread().getName()+"<<"+n));
     }
 }
