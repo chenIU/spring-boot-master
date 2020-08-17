@@ -48,5 +48,17 @@ public class StreamTest {
         nums.parallelStream().forEach(n -> System.out.print(n));
         System.out.println();
         nums.parallelStream().forEach(n -> System.out.println(Thread.currentThread().getName()+"<<"+n));
+
+        //stream的map操作：对流操作，返回一个新的流
+        List<Integer> number = Arrays.asList(1,2,3,4,5);
+        number.stream().map(x -> {
+            System.out.println("没有返回新的流");
+            return x;
+        });
+
+        number.stream().map(x -> {
+            System.out.println("返回新的流");
+            return x;
+        }).collect(Collectors.toList());
     }
 }
