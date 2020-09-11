@@ -1,4 +1,4 @@
-package com.ruida.springbootdemo;
+package com.ruida.springbootdemo.test;
 
 public class StringTest {
     public static void main(String[] args) {

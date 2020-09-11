@@ -1,4 +1,4 @@
-package com.ruida.springbootdemo;
+package com.ruida.springbootdemo.test;
 
 import com.ruida.springbootdemo.annotation.Alpha;
 import lombok.extern.slf4j.Slf4j;

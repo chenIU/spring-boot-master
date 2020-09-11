@@ -1,4 +1,4 @@
-package com.ruida.springbootdemo;
+package com.ruida.springbootdemo.test;
 
 import com.ruida.springbootdemo.entity.Course;
 import com.ruida.springbootdemo.entity.CourseExt;

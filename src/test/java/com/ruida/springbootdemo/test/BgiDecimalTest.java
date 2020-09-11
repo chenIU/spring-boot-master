@@ -1,4 +1,4 @@
-package com.ruida.springbootdemo;
+package com.ruida.springbootdemo.test;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;

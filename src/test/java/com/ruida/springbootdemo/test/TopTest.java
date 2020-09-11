@@ -9,14 +9,19 @@
  *
  */
 
-package com.ruida.springbootdemo;
+package com.ruida.springbootdemo.test;
 
+import com.ruida.springbootdemo.generic.A;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.lang.reflect.Array;
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
+import java.util.Random;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * @description: 顶级测试类
@@ -30,6 +35,48 @@ public class TopTest {
     int count;
 
     public static void main(String[] args) {
+
+        A<String> a = new A();
+        a.setId(10);
+        a.setT("hello");
+        System.out.println(a.toString());
+
+        Class c1 = Object.class;
+        System.out.println(c1.getTypeName());
+        System.out.println(String.class.getTypeName());
+
+        Integer i1 = 300;
+        Integer i2 = 300;
+        System.out.println(i1 == i2);
+
+        Class[] cls = new Class[]{String.class,int.class};
+        for(Class clazz:cls){
+            System.out.println(clazz.getName());
+        }
+
+       /* Field field = null;
+        field.getAnnotation(Annotation.class);*/
+
+        String[] arr = {"hello","world"};
+        Stream.of(arr).collect(Collectors.toList()).forEach(x -> System.out.println(x));
+
+        int[] tmp = {1,2,3,4,5};
+        Class<?> clazz = tmp.getClass().getComponentType();
+        Object newArr = Array.newInstance(clazz,15);
+        int len = tmp.length;
+        System.arraycopy(tmp,0,newArr,0,len);
+
+        Stream.of(newArr).collect(Collectors.toList()).forEach(x -> System.out.println(x));
+
+        for (int i:tmp){
+            System.out.println(i);
+        }
+        System.out.println(tmp.length);
+
+        System.out.println("===================");
+
+
+        System.out.println(TopTest.randomInt(5, 10));
 
         StringBuffer sb = new StringBuffer("hello");
         System.out.println(sb.deleteCharAt(0));
@@ -245,6 +292,10 @@ public class TopTest {
 
     public void dosomething(){
         System.out.println(count);
+    }
+
+    private static int randomInt(int min, int max){
+        return new Random().nextInt(max)%(max-min+1) + min;
     }
 
 

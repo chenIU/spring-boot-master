@@ -1,5 +1,6 @@
-package com.ruida.springbootdemo;
+package com.ruida.springbootdemo.test;
 
+import com.ruida.springbootdemo.SpringBootDemoApplication;
 import com.ruida.springbootdemo.service.BlogService2;
 import com.ruida.springbootdemo.utils.PropertyUtil;
 import org.junit.jupiter.api.Test;
