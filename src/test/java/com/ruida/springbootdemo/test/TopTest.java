@@ -20,7 +20,7 @@ import java.lang.reflect.Array;
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
-import java.util.Random;
+import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -36,6 +36,23 @@ public class TopTest {
     int count;
 
     public static void main(String[] args) {
+
+        String[] strArray = {"zhangsan","lisi","wangwu"};
+        for(String str: Arrays.asList(strArray)){
+            System.out.println(str);
+        }
+
+        List<String> strList = new ArrayList<>();
+        Collections.addAll(strList,"China","USA","UK");
+        Object[] countryArray = strList.toArray();
+        for(int i=0;i<countryArray.length;i++){
+            System.out.println(countryArray[i]);
+        }
+
+        TopTest.div(1,0);
+
+        TopTest.show("zhangsan",25);
+        TopTest.show(null,25);
 
         String className = "Train";
         System.out.println(className);
@@ -293,8 +310,6 @@ public class TopTest {
         System.out.println("TopTest.add linenum:44, param:{a = [" + a + "], b = [" + b + "]} info:");
     }*/
 
-
-
     public void dosomething(){
         System.out.println(count);
     }
@@ -303,7 +318,17 @@ public class TopTest {
         return new Random().nextInt(max)%(max-min+1) + min;
     }
 
+    public static void show(String name, int age){
+        System.out.println("name="+name+",age="+age);
+    }
 
-
-
+    public static void div(int a,int b){
+        try {
+            System.out.println(a/b);
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+            System.out.println(e.getClass().getSimpleName());
+            //e.printStackTrace();
+        }
+    }
 }

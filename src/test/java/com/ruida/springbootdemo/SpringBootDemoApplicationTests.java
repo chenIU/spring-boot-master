@@ -4,6 +4,7 @@ import com.ruida.springbootdemo.annotation.MyAnnotation;
 import com.ruida.springbootdemo.bean.TestBean;
 import com.ruida.springbootdemo.config.ApplicationContextConfig;
 import com.ruida.springbootdemo.service.Vehicle;
+import com.ruida.springbootdemo.service.impl.TestNotNullService;
 import com.ruida.springbootdemo.service.impl.UserServiceImpl;
 import org.apache.commons.lang3.StringUtils;
 import org.junit.Test;
@@ -13,9 +14,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.test.context.junit4.SpringRunner;
-
 import javax.annotation.Resource;
-import java.util.Random;
 import java.util.Set;
 
 @RunWith(SpringRunner.class)
@@ -26,6 +25,8 @@ public class SpringBootDemoApplicationTests {
 	UserServiceImpl userService;
 	@Resource
 	ApplicationContext applicationContext;
+	@Resource
+	TestNotNullService testNotNullService;
 
 /*	@Test
 	void contextLoads() {
@@ -39,9 +40,6 @@ public class SpringBootDemoApplicationTests {
 
 		TestBean tb2 = (TestBean) context.getBean("testBean");
 		System.out.println(tb2);
-
-		SpringBootDemoApplicationTests test = new SpringBootDemoApplicationTests();
-		test.randomInt(5,10);
 	}
 
 	@Test
@@ -49,10 +47,6 @@ public class SpringBootDemoApplicationTests {
 		userService.selectUserById(1);
 	}
 
-
-	private static int randomInt(int min, int max){
-		return new Random().nextInt(max)%(max-min+1) + min;
-	}
 
 	/**
 	 * Usages:
@@ -80,5 +74,15 @@ public class SpringBootDemoApplicationTests {
 		for(Class<?> clazz : annotated){
 			System.out.println("========="+clazz.getSimpleName());
 		}
+	}
+
+	@Test
+	public void testNotNull(){
+
+		//正常输出
+		testNotNullService.show(0,"zhangsan");
+
+		//报错
+		testNotNullService.show(0,null);
 	}
 }

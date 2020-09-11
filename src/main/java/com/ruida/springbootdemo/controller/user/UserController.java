@@ -14,6 +14,7 @@ import com.ruida.springbootdemo.utils.SpringUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
@@ -172,7 +173,7 @@ public class UserController {
      * @return
      */
     @PostMapping("addUser")
-    public CommonResult addUser(@RequestBody User user){
+    public CommonResult addUser(@RequestBody @Validated User user){
         log.info(user.toString());
         if(userService.insertUser(user)>0){
             return new CommonResult(ErrorEnum.OK);

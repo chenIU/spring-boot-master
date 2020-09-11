@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.*;
 import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import javax.validation.constraints.NotEmpty;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Date;
@@ -31,6 +32,7 @@ public class User implements Serializable {
 
     private Integer id;
 
+    @NotEmpty(message = "用户姓名不能为空")
     private String name;
 
     private Integer age;
