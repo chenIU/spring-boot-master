@@ -12,6 +12,7 @@
 package com.ruida.springbootdemo.test;
 
 import com.ruida.springbootdemo.generic.A;
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -35,6 +36,10 @@ public class TopTest {
     int count;
 
     public static void main(String[] args) {
+
+        String className = "Train";
+        System.out.println(className);
+        System.out.println(StringUtils.uncapitalize(className));
 
         A<String> a = new A();
         a.setId(10);
