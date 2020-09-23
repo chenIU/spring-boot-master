@@ -35,6 +35,11 @@ public class LoginController extends BaseController {
     @Resource
     private DefaultKaptcha producer;
 
+    @RequestMapping(value = "test",method = RequestMethod.GET)
+    public String test(){
+        return "test";
+    }
+
     @RequestMapping(value = "kaptcha",method = RequestMethod.GET)
     public Map<String,Object> kapcha() throws IOException {
         Map<String,Object> map = new HashMap();
@@ -48,12 +53,6 @@ public class LoginController extends BaseController {
         map.put("img", "data:image/jpg;base64,"+ Base64.encodeBase64String(out.toByteArray()));
         log.info("生成二维码完成...");
         return map;
-    }
-
-    @RequestMapping(value = "test",method = RequestMethod.GET)
-    public String test(){
-        log.info("LoginController is running!");
-        return "login controller testing";
     }
 
     @RequestMapping(value = "base",method = RequestMethod.GET)
