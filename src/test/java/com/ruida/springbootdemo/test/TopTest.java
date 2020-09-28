@@ -39,6 +39,9 @@ public class TopTest {
 
     public static void main(String[] args) {
 
+        Integer integer = new Integer(3);
+        System.out.println(integer.equals(3));
+
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         System.out.println(LocalDateTime.now());
         System.out.println(formatter.format(LocalDateTime.now()));

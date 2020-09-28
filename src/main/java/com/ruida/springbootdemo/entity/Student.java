@@ -16,7 +16,7 @@ public class Student implements Serializable {
     private int id;
 
     @Alpha(name="jack",value = "hahaha")
-    private String name;
+    private String name = "jack";
 
     private transient Integer age;
 

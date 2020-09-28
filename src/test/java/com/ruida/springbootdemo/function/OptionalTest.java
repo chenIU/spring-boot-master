@@ -1,12 +1,39 @@
 package com.ruida.springbootdemo.function;
 
 import com.ruida.springbootdemo.entity.User;
+import com.ruida.springbootdemo.exception.BizException;
 
 import java.util.Optional;
 
 public class OptionalTest {
 
     public static void main(String[] args) {
+
+        String str = "hello";
+
+        Optional optional = Optional.ofNullable(str);
+        optional.ifPresent(System.out::println);
+
+        Optional name1 = Optional.of("jack");
+        System.out.println(name1);
+
+        Optional name2 = Optional.empty();
+        System.out.println(name2);
+
+        String name = null;
+        Optional name3 = Optional.ofNullable(name);
+        System.out.println(name3);
+
+        System.out.println(name3.orElseGet(() -> "hello"));
+        //System.out.println(Optional.ofNullable(name).orElseThrow(() -> new BizException("500","illegal argument")));
+        try {
+            name3.orElseThrow(() -> new BizException("500","error"));
+        } catch (Throwable throwable) {
+            throwable.printStackTrace();
+        }
+
+        System.out.println(Optional.ofNullable(str).orElse("default value"));
+
         User user = new User();
 
         /**

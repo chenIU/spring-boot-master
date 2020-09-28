@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 /**
- * @description: 睿达测试
+ * @description: lambda测试
  * @author: chenjy
  * @create: 2020-04-17 09:27
  */
@@ -51,7 +51,7 @@ public class LambdaTest {
 
         System.out.println("stream:"+nameList.toString());
         System.out.println("学生集合排序之前"+students.toString());
-        students.sort((s1,s2)->s1.getAge().compareTo(s2.getAge()));
+        students.sort(Comparator.comparing(Student::getAge));
         System.out.println("学生集合排序之后"+students.toString());
 
         List<Integer> list = new ArrayList<>();

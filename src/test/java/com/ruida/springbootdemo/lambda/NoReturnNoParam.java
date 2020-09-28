@@ -6,3 +6,4 @@ public interface NoReturnNoParam {
     void method();
 
 }
+    

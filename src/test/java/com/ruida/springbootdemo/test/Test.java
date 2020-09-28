@@ -1,12 +1,10 @@
 package com.ruida.springbootdemo.test;
 
-import com.ruida.springbootdemo.entity.Course;
-import com.ruida.springbootdemo.entity.CourseExt;
-import org.springframework.beans.BeanUtils;
-import org.springframework.util.CollectionUtils;
+import com.ruida.springbootdemo.entity.Student;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * @description:
@@ -15,7 +13,22 @@ import java.util.List;
  */
 public class Test {
     public static void main(String[] args) {
-        Course course = new Course();
+        Student s1 = new Student();
+        s1.setName("jack");
+        Student s2 = new Student();
+        s2.setName("mike");
+        List<Student> list = new ArrayList<>();
+        list.add(s1);
+        list.add(s2);
+        List<String> strList = list.stream().map(x -> x.getName()).collect(Collectors.toList());
+        strList.forEach(System.out::println);
+
+        List<Student> stuList = list.stream().map( x -> {
+            x.setName("hello " + x.getName());
+            return x;
+        }).collect(Collectors.toList());
+        stuList.forEach(System.out::println);
+       /* Course course = new Course();
         course.setId(1);
         course.setName("暑期拔高课程");
         course.setAuthor("马云");
@@ -31,6 +44,6 @@ public class Test {
             System.out.println("list集合为空");
         }else {
             System.out.println("list集合不为空");
-        }
+        }*/
     }
 }
