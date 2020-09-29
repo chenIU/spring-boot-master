@@ -1,7 +1,6 @@
 package com.ruida.springbootdemo.config;
 
 import com.ruida.springbootdemo.filter.GlobalRequestFilter;
-import com.ruida.springbootdemo.filter.InputFilter;
 import com.ruida.springbootdemo.filter.LoginFilter;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
@@ -15,16 +14,16 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class FilterConfig {
 
-    @Bean
+   /* @Bean
     public FilterRegistrationBean inputFilterRegister(){
         FilterRegistrationBean register = new FilterRegistrationBean();
         register.setFilter(new InputFilter());
         register.setOrder(1);//多个filter时，通过order设置优先级。值越小，优先级越高。
         register.addUrlPatterns("*");
-        register.setName("inputFitler");
+        register.setName("inputFilter");
         register.setEnabled(true);
         return register;
-    }
+    }*/
 
     @Bean
     public FilterRegistrationBean loginFilterRegister(){
@@ -32,7 +31,7 @@ public class FilterConfig {
         register.setFilter(new LoginFilter());
         register.setOrder(2);
         register.addUrlPatterns("/login");
-        register.setName("loginFitler");
+        register.setName("loginFilter");
         register.setEnabled(true);
         return register;
     }
