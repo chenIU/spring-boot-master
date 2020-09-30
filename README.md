@@ -8,4 +8,9 @@
 + 自定义异常注意实现
     + 必须继承自Exception或Exception的子类，常用RuntimeException
     + 必须提供无参构造方法
-    + 必须实现String messsage的一参构造方法，super(message)
+    + 必须实现String message的一参构造方法，super(message)
++ 泛型
+    + <数据类型> 只能是引用类型
+    + <? extends T> 传入的只能是T或T的子类
+    + <? super T>   传入的只能是T或T的父类
+    + 泛型上限和下限的原则：PECS(Producer Extends Consumer Super)
