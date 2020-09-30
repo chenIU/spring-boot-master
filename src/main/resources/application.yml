@@ -3,7 +3,7 @@ spring:
     prefix: classpath:/templates/
     suffix: .html
   profiles:
-    active: dev
+    active: test
   redis:
     database: 0
     host: 47.101.129.111
