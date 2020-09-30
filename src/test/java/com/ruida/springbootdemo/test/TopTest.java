@@ -39,6 +39,25 @@ public class TopTest {
 
     public static void main(String[] args) {
 
+        String test = "hello";
+        System.out.println(test.getClass().getName());
+        System.out.println(test.getClass().getSimpleName());
+        System.out.println(test.getClass().getTypeName());
+        System.out.println(test.getClass().getGenericSuperclass());
+        System.out.println(test.getClass().getSuperclass());
+
+        //比较getName和getTypeName的区别
+        System.out.println(String[].class.getName());
+        System.out.println(String[].class.getTypeName());
+
+        System.out.println(String[].class.getSimpleName());
+        System.out.println(String[].class.getCanonicalName());
+
+        Object object = Object.class;
+        System.out.println(object);
+
+        System.out.println("---------------");
+
         Integer integer = new Integer(3);
         System.out.println(integer.equals(3));
 
