@@ -1,7 +1,7 @@
 package com.ruida.springbootdemo.controller.login;
 
 import com.google.code.kaptcha.impl.DefaultKaptcha;
-import com.ruida.springbootdemo.bean.CommonResult;
+import com.ruida.springbootdemo.entity.result.CommonResult;
 import com.ruida.springbootdemo.controller.BaseController;
 import com.ruida.springbootdemo.enums.ErrorEnum;
 import lombok.extern.slf4j.Slf4j;

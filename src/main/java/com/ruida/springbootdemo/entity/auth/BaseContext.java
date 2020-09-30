@@ -1,4 +1,4 @@
-package com.ruida.springbootdemo.auth;
+package com.ruida.springbootdemo.entity.auth;
 
 import java.util.HashMap;
 import java.util.Map;

@@ -1,11 +1,10 @@
 package com.ruida.springbootdemo.controller.user;
 
-import com.alibaba.fastjson.JSONObject;
 import com.github.pagehelper.PageInfo;
-import com.ruida.springbootdemo.bean.CommonResult;
 import com.ruida.springbootdemo.config.MultiDataSource;
-import com.ruida.springbootdemo.entity.Student;
 import com.ruida.springbootdemo.entity.User;
+import com.ruida.springbootdemo.entity.result.CommonResult;
+import com.ruida.springbootdemo.entity.result.PojoResult;
 import com.ruida.springbootdemo.enums.ErrorEnum;
 import com.ruida.springbootdemo.exception.BizException;
 import com.ruida.springbootdemo.service.UserService;
@@ -16,7 +15,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -110,19 +108,22 @@ public class UserController {
     }
 
     @GetMapping("exception")
-    public JSONObject exception() {
+    public CommonResult exception() {
         throw new BizException("E_100500", "手机号码绑定失败", 500);
     }
 
-    @GetMapping("getStudentInfo")
-    public Student getStudentInfo(){
-        Student stu = null;
+    @GetMapping("getUserInfo")
+    public User getUserInfo(){
+        User user = new User();
+        user.setName("jack");
+        return user;
+       /* Student stu = null;
         int i = 1/0;
         if(null==stu){
             throw new BizException("E10001","实体对象为空",401);
         }else {
             return stu;
-        }
+        }*/
     }
 
     @PostMapping("submitForm")
@@ -229,7 +230,13 @@ public class UserController {
     }
 
     @RequestMapping("getUserOK")
-    public CommonResult<User> getUserOK(){
-        return CommonResult.OK(new User());
+    public CommonResult getUserOK(){
+        return CommonResult.OK();
+    }
+
+    @RequestMapping("testMapResult")
+    public PojoResult<User> testMapResult(){
+        throw new BizException("500","出现异常了...");
+        //return  new MapResult();
     }
 }

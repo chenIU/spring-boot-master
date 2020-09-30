@@ -1,6 +1,6 @@
 package com.ruida.springbootdemo.controller.archive;
 
-import com.ruida.springbootdemo.bean.CommonResult;
+import com.ruida.springbootdemo.entity.result.CommonResult;
 import com.ruida.springbootdemo.entity.request.ArchiveInfoRequest;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
