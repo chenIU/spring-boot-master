@@ -39,4 +39,18 @@ public class CommonResult<T> implements Serializable {
         this.errorMsg = e.getErrorMsg();
     }
 
+    public static <T> CommonResult<T> error(String errorCode,String errorMsg){
+        CommonResult<T> error = new CommonResult<>();
+        error.setErrorCode(errorCode);
+        error.setErrorMsg(errorMsg);
+        return error;
+    }
+
+    public static <T> CommonResult<T> OK(T t){
+        CommonResult ok = new CommonResult();
+        ok.setErrorCode("000000");
+        ok.setErrorMsg("成功");
+        ok.setContent(t);
+        return ok;
+    }
 }

@@ -223,4 +223,13 @@ public class UserController {
         //log.info(map.get("total").getClass().toString());
     }
 
+    @RequestMapping("getUserError")
+    public CommonResult getUserError(){
+        return CommonResult.error("1001","根据用户id查询失败");
+    }
+
+    @RequestMapping("getUserOK")
+    public CommonResult<User> getUserOK(){
+        return CommonResult.OK(new User());
+    }
 }
