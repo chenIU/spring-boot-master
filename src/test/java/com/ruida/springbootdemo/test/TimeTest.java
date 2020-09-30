@@ -1,0 +1,57 @@
+package com.ruida.springbootdemo.test;
+
+import java.time.*;
+
+/**
+ * @description: Java8日期时间API
+ * 传统日期时间API的缺点：
+ * 1.非线程安全（最大的问题）
+ * 2.设计很差
+ * 3.时区处理麻烦
+ * @author: chenjy
+ * @create: 2020-09-30 09:16
+ */
+public class TimeTest {
+    public static void main(String[] args) {
+
+        //本地化日期时间 API
+        LocalDateTime current = LocalDateTime.now();
+        System.out.println(current);
+
+        LocalDate date1 = current.toLocalDate();
+        System.out.println(date1);
+
+        int month = current.getMonthValue();
+        int day = current.getDayOfMonth();
+        int second = current.getSecond();
+        System.out.println("月:"+month+",日:"+day+",秒:"+second);
+
+        LocalDateTime date2 = current.withDayOfMonth(10).withYear(2020);
+        System.out.println(date2);
+
+        //创造日期
+        LocalDate date3 = LocalDate.of(2020,10,1);
+        System.out.println(date3);
+
+        //创造时间
+        LocalTime date4 = LocalTime.of(23,59);
+        System.out.println(date4);
+
+        //解析字符串
+        LocalTime date5 = LocalTime.parse("23:59:59");
+        System.out.println(date5);
+
+
+        System.out.println("-------------------");
+
+        //使用时区的日期时间API
+        ZoneId currentZone = ZoneId.systemDefault();
+        System.out.println(currentZone);
+
+        ZoneId id = ZoneId.of("Europe/Paris");
+        System.out.println(id);
+
+        ZonedDateTime date6 = ZonedDateTime.parse("2015-12-03T10:15:30+05:30[Asia/Shanghai]");
+        System.out.println(date6);
+    }
+}
