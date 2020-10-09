@@ -109,6 +109,9 @@ public class UserController {
 
     @RequestMapping(value = "queryUserById/{userId}",method = RequestMethod.GET)
     public PojoResult queryUserById(@PathVariable String userId){
+        if(log.isInfoEnabled()){
+            log.info("用户id为：{}的请求进入",userId);
+        }
         PojoResult result = new PojoResult();
         result.setContent(userService.queryUserById(userId));
         result.setErrorMsg("查询成功");
