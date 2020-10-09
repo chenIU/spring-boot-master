@@ -224,17 +224,17 @@ public class UserController {
         //log.info(map.get("total").getClass().toString());
     }
 
-    @RequestMapping("getUserError")
+    @RequestMapping(value = "getUserError",method = RequestMethod.GET)
     public CommonResult getUserError(){
         return CommonResult.error("1001","根据用户id查询失败");
     }
 
-    @RequestMapping("getUserOK")
+    @RequestMapping(value = "getUserOK",method = RequestMethod.GET)
     public CommonResult getUserOK(){
         return CommonResult.OK();
     }
 
-    @RequestMapping("testMapResult")
+    @RequestMapping(value = "testMapResult",method = RequestMethod.GET)
     public PojoResult<User> testMapResult(){
         throw new BizException("500","出现异常了...");
         //return  new MapResult();
