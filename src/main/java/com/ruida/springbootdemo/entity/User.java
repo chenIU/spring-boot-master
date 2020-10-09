@@ -8,6 +8,7 @@ import javax.validation.constraints.NotEmpty;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Date;
+import java.util.List;
 
 /**
  * @description: 用户
@@ -38,14 +39,15 @@ public class User implements Serializable {
     private Integer age;
 
     //@JsonFormat(pattern = "yyyy/MM/dd")
-    @JsonIgnore
+    //@JsonIgnore
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDate birthday;
 
-    @JsonIgnore
+    //@JsonIgnore
     private Integer deptId;
 
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",locale = "zh",timezone = "GMT+8")
     private Date createTime;
 
+    private List<Phone> phones;
 }

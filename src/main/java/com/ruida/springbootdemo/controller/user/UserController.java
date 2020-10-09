@@ -107,6 +107,14 @@ public class UserController {
         return map;
     }
 
+    @RequestMapping(value = "queryUserById/{userId}",method = RequestMethod.GET)
+    public PojoResult queryUserById(@PathVariable String userId){
+        PojoResult result = new PojoResult();
+        result.setContent(userService.queryUserById(userId));
+        result.setErrorMsg("查询成功");
+        return result;
+    }
+
     @GetMapping("exception")
     public CommonResult exception() {
         throw new BizException("E_100500", "手机号码绑定失败", 500);

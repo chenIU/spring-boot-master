@@ -24,4 +24,5 @@ public interface UserMapper {
 
     int countUser();
 
+    User queryUserById(String userId);
 }

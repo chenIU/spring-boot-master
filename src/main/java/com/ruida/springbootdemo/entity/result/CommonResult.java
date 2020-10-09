@@ -17,6 +17,8 @@ public class CommonResult implements Serializable {
 
     private static final long serialVersionUID = -2922415836378367968L;
 
+    private static final String ERROR_CODE = "0";
+
     private boolean success;
 
     private String errorCode;
@@ -24,7 +26,8 @@ public class CommonResult implements Serializable {
     private String errorMsg;
 
     public CommonResult() {
-
+        this.success = true;
+        this.errorCode = ERROR_CODE;
     }
 
     public CommonResult(String errorCode, String errorMsg) {
