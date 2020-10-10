@@ -47,6 +47,10 @@ public class Person {
         this.sex = sex;
     }
 
+    public Person(){
+
+    }
+
     @Override
     public String toString() {
         return "Person{" +

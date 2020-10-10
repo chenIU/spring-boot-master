@@ -12,6 +12,7 @@
 package com.ruida.springbootdemo.test;
 
 import com.ruida.springbootdemo.generic.A;
+import com.ruida.springbootdemo.model.Person;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -38,6 +39,14 @@ public class TopTest {
     int count;
 
     public static void main(String[] args) {
+
+        Person person = new Person();
+        person.setName("Jack");
+        person.setAge(26);
+        person.setCountry("China");
+        person.setSex('M');
+
+        System.out.println(person);
 
         String test = "hello";
         System.out.println(test.getClass().getName());
