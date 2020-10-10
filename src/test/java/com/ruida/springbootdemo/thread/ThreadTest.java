@@ -6,9 +6,11 @@ package com.ruida.springbootdemo.thread;
  * @create: 2020-09-30 17:08
  */
 public class ThreadTest {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         for(int i=0;i<10;i++){
-            new Thread(() -> System.out.println(Thread.currentThread().getName())).start();
+            Thread t = new Thread(() -> System.out.println(Thread.currentThread().getName()));
+            t.start();
+            t.join();
         }
         System.out.println(Thread.currentThread().getName());
     }
