@@ -40,6 +40,19 @@ public class TopTest {
 
     public static void main(String[] args) {
 
+        String str1 = null;
+        System.out.println(StringUtils.isEmpty(str1));
+        System.out.println(StringUtils.isBlank(str1));
+
+        String str2 = "";
+        System.out.println(StringUtils.isEmpty(str2));
+        System.out.println(StringUtils.isBlank(str2));
+
+        String str3 = " ";
+        System.out.println(str3.length());
+        System.out.println(StringUtils.isEmpty(str3));
+        System.out.println(StringUtils.isBlank(str3));
+
         Person person = new Person();
         person.setName("Jack");
         person.setAge(26);
