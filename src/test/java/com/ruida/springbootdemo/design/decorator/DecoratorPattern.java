@@ -1,4 +1,4 @@
-package com.ruida.springbootdemo.design;
+package com.ruida.springbootdemo.design.decorator;
 
 public class DecoratorPattern {
     public static void main(String[] args) {

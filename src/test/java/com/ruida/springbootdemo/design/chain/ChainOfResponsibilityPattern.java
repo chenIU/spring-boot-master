@@ -1,4 +1,4 @@
-package com.ruida.springbootdemo.design;
+package com.ruida.springbootdemo.design.chain;
 
 public class ChainOfResponsibilityPattern {
 

@@ -1,4 +1,4 @@
-package com.ruida.springbootdemo.design;
+package com.ruida.springbootdemo.design.observer;
 
 import java.util.ArrayList;
 import java.util.List;
