@@ -1,6 +1,7 @@
 package com.ruida.springbootdemo.test;
 
 import java.time.*;
+import java.util.Date;
 
 /**
  * @description: Java8日期时间API
@@ -12,6 +13,7 @@ import java.time.*;
  * @create: 2020-09-30 09:16
  */
 public class TimeTest {
+
     public static void main(String[] args) {
 
         //本地化日期时间 API
@@ -53,5 +55,17 @@ public class TimeTest {
 
         ZonedDateTime date6 = ZonedDateTime.parse("2015-12-03T10:15:30+05:30[Asia/Shanghai]");
         System.out.println(date6);
+
+        TimeTest.date2LocalDateTime();
+
+    }
+
+    public static void date2LocalDateTime(){
+        System.out.println("===========date2LocalDateTime===========");
+        Date date = new Date();
+        System.out.println("Date:"+date);
+        Instant instant = date.toInstant();
+        LocalDateTime localDateTime = LocalDateTime.ofInstant(instant,ZoneId.systemDefault());
+        System.out.println("LocalDateTime:"+localDateTime);
     }
 }
