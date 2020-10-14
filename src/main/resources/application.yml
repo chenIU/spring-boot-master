@@ -5,7 +5,7 @@ spring:
     database: 0
     host: 47.101.129.111
     port: 16379
-    password: Chenjy418.
+    password: 123456
   jpa:
     database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
     show-sql: true
