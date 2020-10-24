@@ -15,10 +15,21 @@ spring:
   main:
     allow-bean-definition-overriding: true # 解决bean重复注册的问题，继承自JpaRepository的dao会自动注册到IoC容器，从而导致重复注册的问题。
 
-mybatis:
-  type-aliases-package: com.ruida.springbootdemo.entity
+mybatis-plus:
   mapper-locations: classpath:mapper/*Mapper.xml
+  type-enums-package: com.ruida.springbootdemo.enums
+  type-aliases-package: com.ruida.springbootdemo.entity
   config-location: classpath:config/mybatis-config.xml
+  global-config:
+    db-config:
+      logic-delete-value: 1
+      logic-not-delete-value: 0
+
+
+#mybatis:
+#  type-aliases-package: com.ruida.springbootdemo.entity
+#  mapper-locations: classpath:mapper/*Mapper.xml
+#  config-location: classpath:config/mybatis-config.xml
 
 
 #showSql
