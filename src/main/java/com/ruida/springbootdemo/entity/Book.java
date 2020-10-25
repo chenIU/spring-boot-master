@@ -10,6 +10,9 @@ import java.util.Date;
 /**
  * 1.@TableLogic：逻辑删除
  * 2.@Version：乐观锁
+ * 3.@TableField(select = false)：不查询
+ * 4.@TableField(exist = false)：不查数据库(不映射)
+ * 5.@TableField(fill = FieldFill.INSERT)：插入的时候填充
  */
 @Data
 @TableName(value = "t_book")
