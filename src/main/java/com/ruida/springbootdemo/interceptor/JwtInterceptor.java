@@ -36,7 +36,7 @@ public class JwtInterceptor implements HandlerInterceptor {
             map.setErrorMsg("无效token");
         }
 
-        String json = new ObjectMapper().writeValueAsString(map);
+        String json = new ObjectMapper().writeValueAsString(map);//jackson将对象转为json字符串
         response.setContentType("application/json;charset=utf-8");
         response.getWriter().println(json);
         return false;
