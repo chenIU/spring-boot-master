@@ -1,15 +1,15 @@
 package com.ruida.springbootdemo.controller.order;
 
 import com.ruida.springbootdemo.entity.Order;
+import com.ruida.springbootdemo.entity.result.CommonResult;
+import com.ruida.springbootdemo.entity.result.ListResult;
 import com.ruida.springbootdemo.service.OrderService;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
 import javax.annotation.Resource;
 
 @RestController
-@RequestMapping("order")
+@RequestMapping("/order/")
 public class OrderController {
 
     @Resource
@@ -18,5 +18,23 @@ public class OrderController {
     @RequestMapping(value = "queryOrder/{orderId}",method = RequestMethod.GET)
     public Order queryOrder(@PathVariable Integer orderId){
         return orderService.queryOrder(orderId);
+    }
+
+    @GetMapping("list")
+    public ListResult<Order> list(){
+        ListResult<Order> result = new ListResult<>();
+        result.setContent(orderService.list(null));
+        result.setSuccess(true);
+        result.setErrorMsg("查询成功!");
+        return result;
+    }
+
+    @PostMapping("add")
+    public CommonResult add(@RequestBody Order order){
+        orderService.save(order);
+        CommonResult result = new CommonResult();
+        result.setSuccess(true);
+        result.setErrorMsg("插入成功!");
+        return result;
     }
 }
