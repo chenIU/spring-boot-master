@@ -19,4 +19,5 @@ public class SystemConstant {
 
     public static final String MD5_SALT = "1qaz2wsx3edc";
 
+    public static final String TOKEN_SALT = "1qaz2wsx";
 }

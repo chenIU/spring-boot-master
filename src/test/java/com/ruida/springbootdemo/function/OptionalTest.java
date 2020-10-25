@@ -63,7 +63,7 @@ public class OptionalTest {
     private static User createUser(){
         System.out.println("执行createUser方法");
         User user = new User();
-        user.setName("zhangsan");
+        user.setUsername("zhangsan");
         return user;
     }
 }

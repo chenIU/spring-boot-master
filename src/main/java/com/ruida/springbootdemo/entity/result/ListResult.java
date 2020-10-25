@@ -32,6 +32,7 @@ public class ListResult<T> extends CommonResult {
 
     public void setContent(List<T> content) {
         this.content = content;
+        this.totalCount = content.size();
     }
 
     public int getTotalCount() {

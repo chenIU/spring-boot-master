@@ -1,5 +1,6 @@
 package com.ruida.springbootdemo.mapper;
 
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.ruida.springbootdemo.entity.User;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Param;
@@ -10,7 +11,7 @@ import java.util.List;
 import java.util.Map;
 
 @CacheConfig(cacheNames = "user")
-public interface UserMapper {
+public interface UserMapper extends BaseMapper<User> {
 
     @CachePut(key = "#p0")
     User selectUserById(@Param("id") Integer id);

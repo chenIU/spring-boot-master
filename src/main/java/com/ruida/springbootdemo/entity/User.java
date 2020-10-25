@@ -1,5 +1,7 @@
 package com.ruida.springbootdemo.entity;
 
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableName;
 import com.fasterxml.jackson.annotation.*;
 import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -29,12 +31,14 @@ import java.util.List;
 @JsonIgnoreType
 @JsonPropertyOrder({"id","name"})
 @JsonRootName("User")
+@TableName(value = "t_user")
 public class User implements Serializable {
 
     private Integer id;
 
     @NotEmpty(message = "用户姓名不能为空")
-    private String name;
+    @TableField(value = "user_name")
+    private String username;
 
     private Integer age;
 
@@ -49,5 +53,6 @@ public class User implements Serializable {
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",locale = "zh",timezone = "GMT+8")
     private Date createTime;
 
+    @TableField(exist = false)
     private List<Phone> phones;
 }

@@ -1,16 +1,20 @@
 package com.ruida.springbootdemo.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.ruida.springbootdemo.entity.User;
+import com.ruida.springbootdemo.entity.result.MapResult;
 import com.ruida.springbootdemo.mapper.UserMapper;
 import com.ruida.springbootdemo.service.UserService;
+import com.ruida.springbootdemo.utils.JwtUtil;
 import com.ruida.springbootdemo.utils.RedisUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -76,5 +80,25 @@ public class UserServiceImpl implements UserService {
     @Override
     public User queryUserById(String userId) {
         return userMapper.queryUserById(userId);
+    }
+
+    @Override
+    public MapResult<String,String> login(String username, String password) {
+        MapResult<String, String> map = new MapResult<>();
+        HashMap<String, String> payload = new HashMap<>();
+        payload.put("username",username);
+        QueryWrapper<User> wrapper = new QueryWrapper<>();
+        wrapper.eq("user_name",username).eq("password",password);
+        User user = userMapper.selectOne(wrapper);
+        if(user != null){
+            String token = JwtUtil.getToken(payload);
+            map.add("token",token);
+            map.setErrorMsg("登录成功!");
+            map.setSuccess(true);
+        }else {
+            map.setErrorMsg("用户名或密码错误!");
+            map.setSuccess(false);
+        }
+        return map;
     }
 }

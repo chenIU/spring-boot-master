@@ -4,6 +4,7 @@ import com.github.pagehelper.PageInfo;
 import com.ruida.springbootdemo.config.MultiDataSource;
 import com.ruida.springbootdemo.entity.User;
 import com.ruida.springbootdemo.entity.result.CommonResult;
+import com.ruida.springbootdemo.entity.result.MapResult;
 import com.ruida.springbootdemo.entity.result.PojoResult;
 import com.ruida.springbootdemo.enums.ErrorEnum;
 import com.ruida.springbootdemo.exception.BizException;
@@ -90,11 +91,8 @@ public class UserController {
     }
 
     @PostMapping("login")
-    public Map<String, Object> login() {
-        Map<String, Object> map = new HashMap();
-        map.put("errorCode", 200);
-        map.put("errorMsg", "登录成功");
-        return map;
+    public MapResult<String,String> login(String username, String password) {
+        return userService.login(username,password);
     }
 
     @RequestMapping(value = "updateUserInfo", method = RequestMethod.PUT)
@@ -126,7 +124,7 @@ public class UserController {
     @GetMapping("getUserInfo")
     public User getUserInfo(){
         User user = new User();
-        user.setName("jack");
+        user.setUsername("jack");
         return user;
        /* Student stu = null;
         int i = 1/0;
@@ -221,7 +219,7 @@ public class UserController {
     @RequestMapping(value = "getUser",method = RequestMethod.GET)
     public User getUser(){
         User user =  new User();
-        user.setName("chenjy");
+        user.setUsername("chenjy");
         user.setAge(27);
         user.setDeptId(1);
         user.setId(100);
@@ -249,5 +247,11 @@ public class UserController {
     public PojoResult<User> testMapResult(){
         throw new BizException("500","出现异常了...");
         //return  new MapResult();
+    }
+
+    @GetMapping("session")
+    public CommonResult test(HttpServletRequest request,HttpServletResponse response){
+        request.getSession().setAttribute("username","chenjy");
+        return new CommonResult();
     }
 }

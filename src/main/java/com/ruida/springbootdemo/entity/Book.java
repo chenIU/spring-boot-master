@@ -19,9 +19,9 @@ public class Book {
 
     private String bookName;
 
-    @TableField(select = false)
     private BigDecimal price;
 
+    @TableField(select = false)
     private StatusEnum status;
 
     @Version
