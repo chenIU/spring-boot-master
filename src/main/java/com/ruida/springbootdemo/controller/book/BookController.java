@@ -14,8 +14,8 @@ public class BookController {
     @Autowired
     private BookService bookService;
 
-    @GetMapping("listBooks")
-    public ListResult listBooks(){
+    @GetMapping("list")
+    public ListResult list(){
         ListResult result = new ListResult();
         result.setContent(bookService.listBooks());
         return result;

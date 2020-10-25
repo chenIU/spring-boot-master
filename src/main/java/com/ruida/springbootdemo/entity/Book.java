@@ -1,6 +1,7 @@
 package com.ruida.springbootdemo.entity;
 
 import com.baomidou.mybatisplus.annotation.*;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.ruida.springbootdemo.enums.StatusEnum;
 import lombok.Data;
 import java.math.BigDecimal;
@@ -21,16 +22,17 @@ public class Book {
 
     private BigDecimal price;
 
-    @TableField(select = false)
     private StatusEnum status;
 
     @Version
     private Integer version;
 
     @TableField(fill = FieldFill.INSERT)
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",locale = "zh",timezone = "GMT+8")
     private Date createTime;
 
     @TableField(fill = FieldFill.INSERT_UPDATE)
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",locale = "zh",timezone = "GMT+8")
     private Date updateTime;
 
     @TableLogic
