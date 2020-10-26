@@ -48,3 +48,10 @@
 
 `@Controller、@Service、@Component、@Repository：注入bean`
 `@Autowired、@Resource：装配bean`
+
++ maven的scope类型:
+  + compile,默认值是compile。compile表示被依赖的项目需要参与当前项目的编译,包括后续的测试和运行周期也参与其中,是一种比较强的依赖。打包的时候通常需要包含进去。
+  + test 表示被依赖的项目仅仅参与参与测试相关的工作,包括测试代码的编译和执行,比较典型的是junit。
+  + runtime 表示被依赖的项目无需参与项目的编译,不过后期的测试和运行需要其参与。与compile相比,跳过编译而已。
+  + provided 以为着打包的时候不需要包含进去,别的终端设施(web container)会提供。事实上该依赖理论上可以参与编译、测试和运行。相当于compile,但是在打包阶段做了exclude的动作。
+  + system 和provided相同,不过依赖不会从maven仓库中获取,而是在本地文件系统中拿,一定要配合systemPath使用。
