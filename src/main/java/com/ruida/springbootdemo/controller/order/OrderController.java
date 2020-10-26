@@ -12,7 +12,9 @@ import javax.annotation.Resource;
 @RequestMapping("/order/")
 public class OrderController {
 
-    @Resource
+//    @Autowired
+//    @Qualifier("orderServiceImpl")
+    @Resource(name = "orderServiceImpl")
     OrderService orderService;
 
     @RequestMapping(value = "queryOrder/{orderId}",method = RequestMethod.GET)

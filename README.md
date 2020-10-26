@@ -32,3 +32,19 @@
 + join 如果某个线程在另一个线程t上调用了t.join();那么此线程将被挂起，直到目标线程t结束才恢复。
 
 + isEmpty()认为空字符串(" ")不是空，isBlank()认为空字符串是空。
+
++ @Autowired和@Resource的区别
+  + Autowired和注解属于Spring,Resource注解属于JavaEE;
+  + Autowired和默认根据byType注入,Resource在不指定name和type属性的情况下根据byName注入;
+  + 当一个类型的bean有多个时Autowired注解可以结合Qualifier注解指定具体的bean名称,Resource可以通过指定name属性来区分不同的bean。
+  
++ @Resource的装配顺序
+  + 如果同时指定了name和type属性,则Spring在上下文中找到唯一匹配的bean进行装配,找不到则抛出异常;
+  + 如果只指定了name属性,则在上下文中按照名称(id)查找bean进行装配,找不到则抛出异常;
+  + 如果只指定了type属性,则在上下文中找到类型匹配的唯一bean,找不到或者找到多个,都会抛出异常;
+  + 如果既没有指定name也没有指定type属性,则自动按照byName的方式装配;如果没有装配,则回退为一个原始类型进行匹配,如果匹配则自动装配.
+  
+**在注入属性的时候推荐使用@Resource注解,这个注解属于J2EE,减少了与Spring的耦合.**
+
+`@Controller、@Service、@Component、@Repository：注入bean`
+`@Autowired、@Resource：装配bean`
