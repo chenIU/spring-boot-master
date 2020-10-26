@@ -3,20 +3,21 @@ package com.ruida.springbootdemo.service.impl;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.ruida.springbootdemo.constant.JwtConstants;
 import com.ruida.springbootdemo.entity.User;
 import com.ruida.springbootdemo.entity.result.MapResult;
 import com.ruida.springbootdemo.mapper.UserMapper;
 import com.ruida.springbootdemo.service.UserService;
 import com.ruida.springbootdemo.utils.JwtUtil;
-import com.ruida.springbootdemo.utils.RedisUtil;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import javax.annotation.Resource;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @description:
@@ -28,9 +29,9 @@ import java.util.Map;
 public class UserServiceImpl implements UserService {
 
     @Resource
-    UserMapper userMapper;
+    private UserMapper userMapper;
     @Resource
-    RedisUtil redisUtil;
+    private RedisTemplate redisTemplate;
 
     @Override
     @Transactional
@@ -64,14 +65,14 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<User> queryAllUser() {
         List list;
-        if(redisUtil.hasKey("userList")){
+        if(redisTemplate.hasKey("userList")){
             log.warn("从redis中获取数据...");
-            list = redisUtil.lGet("userList",0,-1);
+            list = redisTemplate.opsForList().range("userList",0,-1);
         }else {
             log.warn("从数据库获取数据...");
             list = userMapper.selectAllUserList();
             log.warn("将数据存入redis...");
-            redisUtil.lSet("userList",list,600);
+            redisTemplate.opsForList().leftPush("userList",list);
             log.warn("成功存入redis...");
         }
         return list;
@@ -86,12 +87,20 @@ public class UserServiceImpl implements UserService {
     public MapResult<String,String> login(String username, String password) {
         MapResult<String, String> map = new MapResult<>();
         HashMap<String, String> payload = new HashMap<>();
-        payload.put("username",username);
+
         QueryWrapper<User> wrapper = new QueryWrapper<>();
         wrapper.eq("user_name",username).eq("password",password);
         User user = userMapper.selectOne(wrapper);
         if(user != null){
+            payload.put("userId",String.valueOf(user.getId()));
+            payload.put("username",username);
             String token = JwtUtil.getToken(payload);
+
+            //将token信息放入redis
+            String key = String.format(JwtConstants.TOKEN_KEY, user.getId());
+            redisTemplate.opsForValue().set(key,token);
+            redisTemplate.expire(key,JwtConstants.EXPIRATION, TimeUnit.SECONDS);//7天后过期
+
             map.add("token",token);
             map.setErrorMsg("登录成功!");
             map.setSuccess(true);
