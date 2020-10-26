@@ -24,6 +24,7 @@ import springfox.documentation.spring.web.SpringfoxWebMvcConfiguration;
 public class SpringBootDemoApplication implements WebMvcConfigurer {
 
 	public static void main(String[] args) {
+		//http://localhost:8080/actuator 监控
 		SpringApplication.run(SpringBootDemoApplication.class, args);
 		log.warn("application start successful...");
 	}
