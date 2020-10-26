@@ -6,7 +6,6 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.cache.annotation.EnableCaching;
-import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
@@ -19,7 +18,7 @@ import springfox.documentation.spring.web.SpringfoxWebMvcConfiguration;
 @ConditionalOnClass(SpringfoxWebMvcConfiguration.class)
 @EnableTransactionManagement
 @EnableCaching
-@EnableScheduling
+//@EnableScheduling
 @Slf4j
 public class SpringBootDemoApplication implements WebMvcConfigurer {
 
