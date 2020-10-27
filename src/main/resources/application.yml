@@ -18,6 +18,14 @@ spring:
   main:
     allow-bean-definition-overriding: true # 解决bean重复注册的问题，继承自JpaRepository的dao会自动注册到IoC容器，从而导致重复注册的问题。
 
+knife4j:
+  #production=true：不能查看接口文档;false：非生产环境，可以查看
+  production: false
+  basic:
+    enable: true
+    username: admin
+    password: 123456
+
 mybatis-plus:
   mapper-locations: classpath:mapper/*Mapper.xml
   type-enums-package: com.ruida.springbootdemo.enums
