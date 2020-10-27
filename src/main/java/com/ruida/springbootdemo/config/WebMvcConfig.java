@@ -5,6 +5,7 @@ import com.ruida.springbootdemo.interceptor.JwtInterceptor;
 import com.ruida.springbootdemo.interceptor.LoginInterceptor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
@@ -35,5 +36,14 @@ public class WebMvcConfig implements WebMvcConfigurer {
         registry.addInterceptor(jwtInterceptor).addPathPatterns("/auth/**");
         registry.addInterceptor(globalInterceptor).addPathPatterns("/market/**");
         //registry.addInterceptor(loginInterceptor).addPathPatterns("/login/**");
+    }
+
+    @Override
+    public void addCorsMappings(CorsRegistry registry) {
+        registry.addMapping("/**")
+                .allowedOrigins("http://localhost:8081")
+                .allowedHeaders("*")
+                .allowedMethods("*")
+                .maxAge(30 * 1000);//有效时间，针对探测请求(PUT)
     }
 }
