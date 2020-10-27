@@ -34,6 +34,6 @@ public class WebMvcConfig implements WebMvcConfigurer {
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(jwtInterceptor).addPathPatterns("/auth/**");
         registry.addInterceptor(globalInterceptor).addPathPatterns("/market/**");
-        registry.addInterceptor(loginInterceptor).addPathPatterns("/login/**");
+        //registry.addInterceptor(loginInterceptor).addPathPatterns("/login/**");
     }
 }
