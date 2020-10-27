@@ -32,13 +32,13 @@ public class ShiroConfig {
         factoryBean.setSecurityManager(securityManager);
         //权限设置
         Map<String,String> map = new Hashtable<>();
-        map.put("/main","authc");
-        map.put("/manage","perms[manage]");
-        map.put("/administrator","roles[administrator]");
+        map.put("/shiro/main","authc");
+        map.put("/shiro/manage","perms[manage]");
+        map.put("/shiro/administrator","roles[administrator]");
         factoryBean.setFilterChainDefinitionMap(map);
 
         //设置登录页面
-        factoryBean.setLoginUrl("/login");
+        factoryBean.setLoginUrl("/shiro/login");
 
         //设置错误页面
         factoryBean.setUnauthorizedUrl("/unauth");

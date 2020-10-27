@@ -9,14 +9,14 @@
 <body>
 <h1>index</h1>
 <div th:if="${session.account != null}">
-<span th:text="${session.account.username}+'欢迎回来！'"></span><a href="/logout">退出</a>
+<span th:text="${session.account.username}+'欢迎回来！'"></span><a href="/shiro/logout">退出</a>
 </div>
-<a href="/main">main</a><br/>
+<a href="/shiro/main">main</a><br/>
 <div shiro:hasPermission="manage">
-    <a href="/manage">manage</a> <br/>
+    <a href="/shiro/manage">manage</a> <br/>
 </div>
 <div shiro:hasRole="administrator">
-    <a href="/administrator">administrator</a><br/>
+    <a href="/shiro/administrator">administrator</a><br/>
 </div>
 </body>
 
