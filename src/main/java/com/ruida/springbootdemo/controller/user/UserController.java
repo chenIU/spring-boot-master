@@ -14,8 +14,11 @@ import com.ruida.springbootdemo.utils.SpringUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.MessageSource;
+import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -45,6 +48,9 @@ public class UserController {
 
     @Autowired
     UserService userService;
+
+    @Autowired
+    MessageSource messageSource;
 
     @GetMapping("use")
     public void useThrealLocal(Integer integer, HttpServletRequest request) throws InterruptedException {
@@ -253,5 +259,10 @@ public class UserController {
     public CommonResult test(HttpServletRequest request,HttpServletResponse response){
         request.getSession().setAttribute("username","chenjy");
         return new CommonResult();
+    }
+
+    @GetMapping("getName")
+    public String getName() {
+        return messageSource.getMessage("user.name", null, LocaleContextHolder.getLocale());
     }
 }

@@ -17,6 +17,11 @@ spring:
     open-in-view: false
   main:
     allow-bean-definition-overriding: true # 解决bean重复注册的问题，继承自JpaRepository的dao会自动注册到IoC容器，从而导致重复注册的问题。
+  messages:
+    basename: i18n/message
+    cache-duration: 3600
+    encoding: UTF-8
+    fallback-to-system-locale: true
 
 knife4j:
   #production=true：不能查看接口文档;false：非生产环境，可以查看
