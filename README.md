@@ -58,3 +58,7 @@
   
 + HikariPool在配置单数据源时DataSource是:spring.datasource.url;多数据源时是:spring.datasource.jdbc-url
 + @Primary：当一个类型的bean在Spring容器中有多个实例时，使用此注解可以在装配的时候优先被选用
++ @Order
+  + 该注解标记了组件的加载顺序，值越小拥有越高的优先级，可以为负数
+  + @Order(-1)高于@Order(0)
+  + @Order(1)高于@Order(2)
