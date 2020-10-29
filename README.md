@@ -57,3 +57,4 @@
   + system 和provided相同,不过依赖不会从maven仓库中获取,而是在本地文件系统中拿,一定要配合systemPath使用。
   
 + HikariPool在配置单数据源时DataSource是:spring.datasource.url;多数据源时是:spring.datasource.jdbc-url
++ @Primary：当一个类型的bean在Spring容器中有多个实例时，使用此注解可以在装配的时候优先被选用
