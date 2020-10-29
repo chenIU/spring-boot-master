@@ -67,3 +67,4 @@
   
 + 启动项目时指定配置文件位置：java -jar xxx.jar --spring.config.location=classpath:/javaboy/
 + 启动项目时指定配置文件名称：java -jar xxx.jar --spring.config.name=app
++ 启动项目时指定端口：java -jar xxx.jar --server.port=8888
