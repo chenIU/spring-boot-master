@@ -68,3 +68,9 @@
 + 启动项目时指定配置文件位置：java -jar xxx.jar --spring.config.location=classpath:/javaboy/
 + 启动项目时指定配置文件名称：java -jar xxx.jar --spring.config.name=app
 + 启动项目时指定端口：java -jar xxx.jar --server.port=8888
+
++ MyBatis中使用@Param注解的情况
+  + 参数引入别名
+  + XML中的SQL使用了$
+  + 动态SQL
+需要注意的是：多个参数的查询语句不需要强制添加@Param

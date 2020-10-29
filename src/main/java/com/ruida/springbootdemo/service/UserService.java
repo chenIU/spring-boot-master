@@ -24,4 +24,8 @@ public interface UserService {
     User queryUserById(String userId);
 
     MapResult<String,String> login(String username, String password);
+
+    Integer insertNameAndAge(String username,int age);
+
+    List<User> selectAllUsers(String orderBy);
 }

@@ -15,7 +15,7 @@
 
     <resultMap id="userInfoMap" type="com.ruida.springbootdemo.entity.User">
         <id column="id" property="id"/>
-        <result column="name" property="name"/>
+        <result column="name" property="username"/>
         <result column="birthday" property="birthday"/>
         <result column="dept_id" property="deptId"/>
         <result column="create_time" property="createTime"/>
@@ -29,7 +29,7 @@
         select *
         from t_user
         <where>
-          <if test="id != null and id &lt;= 2">
+          <if test="id != null">
               id = ${id}
           </if>
         </where>
@@ -55,6 +55,17 @@
                 LEFT JOIN t_phone b ON a.id = b.user_id
         WHERE
             a.id = #{userId}
+    </select>
+
+    <insert id="insertNameAndAge">
+        insert into t_user(user_name,age) values (#{username},#{age})
+    </insert>
+
+    <select id="selectAllUsers" resultType="com.ruida.springbootdemo.entity.User">
+        select * from t_user
+        <if test="orderBy!=null and orderBy!=''">
+            order by ${orderBy} desc
+        </if>
     </select>
 </mapper>
 

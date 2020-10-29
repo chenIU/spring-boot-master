@@ -13,6 +13,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
 import javax.annotation.Resource;
 import java.util.HashMap;
 import java.util.List;
@@ -109,5 +110,15 @@ public class UserServiceImpl implements UserService {
             map.setSuccess(false);
         }
         return map;
+    }
+
+    @Override
+    public Integer insertNameAndAge(String username, int age) {
+        return userMapper.insertNameAndAge(username,age);
+    }
+
+    @Override
+    public List<User> selectAllUsers(String orderBy) {
+        return userMapper.selectAllUsers(orderBy);
     }
 }

@@ -4,6 +4,7 @@ import com.github.pagehelper.PageInfo;
 import com.ruida.springbootdemo.config.MultiDataSource;
 import com.ruida.springbootdemo.entity.User;
 import com.ruida.springbootdemo.entity.result.CommonResult;
+import com.ruida.springbootdemo.entity.result.ListResult;
 import com.ruida.springbootdemo.entity.result.MapResult;
 import com.ruida.springbootdemo.entity.result.PojoResult;
 import com.ruida.springbootdemo.enums.ErrorEnum;
@@ -24,6 +25,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -158,8 +160,17 @@ public class UserController {
     }*/
 
     @GetMapping("getUserById/{id}")
-    public User getUserById(@PathVariable("id") Integer id){
-        return userService.selectUserById(id);
+    public CommonResult getUserById(@PathVariable("id") Integer id){
+        CommonResult result = new CommonResult();
+        User user = userService.selectUserById(id);
+        if(user != null){
+            result.setSuccess(true);
+            result.setErrorMsg("查询成功");
+        }else {
+            result.setSuccess(false);
+            result.setErrorMsg("查询失败");
+        }
+        return result;
     }
 
     @RequestMapping(value = "getUserByAware",method = RequestMethod.GET)
@@ -264,5 +275,29 @@ public class UserController {
     @GetMapping("getName")
     public String getName() {
         return messageSource.getMessage("user.name", null, LocaleContextHolder.getLocale());
+    }
+
+    @RequestMapping(value = "insertNameAndAge",method = RequestMethod.GET)
+    public CommonResult insertNameAndAge(@RequestParam String username,@RequestParam Integer age){
+        CommonResult result = new CommonResult();
+        Integer count = userService.insertNameAndAge(username,age);
+        if(count > 0){
+            result.setSuccess(true);
+            result.setErrorMsg("插入成功");
+        }else {
+            result.setSuccess(false);
+            result.setErrorMsg("插入失败");
+        }
+        return result;
+    }
+
+    @RequestMapping(value = "getAllUsers",method = RequestMethod.GET)
+    public ListResult getAllUsers(@RequestParam(required = false) String orderBy){
+        ListResult<User> result = new ListResult<>();
+        List<User> users = userService.selectAllUsers(orderBy);
+        result.setSuccess(true);
+        result.setErrorMsg("插入成功");
+        result.setContent(users);
+        return result;
     }
 }

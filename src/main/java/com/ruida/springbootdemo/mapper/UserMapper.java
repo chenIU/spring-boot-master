@@ -5,7 +5,6 @@ import com.ruida.springbootdemo.entity.User;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.cache.annotation.CacheConfig;
-import org.springframework.cache.annotation.CachePut;
 
 import java.util.List;
 import java.util.Map;
@@ -13,7 +12,7 @@ import java.util.Map;
 @CacheConfig(cacheNames = "user")
 public interface UserMapper extends BaseMapper<User> {
 
-    @CachePut(key = "#p0")
+    //@CachePut(key = "#p0")
     User selectUserById(@Param("id") Integer id);
 
     List<User> selectAllUserList();
@@ -26,4 +25,8 @@ public interface UserMapper extends BaseMapper<User> {
     int countUser();
 
     User queryUserById(String userId);
+
+    Integer insertNameAndAge(String username,int age);
+
+    List<User> selectAllUsers(@Param("orderBy") String orderBy);
 }
