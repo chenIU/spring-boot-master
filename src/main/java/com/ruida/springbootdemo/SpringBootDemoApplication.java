@@ -5,11 +5,12 @@ import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
+import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import springfox.documentation.spring.web.SpringfoxWebMvcConfiguration;
 
-@SpringBootApplication()
+@SpringBootApplication(exclude = {DataSourceAutoConfiguration.class})
 //MapperScan指定多个需要扫描的包
 //@MapperScan({"com.ruida.springbootdemo.mapper","com.ruida.springbootdemo.dao"})
 @MapperScan("com.ruida.springbootdemo.mapper")
