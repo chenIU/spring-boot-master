@@ -1,5 +1,6 @@
 package com.ruida.springbootdemo.controller.student;
 
+import com.alibaba.fastjson.JSON;
 import com.ruida.springbootdemo.entity.Student;
 import com.ruida.springbootdemo.entity.result.CommonResult;
 import com.ruida.springbootdemo.entity.result.MapResult;
@@ -18,7 +19,7 @@ public class StudentController {
     @PostMapping("save")
     public CommonResult save(@RequestBody Student student){
         CommonResult result = new CommonResult();
-        redisTemplate.opsForValue().set("student",student);
+        redisTemplate.opsForValue().set("student", JSON.toJSONString(student));
         if(redisTemplate.hasKey("student")){
             result.setSuccess(true);
             result.setErrorMsg("插入成功!");

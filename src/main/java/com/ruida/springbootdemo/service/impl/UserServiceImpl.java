@@ -86,6 +86,10 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public MapResult<String,String> login(String username, String password) {
+
+        //手动设置redisTemplate key的序列化方式
+        //redisTemplate.setKeySerializer(new StringRedisSerializer());
+
         MapResult<String, String> map = new MapResult<>();
         HashMap<String, String> payload = new HashMap<>();
 

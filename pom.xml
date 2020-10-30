@@ -154,11 +154,11 @@
 			<version>LATEST</version>
 		</dependency>
 
-		<!--redis-->
-		<!--<dependency>
+		<!--sdr-->
+		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-redis</artifactId>
-		</dependency>-->
+		</dependency>
 
 		<!--slf4j-->
 		<dependency>
@@ -234,11 +234,11 @@
 		</dependency>
 
 		<!--redisson-->
-		<dependency>
-			<groupId>org.redisson</groupId>
-			<artifactId>redisson-spring-boot-starter</artifactId>
-			<version>LATEST</version>
-		</dependency>
+		<!--<dependency>-->
+			<!--<groupId>org.redisson</groupId>-->
+			<!--<artifactId>redisson-spring-boot-starter</artifactId>-->
+			<!--<version>LATEST</version>-->
+		<!--</dependency>-->
 
 		<!--rocketmq-->
 		<dependency>
