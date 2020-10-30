@@ -30,5 +30,10 @@ public class MapTest {
         map.put("name","chenjy");
         map.put("age",26);
         System.out.println(map);
+
+        map.forEach((k,v)->{
+            System.out.println("key="+k);
+            System.out.println("value="+v);
+        });
     }
 }
