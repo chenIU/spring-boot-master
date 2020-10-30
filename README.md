@@ -78,3 +78,12 @@
 + static目录下静态资源默认是可以访问到的
 
 + java配置要优于配置文件配置
+
++ 条件注解
+  + @ConditionalOnBean：当给定的bean存在时，实例化当前bean(名称)
+  + @ConditionalOnMissingBean：当给定的bean不存在时，实例化当前bean(名称)
+  + @ConditionalOnClass：当给定的类名在类路径上存在时，实例化当前bean(类型)
+  + @ConditionalOnMissingClass：当给定的类名在类路径上不存在时，实例化当前bean(类型)
+  
++ @Autowired
+  + 该注解默认需要装配的bean实例一定存在，如果可能不存在，需要加上required = false
