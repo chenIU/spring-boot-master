@@ -1,4 +1,4 @@
-package com.ruida.springbootdemo.test;
+package com.ruida.springbootdemo.test.boot;
 
 import com.ruida.springbootdemo.SpringBootDemoApplication;
 import com.ruida.springbootdemo.entity.People;

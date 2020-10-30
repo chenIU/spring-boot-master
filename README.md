@@ -87,3 +87,15 @@
   
 + @Autowired
   + 该注解默认需要装配的bean实例一定存在，如果可能不存在，需要加上required = false
+  
++ @ConfigurationProperties支持Spring宽松绑定
+  + mail.host-name=localhost
+  + mail.host_name=localhost
+  + mail.HOST-NAME=localhost
+  + mail.hostname=localhost
+  + mail.hostName=localhost
+  **以上几种都可以绑定到hostName属性上**
+  
++ yaml文件和properties文件的对比
+  + yaml文件的优势：配置有序
+  + 不支持@PropertySource,只能从application.yml(properties)中读取
