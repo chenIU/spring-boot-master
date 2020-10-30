@@ -1,6 +1,6 @@
 package com.ruida.springbootdemo.controller.upload;
 
-import com.ruida.springbootdemo.bean.CommonResult;
+import com.ruida.springbootdemo.entity.result.CommonResult;
 import com.ruida.springbootdemo.config.ImageConfig;
 import com.ruida.springbootdemo.constant.SystemConstant;
 import com.ruida.springbootdemo.exception.BizException;

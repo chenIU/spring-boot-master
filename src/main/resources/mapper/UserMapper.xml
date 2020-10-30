@@ -13,12 +13,23 @@
         <!--select * from t_user where id = #{id}-->
     <!--</select>-->
 
+    <resultMap id="userInfoMap" type="com.ruida.springbootdemo.entity.User">
+        <id column="id" property="id"/>
+        <result column="name" property="username"/>
+        <result column="birthday" property="birthday"/>
+        <result column="dept_id" property="deptId"/>
+        <result column="create_time" property="createTime"/>
+        <collection property="phones" ofType="com.ruida.springbootdemo.entity.Phone">
+            <result column="brand" property="brand"/>
+            <result column="price" property="price"/>
+        </collection>
+    </resultMap>
 
     <select id="selectUserById" resultType="user" useCache="true">
         select *
         from t_user
         <where>
-          <if test="id != null and id &lt;= 2">
+          <if test="id != null">
               id = ${id}
           </if>
         </where>
@@ -36,5 +47,25 @@
         SELECT count(*) as total FROM t_user
     </select>
 
+    <select id="queryUserById" resultMap="userInfoMap">
+        SELECT
+            *
+        FROM
+            t_user a
+                LEFT JOIN t_phone b ON a.id = b.user_id
+        WHERE
+            a.id = #{userId}
+    </select>
+
+    <insert id="insertNameAndAge">
+        insert into t_user(user_name,age) values (#{username},#{age})
+    </insert>
+
+    <select id="selectAllUsers" resultType="com.ruida.springbootdemo.entity.User">
+        select * from t_user
+        <if test="orderBy!=null and orderBy!=''">
+            order by ${orderBy} desc
+        </if>
+    </select>
 </mapper>
 

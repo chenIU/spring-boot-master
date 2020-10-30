@@ -1,11 +1,12 @@
 package com.ruida.springbootdemo.controller.user;
 
-import com.alibaba.fastjson.JSONObject;
 import com.github.pagehelper.PageInfo;
-import com.ruida.springbootdemo.bean.CommonResult;
 import com.ruida.springbootdemo.config.MultiDataSource;
-import com.ruida.springbootdemo.entity.Student;
 import com.ruida.springbootdemo.entity.User;
+import com.ruida.springbootdemo.entity.result.CommonResult;
+import com.ruida.springbootdemo.entity.result.ListResult;
+import com.ruida.springbootdemo.entity.result.MapResult;
+import com.ruida.springbootdemo.entity.result.PojoResult;
 import com.ruida.springbootdemo.enums.ErrorEnum;
 import com.ruida.springbootdemo.exception.BizException;
 import com.ruida.springbootdemo.service.UserService;
@@ -14,6 +15,8 @@ import com.ruida.springbootdemo.utils.SpringUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.MessageSource;
+import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,6 +25,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -46,6 +50,9 @@ public class UserController {
 
     @Autowired
     UserService userService;
+
+    @Autowired
+    MessageSource messageSource;
 
     @GetMapping("use")
     public void useThrealLocal(Integer integer, HttpServletRequest request) throws InterruptedException {
@@ -92,11 +99,8 @@ public class UserController {
     }
 
     @PostMapping("login")
-    public Map<String, Object> login() {
-        Map<String, Object> map = new HashMap();
-        map.put("errorCode", 200);
-        map.put("errorMsg", "登录成功");
-        return map;
+    public MapResult<String,String> login(String username, String password) {
+        return userService.login(username,password);
     }
 
     @RequestMapping(value = "updateUserInfo", method = RequestMethod.PUT)
@@ -109,20 +113,34 @@ public class UserController {
         return map;
     }
 
+    @RequestMapping(value = "queryUserById/{userId}",method = RequestMethod.GET)
+    public PojoResult queryUserById(@PathVariable String userId){
+        if(log.isInfoEnabled()){
+            log.info("用户id为：{}的请求进入",userId);
+        }
+        PojoResult result = new PojoResult();
+        result.setContent(userService.queryUserById(userId));
+        result.setErrorMsg("查询成功");
+        return result;
+    }
+
     @GetMapping("exception")
-    public JSONObject exception() {
+    public CommonResult exception() {
         throw new BizException("E_100500", "手机号码绑定失败", 500);
     }
 
-    @GetMapping("getStudentInfo")
-    public Student getStudentInfo(){
-        Student stu = null;
+    @GetMapping("getUserInfo")
+    public User getUserInfo(){
+        User user = new User();
+        user.setUsername("jack");
+        return user;
+       /* Student stu = null;
         int i = 1/0;
         if(null==stu){
             throw new BizException("E10001","实体对象为空",401);
         }else {
             return stu;
-        }
+        }*/
     }
 
     @PostMapping("submitForm")
@@ -142,8 +160,17 @@ public class UserController {
     }*/
 
     @GetMapping("getUserById/{id}")
-    public User getUserById(@PathVariable("id") Integer id){
-        return userService.selectUserById(id);
+    public CommonResult getUserById(@PathVariable("id") Integer id){
+        CommonResult result = new CommonResult();
+        User user = userService.selectUserById(id);
+        if(user != null){
+            result.setSuccess(true);
+            result.setErrorMsg("查询成功");
+        }else {
+            result.setSuccess(false);
+            result.setErrorMsg("查询失败");
+        }
+        return result;
     }
 
     @RequestMapping(value = "getUserByAware",method = RequestMethod.GET)
@@ -209,7 +236,7 @@ public class UserController {
     @RequestMapping(value = "getUser",method = RequestMethod.GET)
     public User getUser(){
         User user =  new User();
-        user.setName("chenjy");
+        user.setUsername("chenjy");
         user.setAge(27);
         user.setDeptId(1);
         user.setId(100);
@@ -223,4 +250,54 @@ public class UserController {
         //log.info(map.get("total").getClass().toString());
     }
 
+    @RequestMapping(value = "getUserError",method = RequestMethod.GET)
+    public CommonResult getUserError(){
+        return CommonResult.error("1001","根据用户id查询失败");
+    }
+
+    @RequestMapping(value = "getUserOK",method = RequestMethod.GET)
+    public CommonResult getUserOK(){
+        return CommonResult.OK();
+    }
+
+    @RequestMapping(value = "testMapResult",method = RequestMethod.GET)
+    public PojoResult<User> testMapResult(){
+        throw new BizException("500","出现异常了...");
+        //return  new MapResult();
+    }
+
+    @GetMapping("session")
+    public CommonResult test(HttpServletRequest request,HttpServletResponse response){
+        request.getSession().setAttribute("username","chenjy");
+        return new CommonResult();
+    }
+
+    @GetMapping("getName")
+    public String getName() {
+        return messageSource.getMessage("user.name", null, LocaleContextHolder.getLocale());
+    }
+
+    @RequestMapping(value = "insertNameAndAge",method = RequestMethod.GET)
+    public CommonResult insertNameAndAge(@RequestParam String username,@RequestParam Integer age){
+        CommonResult result = new CommonResult();
+        Integer count = userService.insertNameAndAge(username,age);
+        if(count > 0){
+            result.setSuccess(true);
+            result.setErrorMsg("插入成功");
+        }else {
+            result.setSuccess(false);
+            result.setErrorMsg("插入失败");
+        }
+        return result;
+    }
+
+    @RequestMapping(value = "getAllUsers",method = RequestMethod.GET)
+    public ListResult getAllUsers(@RequestParam(required = false) String orderBy){
+        ListResult<User> result = new ListResult<>();
+        List<User> users = userService.selectAllUsers(orderBy);
+        result.setSuccess(true);
+        result.setErrorMsg("插入成功");
+        result.setContent(users);
+        return result;
+    }
 }

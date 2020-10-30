@@ -1,11 +1,14 @@
 spring:
+  thymeleaf:
+    prefix: classpath:/templates/
+    suffix: .html
   profiles:
     active: test
   redis:
     database: 0
     host: 47.101.129.111
     port: 16379
-    password: Chenjy418.
+    password: 123456
   jpa:
     database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
     show-sql: true
@@ -14,11 +17,38 @@ spring:
     open-in-view: false
   main:
     allow-bean-definition-overriding: true # 解决bean重复注册的问题，继承自JpaRepository的dao会自动注册到IoC容器，从而导致重复注册的问题。
+  messages:
+    basename: i18n/message
+    cache-duration: 3600
+    encoding: UTF-8
+    fallback-to-system-locale: true
+  servlet:
+    multipart:
+      max-file-size: 20MB
 
-mybatis:
-  type-aliases-package: com.ruida.springbootdemo.entity
+knife4j:
+  #production=true：不能查看接口文档;false：非生产环境，可以查看
+  production: false
+  basic:
+    enable: true
+    username: admin
+    password: 123456
+
+mybatis-plus:
   mapper-locations: classpath:mapper/*Mapper.xml
+  type-enums-package: com.ruida.springbootdemo.enums
+  type-aliases-package: com.ruida.springbootdemo.entity
   config-location: classpath:config/mybatis-config.xml
+  global-config:
+    db-config:
+      logic-delete-value: 1
+      logic-not-delete-value: 0
+
+
+#mybatis:
+#  type-aliases-package: com.ruida.springbootdemo.entity
+#  mapper-locations: classpath:mapper/*Mapper.xml
+#  config-location: classpath:config/mybatis-config.xml
 
 
 #showSql

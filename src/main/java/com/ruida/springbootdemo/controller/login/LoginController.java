@@ -1,7 +1,7 @@
 package com.ruida.springbootdemo.controller.login;
 
 import com.google.code.kaptcha.impl.DefaultKaptcha;
-import com.ruida.springbootdemo.bean.CommonResult;
+import com.ruida.springbootdemo.entity.result.CommonResult;
 import com.ruida.springbootdemo.controller.BaseController;
 import com.ruida.springbootdemo.enums.ErrorEnum;
 import lombok.extern.slf4j.Slf4j;
@@ -79,14 +79,14 @@ public class LoginController extends BaseController {
         return new CommonResult(ErrorEnum.OK);
     }
 
-    @RequestMapping("sensitive")
+    @RequestMapping(value = "sensitive",method = RequestMethod.GET)
     public void sensitive(HttpServletRequest request, HttpServletResponse response){
         log.warn("login controller is running......");
         String username = request.getParameter("username");
         log.error(username);
     }
 
-    @RequestMapping("wrapper")
+    @RequestMapping(value = "wrapper",method = RequestMethod.GET)
     public void wrapper(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String username = request.getParameter("username");
         log.info(username);

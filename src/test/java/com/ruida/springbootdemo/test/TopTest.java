@@ -12,6 +12,7 @@
 package com.ruida.springbootdemo.test;
 
 import com.ruida.springbootdemo.generic.A;
+import com.ruida.springbootdemo.model.Person;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -38,6 +39,49 @@ public class TopTest {
     int count;
 
     public static void main(String[] args) {
+
+        String str1 = null;
+        System.out.println(StringUtils.isEmpty(str1));
+        System.out.println(StringUtils.isBlank(str1));
+
+        String str2 = "";
+        System.out.println(StringUtils.isEmpty(str2));
+        System.out.println(StringUtils.isBlank(str2));
+
+        String str3 = " ";
+        System.out.println(str3.length());
+        System.out.println(StringUtils.isEmpty(str3));
+        System.out.println(StringUtils.isBlank(str3));
+
+        Person person = new Person();
+        person.setName("Jack");
+        person.setAge(26);
+        person.setCountry("China");
+        person.setSex('M');
+
+        System.out.println(person);
+
+        String test = "hello";
+        System.out.println(test.getClass().getName());
+        System.out.println(test.getClass().getSimpleName());
+        System.out.println(test.getClass().getTypeName());
+        System.out.println(test.getClass().getGenericSuperclass());
+        System.out.println(test.getClass().getSuperclass());
+
+        //比较getName和getTypeName的区别
+        System.out.println(String[].class.getName());
+        System.out.println(String[].class.getTypeName());
+
+        System.out.println(String[].class.getSimpleName());
+        System.out.println(String[].class.getCanonicalName());
+
+        Object object = Object.class;
+        System.out.println(object);
+
+        System.out.println("---------------");
+
+        Integer integer = new Integer(3);
+        System.out.println(integer.equals(3));
 
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         System.out.println(LocalDateTime.now());

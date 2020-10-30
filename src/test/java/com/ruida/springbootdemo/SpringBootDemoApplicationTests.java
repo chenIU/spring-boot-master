@@ -1,7 +1,7 @@
 package com.ruida.springbootdemo;
 
 import com.ruida.springbootdemo.annotation.MyAnnotation;
-import com.ruida.springbootdemo.bean.TestBean;
+import com.ruida.springbootdemo.entity.bean.TestBean;
 import com.ruida.springbootdemo.config.ApplicationContextConfig;
 import com.ruida.springbootdemo.service.Vehicle;
 import com.ruida.springbootdemo.service.impl.TestNotNullService;

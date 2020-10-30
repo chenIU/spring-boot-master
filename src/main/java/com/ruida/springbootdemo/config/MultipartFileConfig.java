@@ -14,10 +14,10 @@ public class MultipartFileConfig {
     public MultipartConfigElement multipartConfigElement() {
         MultipartConfigFactory factory = new MultipartConfigFactory();
 
-        //  单个数据最大值 7Mb, 原方法 setMaxFileSize(long maxFileSize) 已经过期,建议使用 setMaxFileSize(DataSize maxFileSize)
+        //  单个数据最大值 10Mb, 原方法 setMaxFileSize(long maxFileSize) 已经过期,建议使用 setMaxFileSize(DataSize maxFileSize)
         factory.setMaxFileSize(DataSize.ofBytes(1024 * 1024 * 10L));
 
-        /// 总上传数据最大值 14M, 同将 setMaxRequestSize(long maxRequestSize) 方法替换为 setMaxRequestSize(DataSize maxRequestSize)
+        /// 总上传数据最大值 100M, 同将 setMaxRequestSize(long maxRequestSize) 方法替换为 setMaxRequestSize(DataSize maxRequestSize)
         factory.setMaxRequestSize(DataSize.ofBytes(1024 * 1024 * 100L));
 
         // DataSize 方法属性配置建议自行查看源码

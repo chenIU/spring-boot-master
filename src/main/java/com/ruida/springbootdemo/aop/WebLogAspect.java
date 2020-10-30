@@ -1,6 +1,9 @@
 package com.ruida.springbootdemo.aop;
 
 import com.alibaba.fastjson.JSONObject;
+import com.ruida.springbootdemo.entity.result.CommonResult;
+import com.ruida.springbootdemo.enums.ErrorEnum;
+import com.ruida.springbootdemo.exception.BizException;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
@@ -28,6 +31,12 @@ public class WebLogAspect {
      * 处理方法请求时间
      */
     ThreadLocal<Long> startTime = new ThreadLocal<>();
+
+    private static final String VOID_TYPE = "void";
+
+    private static final String STR_TYPE = "java.lang.String";
+
+    private static final String OBJECT_TYPE = "java.lang.Object";
 
     @Pointcut("execution(* com.ruida.springbootdemo.controller..*.*(..))")
     public void log(){
@@ -58,6 +67,7 @@ public class WebLogAspect {
     public Object around(ProceedingJoinPoint pjp){
         Object result = null;
         Class<?> returnType;
+        CommonResult errorResult = null;
         Object[] args = pjp.getArgs();
         log.info("around args={}",args.toString());
 
@@ -77,13 +87,42 @@ public class WebLogAspect {
         returnType = methodSignature.getReturnType();
         try {
             stopWatch.start();
-            if("void".equals(returnType.getName())){
-
+            if(VOID_TYPE.equals(returnType.getName())){
+                errorResult = new CommonResult();
+            }else if(OBJECT_TYPE.equals(returnType.getTypeName())){
+                result = returnType.newInstance();
+            }else if(STR_TYPE.equals(returnType.getTypeName())){
+                //返回到页面处理
+            }else {
+                errorResult = (CommonResult) returnType.newInstance();
             }
+
             result = pjp.proceed();
             stopWatch.stop();
-        }catch (Throwable ex){
-            // do something
+        }catch (BizException biz){
+            log.error("around 业务异常信息：{}",biz.getErrorMsg());
+            if(VOID_TYPE.equals(returnType.getTypeName())){
+                return errorResult;
+            }else if(STR_TYPE.equals(returnType.getTypeName())){
+                //返回页面处理
+
+            }else {
+                errorResult.setErrorCode(biz.getErrorCode());
+                errorResult.setErrorMsg(biz.getErrorMsg());
+                return errorResult;
+            }
+        }catch (Throwable e){
+            log.error("around 未知异常信息：{}",e.getMessage());
+            if(VOID_TYPE.equals(returnType.getTypeName())){
+                return errorResult;
+            }else if(STR_TYPE.equals(returnType.getTypeName())){
+                //返回页面处理
+
+            }else {
+                errorResult.setErrorCode(ErrorEnum.ERROR.getErrorCode());
+                errorResult.setErrorMsg(ErrorEnum.ERROR.getErrorMsg());
+                return errorResult;
+            }
         }finally {
 
         }

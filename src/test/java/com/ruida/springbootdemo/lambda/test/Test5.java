@@ -29,12 +29,13 @@ public class Test5 {
             }
         });
 
+        System.out.println("-----------");
+        list.stream().filter(x -> x%2==0).forEach(x -> System.out.println("偶数："+x));
+        System.out.println("-----------");
+
         //删除集合中的元素
         list.removeIf(e -> e%2 ==0);
         list.forEach(System.out::println);
-
-
-
     }
 
 }

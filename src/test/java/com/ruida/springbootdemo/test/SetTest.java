@@ -1,7 +1,8 @@
 package com.ruida.springbootdemo.test;
 
+import com.ruida.springbootdemo.lombok.XiaoMiTV;
+
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.Set;
 
 /**
@@ -14,8 +15,25 @@ import java.util.Set;
  */
 public class SetTest {
     public static void main(String[] args) {
+
         Set<String> set = new HashSet<>();
-        set.add("jack");
+        set.add("hello");
+        set.add("hello");
+        System.out.println(set.size());
+
+        /*
+         * set去利用了map的put方法,key的hashCode不能重复的原理
+         */
+        Set<XiaoMiTV> set1 = new HashSet<>();
+        XiaoMiTV v1 = new XiaoMiTV(1,"小米电视1",10000L,"白色");
+        XiaoMiTV v2 = new XiaoMiTV(2,"小米电视2",10000L,"白色");
+        System.out.println(v1.hashCode());
+        System.out.println(v2.hashCode());
+        set1.add(v1);
+        set1.add(v2);
+        System.out.println(set1.size());
+
+       /* set.add("jack");
         set.add("mike");
         set.add("tom");
         set.add("john");
@@ -24,6 +42,6 @@ public class SetTest {
             set.remove("jack");
             String value = it.next();
             System.out.println(value);
-        }
+        }*/
     }
 }

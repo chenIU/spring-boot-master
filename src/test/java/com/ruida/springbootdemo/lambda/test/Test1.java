@@ -50,7 +50,6 @@ public class Test1 {
             return a+b;
         };
         returnMultiParam.method(1,2);
-
     }
 
 }

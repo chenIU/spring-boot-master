@@ -1,0 +1,17 @@
+GET http://localhost:8080/order/list
+
+###post
+
+POST http://localhost:8080/order/add
+Content-Type: application/json
+
+{
+    "orderAmount": 500.00,
+    "createUser": 2
+}
+
+###多环境
+
+GET {{baseUrl}}/list
+
+###

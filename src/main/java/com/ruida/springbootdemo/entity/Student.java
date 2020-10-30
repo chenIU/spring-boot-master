@@ -11,12 +11,14 @@ import java.io.Serializable;
  * @create: 2020-04-01 17:25
  */
 @Data
-public class Student implements Serializable {
+public class Student  implements Serializable {
+
+    private static final long serialVersionUID = -1992262060124822400L;
 
     private int id;
 
     @Alpha(name="jack",value = "hahaha")
-    private String name;
+    private String name = "jack";
 
     private transient Integer age;
 
@@ -33,6 +35,4 @@ public class Student implements Serializable {
         this.name = name;
         this.age = age;
     }
-
-
 }
