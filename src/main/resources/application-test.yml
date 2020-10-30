@@ -5,15 +5,25 @@ spring:
   application:
     name: ruida-test-env
   datasource:
-    url: jdbc:mysql://47.101.129.111:3306/runoob?characterEncoding=utf8&useSSl=false&serverTimeZone=Asia/Shanghai
-    username: root
-    password: Chenjy418.
+    type: com.alibaba.druid.pool.DruidDataSource
     driver-class-name: com.mysql.cj.jdbc.Driver
-  jpa:
-    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
-    show-sql: true
-    hibernate:
-      ddl-auto: none
+    druid:
+      # 主库数据源
+      master:
+        jdbc-url: jdbc:mysql://47.101.129.111:3306/runoob?characterEncoding=utf8&useSSl=false&serverTimezone=GMT%2B8
+        username: ENC(NdHmig0BNBVJGfh83AZMrg==)
+        password: ENC(fSjVUUW+WwSowqcDokT1ZClXwxKAp4o7)
+      # 从库数据源
+      slave:
+        # 从数据源开关/默认关闭
+        enabled: true
+        jdbc-url: jdbc:mysql://47.101.129.111:3306/slave?characterEncoding=utf8&useSSl=false&serverTimezone=GMT%2B8
+        username: ENC(NdHmig0BNBVJGfh83AZMrg==)
+        password: ENC(fSjVUUW+WwSowqcDokT1ZClXwxKAp4o7)
+
+jasypt:
+  encryptor:
+    password: e9fbdb2d3b21 # 盐
 
 config:
   image:
