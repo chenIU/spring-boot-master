@@ -99,3 +99,5 @@
 + yaml文件和properties文件的对比
   + yaml文件的优势：配置有序
   + 不支持@PropertySource,只能从application.yml(properties)中读取
+  
++ File类中mkdir和mkdirs方法的区别：mkdir需要父路径存在;mkdirs没有此限制,可以级联创建
