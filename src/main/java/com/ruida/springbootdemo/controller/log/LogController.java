@@ -1,5 +1,6 @@
 package com.ruida.springbootdemo.controller.log;
 
+import com.overmind.logging.TimeLog;
 import com.ruida.springbootdemo.annotation.AuthCheck;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.ibatis.annotations.Param;
@@ -19,8 +20,8 @@ public class LogController {
 
     @AuthCheck
     @GetMapping("test")
+    @TimeLog
     public String test(@Param("id") Integer id,@Param("name") String name){
-        log.info("开始执行/log/test 方法");
         return id + name;
     }
 }
