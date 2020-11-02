@@ -309,4 +309,10 @@ public class UserController {
         log.info("===============name:{}",name);
         return id + "," + name;
     }
+
+    @RequestMapping(value = "produces",produces = "text/plain;charset=utf-8")
+    @TimeLog
+    public String produces(){
+        return "陈俭银";
+    }
 }
