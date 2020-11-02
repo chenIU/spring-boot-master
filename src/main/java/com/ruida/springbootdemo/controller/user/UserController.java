@@ -1,6 +1,7 @@
 package com.ruida.springbootdemo.controller.user;
 
 import com.github.pagehelper.PageInfo;
+import com.overmind.logging.TimeLog;
 import com.ruida.springbootdemo.config.MultiDataSource;
 import com.ruida.springbootdemo.entity.User;
 import com.ruida.springbootdemo.entity.result.CommonResult;
@@ -299,5 +300,13 @@ public class UserController {
         result.setErrorMsg("插入成功");
         result.setContent(users);
         return result;
+    }
+
+    @RequestMapping(value = "test",method = RequestMethod.GET)
+    @TimeLog
+    public String test(String id,String name){
+        log.info("===============id:{}",id);
+        log.info("===============name:{}",name);
+        return id + "," + name;
     }
 }
