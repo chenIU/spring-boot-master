@@ -1,7 +1,9 @@
 package com.ruida.springbootdemo.test;
 
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.TreeMap;
 
 /**
  * @description: map测试类
@@ -29,11 +31,29 @@ public class MapTest {
         Map<String,Object> map = new HashMap();
         map.put("name","chenjy");
         map.put("age",26);
+        map.put("school","LIT");
         System.out.println(map);
 
         map.forEach((k,v)->{
             System.out.println("key="+k);
             System.out.println("value="+v);
         });
+
+        //有序Map
+        //TreeMap根据key升序排序(基于Comparator实现排序)
+        TreeMap treeMap = new TreeMap();
+        treeMap.put(1,"chenjy");
+        treeMap.put(3,"liuxy");
+        treeMap.put(2,"suxiang");
+        System.out.println(treeMap);
+
+        //LinkedHashMap根据插入顺序排序(基于链表实现排序)
+        LinkedHashMap linkedHashMap = new LinkedHashMap();
+        linkedHashMap.put(3,"suxiang");
+        linkedHashMap.put(1,"chenjy");
+        linkedHashMap.put(2,"liuxy");
+        System.out.println(linkedHashMap);
+
+        //HashMap和HashTable都不是有序的
     }
 }
