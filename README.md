@@ -103,3 +103,5 @@
 + File类中mkdir和mkdirs方法的区别：mkdir需要父路径存在;mkdirs没有此限制,可以级联创建
 
 + @Configuration和@Component的区别是：前者的bean是单例的，后者是原型类型。
+
++ 整型最高位0表示整数，1表示负数。
