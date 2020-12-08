@@ -105,3 +105,53 @@
 + @Configuration和@Component的区别是：前者的bean是单例的，后者是原型类型。
 
 + 整型最高位0表示整数，1表示负数。
+
++ JDK1.7中HashMap冲突时，链表采用头插法；1.8采用尾插法。
+
++ String、StringBuilder、StringBuffer的区别和联系：
+  + String 底层采用了一个不可变字符数组private final char value[],所以它的内容不可变;
+  + StringBuilder 和 StringBuffer都继承自AbstractStringBuilder,底层是可变数组char[] value;
+  + StringBuilder不是线程安全的，效率较高；StringBuffer是线程安全的，效率较低；
+  + 执行速度StringBuilder > StringBuffer > String
+  
++ 如何让HashMap实现线程同步：Map map = Collections.synchronizeMap(hashmap);
+
++ Executors创建线程池
+  + newFixedThreadPool()：创建固定大小的线程池
+  + newSingleThreadPool()：创建单个线程池
+  + newCachedThreadPool()：创建无限大小的线程池，线程池中线程的数量不固定，可根据实际情况更改
+  + newScheduledThreadPool()：创建固定大小的线程池，可以延迟或定时执行任务
+
++ 实现多线程的方法：
+  + 继承Thread类
+  + 实现Runable接口
+  + 实现Callable接口，利用task接受异步线程执行的结果
+  
++ JDK1.8之后switch可以作用byte、short、int、char、boolean、string和enum上
+
++ ArrayList的默认大小是10；HashMap的默认大小是16。
+
++ Array可以存放基本类型和引用类型；ArrayList只能存放引用类型。
+
++ ArrayList扩容只会增加50%，而Vector扩容时增加1倍。
+
++ Queue的poll方法和remove方法的区别:
+  + 两者都是返回一个元素，并在队列中删除返回的对象。
+  + 如果没有元素poll()会返回null，而remove方法则会抛出NoSuchElementException异常。
+  
++ http状态码301永久重定向，302暂时重定向。
+
++ sleep()和wait()的区别：
+  + 来源不同：sleep()来自Thread类,wait()来自Object类;
+  + 用法不同：sleep()时间到时会自动恢复,wait()需要notify或者notifyAll唤醒;
+  + 持有锁的不同：sleep()不释放锁,wait()释放锁。
+  
++ 线程池中execute()和submit()方法的区别：
+  + execute()只能执行runable类型的任务
+  + submit()可以执行runable和callable类型的任务
+  
++ 线程池的拒绝策略
+  + AbortPolicy：默认的拒绝策略，抛出 RejectedExecutionException 异常
+  + CallerRunsPolicy：提交任何的线程自己去执行该任务
+  + DiscardOldestPolicy：丢弃最老的任务，加入新的任何
+  + DiscardPolicy：直接丢弃任务，不抛出异常
