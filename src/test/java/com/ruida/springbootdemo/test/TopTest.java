@@ -40,6 +40,13 @@ public class TopTest {
 
     public static void main(String[] args) {
 
+        double d = 0;
+        System.out.println(d);
+
+        System.out.println(Math.round(-2.5));
+        System.out.println(Math.round(-2.6));
+        System.out.println(Math.round(2.6));
+
         String str1 = null;
         System.out.println(StringUtils.isEmpty(str1));
         System.out.println(StringUtils.isBlank(str1));
