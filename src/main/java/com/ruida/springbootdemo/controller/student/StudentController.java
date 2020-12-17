@@ -5,8 +5,10 @@ import com.ruida.springbootdemo.entity.Student;
 import com.ruida.springbootdemo.entity.result.CommonResult;
 import com.ruida.springbootdemo.entity.result.MapResult;
 import com.ruida.springbootdemo.entity.result.PojoResult;
+import com.ruida.springbootdemo.wrapper.ValidList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.*;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -124,5 +126,11 @@ public class StudentController {
         result.setSuccess(true);
         result.setErrorMsg("操作成功");
         return result;
+    }
+
+    @PostMapping("addList")
+    public CommonResult addList(@RequestBody @Validated ValidList<Student> studentList){
+        System.out.println(studentList.size());
+        return new CommonResult();
     }
 }

@@ -3,6 +3,7 @@ package com.ruida.springbootdemo.entity;
 import com.ruida.springbootdemo.annotation.Alpha;
 import lombok.Data;
 
+import javax.validation.constraints.Min;
 import java.io.Serializable;
 
 /**
@@ -15,6 +16,7 @@ public class Student  implements Serializable {
 
     private static final long serialVersionUID = -1992262060124822400L;
 
+    @Min(value = 1,message = "id取值不合法")
     private int id;
 
     @Alpha(name="jack",value = "hahaha")
