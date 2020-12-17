@@ -12,6 +12,7 @@
 package com.ruida.springbootdemo.test;
 
 import com.ruida.springbootdemo.generic.A;
+import com.ruida.springbootdemo.model.Book;
 import com.ruida.springbootdemo.model.Person;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
@@ -39,6 +40,19 @@ public class TopTest {
     int count;
 
     public static void main(String[] args) {
+
+        //final修饰的基本数据类型值不能改变;final修饰的引用类型，指针地址不能改变
+        final int count = 0;
+        //count = count + 1;
+
+        final Book book = new Book();
+        book.setAuthor("罗贯中");
+        book.setId(1l);
+        book.setName("三国演义");
+        System.out.println(book);
+
+        book.setId(2l);
+        System.out.println(book);
 
         double d = 0;
         System.out.println(d);
