@@ -43,6 +43,10 @@ public class TopTest {
 
     public static void main(String[] args) {
 
+        String open = "true";
+        System.out.println(open);//String类型的"true"字符串
+        System.out.println(Boolean.valueOf(open));//Boolean类型的true
+
         System.out.println(MIMEType.getSuffix("image/gif"));
         MIMEType.types.forEach((k,v) -> {
             System.out.println("key=="+k);
