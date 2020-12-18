@@ -32,8 +32,11 @@ public class StringUtil {
         System.out.println(str.lastIndexOf("."));//6
         System.out.println(str.substring(str.lastIndexOf(".") + 1));//txt
 
-        char c = 'A';
-        System.out.println(Integer.valueOf(c));
+        char c1 = 'A';
+        char c2 = 'a';
+
+        System.out.println(Integer.valueOf(c1));
+        System.out.println(Integer.valueOf(c2));
 
 
        /* String str = "hello";
