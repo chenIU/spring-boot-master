@@ -29,6 +29,9 @@ public class StringUtil {
         //substring(int beginIndex,int endIndex)：beginIndex(包含)到endIndex(不包含)  下标从0开始
         System.out.println(str.substring(1,3));//he
 
+        System.out.println(str.lastIndexOf("."));//6
+        System.out.println(str.substring(str.lastIndexOf(".") + 1));//txt
+
         char c = 'A';
         System.out.println(Integer.valueOf(c));
 
