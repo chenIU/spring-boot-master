@@ -41,6 +41,11 @@ public class TopTest {
 
     public static void main(String[] args) {
 
+        System.out.print("chenjy");
+        System.out.print("\n");
+        System.out.print("liuxy");
+        System.out.print("\n");
+
         //final修饰的基本数据类型值不能改变;final修饰的引用类型，指针地址不能改变
         final int count = 0;
         //count = count + 1;
