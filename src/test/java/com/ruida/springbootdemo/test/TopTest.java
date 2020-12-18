@@ -14,6 +14,7 @@ package com.ruida.springbootdemo.test;
 import com.ruida.springbootdemo.generic.A;
 import com.ruida.springbootdemo.model.Book;
 import com.ruida.springbootdemo.model.Person;
+import com.ruida.springbootdemo.utils.ValidateMT;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -40,6 +41,15 @@ public class TopTest {
     int count;
 
     public static void main(String[] args) {
+
+        String testStr = "";
+        System.out.println(ValidateMT.isNotNull(testStr));
+
+        List<String> testList = new ArrayList<>();
+        System.out.println(ValidateMT.isNotNull(testList));
+
+        Map<String,Object> map = new HashMap();
+        System.out.println(ValidateMT.isNotNull(map));
 
         System.out.print("chenjy");
         System.out.print("\n");
