@@ -11,6 +11,7 @@
 
 package com.ruida.springbootdemo.test;
 
+import com.ruida.springbootdemo.constant.MIMEType;
 import com.ruida.springbootdemo.generic.A;
 import com.ruida.springbootdemo.model.Book;
 import com.ruida.springbootdemo.model.Person;
@@ -41,6 +42,12 @@ public class TopTest {
     int count;
 
     public static void main(String[] args) {
+
+        System.out.println(MIMEType.getSuffix("image/gif"));
+        MIMEType.types.forEach((k,v) -> {
+            System.out.println("key=="+k);
+            System.out.println("value=="+v);
+        });
 
         String testStr = "";
         System.out.println(ValidateMT.isNotNull(testStr));
