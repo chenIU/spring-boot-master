@@ -5,6 +5,20 @@ import java.util.UUID;
 public class StringTest {
     public static void main(String[] args) {
 
+        //(String)、toString、String.valueOf的区别
+
+        //1、(String)需保证类型一致，否则抛出ClassCaseException
+        Object obj = new Integer(100);
+//        String str1 = (String) obj;
+
+        //2、toString需保证非空，否则抛出NPE异常
+        Object obj2 = null;
+//        obj2.toString();
+
+        //3、String.valueOf是最稳妥的方式
+        Object obj3 = null;
+        System.out.println(String.valueOf(obj3));//注意是null字符串
+
         String s1 = "china";
         String s2 = "china";
         String s3 = new String("china");
