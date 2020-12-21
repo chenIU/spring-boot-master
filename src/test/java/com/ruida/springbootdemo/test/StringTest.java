@@ -5,6 +5,14 @@ import java.util.UUID;
 public class StringTest {
     public static void main(String[] args) {
 
+        String s1 = "china";
+        String s2 = "china";
+        String s3 = new String("china");
+        System.out.println(s1 == s2);//true
+        System.out.println(s1 == s3);//false
+        System.out.println(s1.equals(s2));//true
+        System.out.println(s1.equals(s3));//true
+
         long t1 = System.currentTimeMillis();
         String str = null;
         for(int i=0;i<10000;i++){
