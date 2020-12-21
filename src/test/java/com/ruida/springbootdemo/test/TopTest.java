@@ -19,11 +19,11 @@ import com.ruida.springbootdemo.utils.ValidateMT;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import java.lang.reflect.Array;
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
@@ -42,6 +42,10 @@ public class TopTest {
     int count;
 
     public static void main(String[] args) {
+
+        //yyyy-MM-dd HH:mm:ss.SSS 带毫秒的格式
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
+        System.out.println(sdf.format(new Date()));
 
         char[] value = null;
 //        System.out.println(value.length);
