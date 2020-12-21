@@ -5,6 +5,15 @@ import java.util.UUID;
 public class StringTest {
     public static void main(String[] args) {
 
+        System.out.println("H" + "a");
+        //H 72
+        //a 97
+        System.out.println('H');
+        System.out.println('a');
+        System.out.println('H' + 'a');
+        char c = 'H';
+        System.out.println(Integer.valueOf(c));
+
         //(String)、toString、String.valueOf的区别
 
         //1、(String)需保证类型一致，否则抛出ClassCaseException
