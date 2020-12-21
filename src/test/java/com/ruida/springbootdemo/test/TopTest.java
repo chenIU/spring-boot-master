@@ -43,6 +43,10 @@ public class TopTest {
 
     public static void main(String[] args) {
 
+        Integer num = 2;
+        System.out.println(num);
+        System.out.println(num << 2);
+
         String open = "true";
         System.out.println(open);//String类型的"true"字符串
         System.out.println(Boolean.valueOf(open));//Boolean类型的true
