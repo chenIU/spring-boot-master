@@ -43,6 +43,17 @@ public class TopTest {
 
     public static void main(String[] args) {
 
+        char[] value = null;
+//        System.out.println(value.length);
+
+        //编程习惯问题，equals最好不要将变量放在前面，否则变量为空的时候会报空指针异常
+        String username = null;
+//        System.out.println(username.equals("chenjy"));
+        System.out.println("chenjy".equals(username));
+
+        //和null的比较，null放在前面
+        System.out.println(null == username);
+
         Integer num = 2;
         System.out.println(num);
         System.out.println(num << 2);
