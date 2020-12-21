@@ -10,6 +10,13 @@ import java.math.BigDecimal;
 public class BigDecimalTest {
     public static void main(String[] args) {
 
+        //不能使用浮点型构造bigdecimal对象，否则会出现意想不到的情况
+        BigDecimal bd1 = new BigDecimal(1.0f - 0.1f);
+        System.out.println(bd1);
+        BigDecimal bd2 = new BigDecimal(0.9f - 0.1f);
+        System.out.println(bd2);
+        System.out.println(bd1 == bd2);
+
         //BigDecimal对象在使用加减乘除方法的时候会产生新对象，不会对原来的变量产生影响
         BigDecimal b1 = new BigDecimal("0.1");
         System.out.println(b1);
