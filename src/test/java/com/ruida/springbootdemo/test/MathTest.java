@@ -11,9 +11,11 @@ import java.util.List;
 public class MathTest {
 
     public static void main(String[] args) {
+        System.out.println(Math.pow(2,10));
         List<Integer> list = aaa(40,100,3);
         list.forEach(x-> System.out.println(x));
-
+        System.out.println("===================");
+        list.forEach(System.out::println);
     }
 
     public static List<Integer> aaa(int min,int max,int offset){
