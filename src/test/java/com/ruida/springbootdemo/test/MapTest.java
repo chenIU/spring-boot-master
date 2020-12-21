@@ -38,6 +38,8 @@ public class MapTest {
         map.put("name","chenjy");
         map.put("age",26);
         map.put("school","LIT");
+        map.put(null,"nil");//HashMap的key和value都可以为null
+        map.put("hobby",null);
         System.out.println(map);
 
         map.forEach((k,v)->{
