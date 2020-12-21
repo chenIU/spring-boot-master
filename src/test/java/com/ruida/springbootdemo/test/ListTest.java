@@ -1,5 +1,7 @@
 package com.ruida.springbootdemo.test;
 
+import com.google.common.collect.Lists;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -11,6 +13,9 @@ import java.util.List;
  */
 public class ListTest {
     public static void main(String[] args) {
+
+        List<Integer> integerList = Lists.newArrayList(1,2,3,4,5,6);
+        integerList.stream().forEach(System.out::print);
 
         /*List<Integer> list = new ArrayList<>();
         Collections.addAll(list,1,2,3,4,5);
