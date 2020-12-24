@@ -21,6 +21,9 @@ public class MapTest {
     }
 
     public static void main(String[] args) {
+
+        iterateMap();
+
         /*Map<String,Object> MAP = new HashMap();
         MAP.put("name","chenjy");
         MAP.put("age",21);
@@ -71,5 +74,45 @@ public class MapTest {
         MAP.put("1","boy");
         System.out.println(MAP.get("1"));
 
+    }
+
+    public static void iterateMap(){
+        Map<String,String> map = new HashMap();
+        map.put("1","China");
+        map.put("2","Japan");
+        map.put("3","USA");
+
+        //第一种方式：普通遍历，二次取值
+        for(String key:map.keySet()){
+            System.out.println("key==="+key+",value==="+map.get(key));
+        }
+
+        System.out.println("=========");
+
+        //第二种方式：通过Iterator循环遍历Map.entrySet
+        Iterator<Map.Entry<String, String>> iterator = map.entrySet().iterator();
+        while(iterator.hasNext()){
+            Map.Entry<String,String> entry = iterator.next();
+            System.out.println("key==="+entry.getKey()+",value==="+entry.getValue());
+        }
+
+        System.out.println("=========");
+
+        //第三种方式：foreach，推荐，当容量较大时，效率比第二种高
+        for(Map.Entry<String,String> entry:map.entrySet()){
+            System.out.println("key==="+entry.getKey()+",value==="+entry.getValue());
+        }
+
+        System.out.println("=========");
+
+        //第四种方式：利用Map.values遍历所有的value，但是不能遍历key
+        for(String v:map.values()){
+            System.out.println("value=="+v);
+        }
+
+        System.out.println("=========");
+
+        //第五种方式：利用lambda表达式
+        map.forEach((k,v) -> System.out.println("key==="+k+",value==="+v));
     }
 }
