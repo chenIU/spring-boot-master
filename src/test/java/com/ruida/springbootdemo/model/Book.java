@@ -1,6 +1,8 @@
 package com.ruida.springbootdemo.model;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.PropertySource;
@@ -17,6 +19,8 @@ import org.springframework.stereotype.Component;
 @ConfigurationProperties(prefix = "book")
 @Setter
 @Getter
+@AllArgsConstructor
+@NoArgsConstructor
 public class Book {
 
     //@Value("${book.id}")
