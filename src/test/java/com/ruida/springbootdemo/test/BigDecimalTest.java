@@ -10,6 +10,11 @@ import java.math.BigDecimal;
 public class BigDecimalTest {
     public static void main(String[] args) {
 
+        //抛出异常：Non-terminating decimal expansion; no exact representable decimal result
+        //解决方法：指定保留位数和
+//        new BigDecimal(1).divide(new BigDecimal(3));
+        System.out.println(new BigDecimal(1).divide(new BigDecimal(3), 2, 4));
+
         //不能使用浮点型构造bigdecimal对象，否则会出现意想不到的情况
         BigDecimal bd1 = new BigDecimal(1.0f - 0.1f);
         System.out.println(bd1);
