@@ -10,6 +10,9 @@ import java.math.BigDecimal;
 public class BigDecimalTest {
     public static void main(String[] args) {
 
+        BigDecimal bigDecimal = new BigDecimal("3.14");
+        System.out.println(bigDecimal.intValue());
+
         //抛出异常：Non-terminating decimal expansion; no exact representable decimal result
         //解决方法：指定保留位数和
 //        new BigDecimal(1).divide(new BigDecimal(3));
