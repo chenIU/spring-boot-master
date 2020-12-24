@@ -1,5 +1,8 @@
 package com.ruida.springbootdemo.utils;
 
+import com.google.common.collect.Lists;
+import com.ruida.springbootdemo.entity.Room;
+
 import java.util.*;
 
 /**
@@ -10,6 +13,8 @@ import java.util.*;
 public class CollectionTest {
 
     public static void main(String[] args) {
+
+        sortTest();
 
         //集合有序性测试
 
@@ -55,6 +60,26 @@ public class CollectionTest {
         test.show(1);
         test.test(list);
         test.test(list2);
+    }
+
+    public static void sortTest(){
+        List<String> list  = Lists.newArrayList("liuxy","chenjy","wangman");
+        System.out.println("排序前:"+list);
+        Collections.sort(list);//String、Integer、Double这些已经实现了排序接口，可以直接排序 对于自定义类，需要自己实现排序功能
+        System.out.println("排序后:"+list);
+
+        //自定义类实现排序
+        List<Room> roomList = Lists.newArrayList(
+                new Room(String.valueOf(5.00), 4.00, 2.00),
+                new Room(String.valueOf(5.00), 4.01, 3.01),
+                new Room(String.valueOf(6.00), 4.01, 5.00),
+                new Room(String.valueOf(6.00), 4.01, 4.50),
+                new Room(String.valueOf(6.00), 4.01, 6.00),
+                new Room(String.valueOf(7.00), 4.02, 3.05)
+        );
+        System.out.println("自定义类排序前:"+roomList);
+        Collections.sort(roomList);
+        System.out.println("自定义类排序前:"+roomList);
     }
 
     public <T> void show(T t){
