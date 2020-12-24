@@ -24,6 +24,7 @@ import java.math.RoundingMode;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
+import java.time.Clock;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
@@ -43,6 +44,17 @@ public class TopTest {
 
     public static void main(String[] args) {
 
+        //获取自1970.1.1 0时0分0秒到现在的毫秒数
+        System.out.println(System.currentTimeMillis());
+
+        //方法一
+        Calendar calendar = Calendar.getInstance();
+        System.out.println(calendar.getTimeInMillis());
+
+        //方法二
+        System.out.println(Clock.systemDefaultZone().millis());
+
+        //方法三
         //yyyy-MM-dd HH:mm:ss.SSS 带毫秒的格式
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
         System.out.println(sdf.format(new Date()));
