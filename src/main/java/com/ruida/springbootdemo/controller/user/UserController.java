@@ -10,6 +10,7 @@ import com.ruida.springbootdemo.entity.result.MapResult;
 import com.ruida.springbootdemo.entity.result.PojoResult;
 import com.ruida.springbootdemo.enums.ErrorEnum;
 import com.ruida.springbootdemo.exception.BizException;
+import com.ruida.springbootdemo.mapper.UserMapper;
 import com.ruida.springbootdemo.service.UserService;
 import com.ruida.springbootdemo.service.impl.UserServiceImpl;
 import com.ruida.springbootdemo.utils.SpringUtil;
@@ -21,10 +22,12 @@ import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -54,6 +57,9 @@ public class UserController {
 
     @Autowired
     MessageSource messageSource;
+
+    @Resource
+    UserMapper userMapper;
 
     @GetMapping("use")
     public void useThrealLocal(Integer integer, HttpServletRequest request) throws InterruptedException {
@@ -314,5 +320,49 @@ public class UserController {
     @TimeLog
     public String produces(){
         return "陈俭银";
+    }
+
+    @GetMapping("selectByIdList")
+    public ListResult<User> selectByIdList(String ids){
+        ListResult<User> result = new ListResult<>();
+        List<String> idList = Arrays.asList(ids.split(","));
+        //如果参数类型时List,则在使用时,Collection属性必须要指定为list
+        List<User> list = userMapper.selectByIdList(idList);
+        result.setContent(list);
+        return result;
+    }
+
+    @GetMapping("selectByIdArray")
+    public ListResult<User> selectByIdArray(String ids){
+        ListResult<User> result = new ListResult<>();
+        //如果参数类型时Array,则在使用时,Collection属性必须要指定为array
+        List<User> list = userMapper.selectByIdArray(ids.split(","));
+        result.setContent(list);
+        return result;
+    }
+
+    @GetMapping("selectByMultiArgs1")
+    public ListResult<User> selectByMultiArgs1(Integer deptId,String ids){
+        ListResult<User> result = new ListResult<>();
+        //当查询的参数有多个时,有两种方式可以实现，一种是使用@Param("xxx")进行参数绑定，另一种可以通过Map来传参数。
+
+        //第一种方式，@Param进行参数绑定
+        List<User> list = userMapper.selectMultiArgs1(deptId,ids.split(","));
+        result.setContent(list);
+        return result;
+    }
+
+    @GetMapping("selectByMultiArgs2")
+    public ListResult<User> selectByMultiArgs2(Integer deptId,String ids){
+        ListResult<User> result = new ListResult<>();
+        //当查询的参数有多个时,有两种方式可以实现，一种是使用@Param("xxx")进行参数绑定，另一种可以通过Map来传参数。
+
+        //第二种方式，Map进行参数绑定
+        Map<String,Object> map = new HashMap();
+        map.put("deptId",deptId);
+        map.put("ids",ids.split(","));
+        List<User> list = userMapper.selectMultiArgs2(map);
+        result.setContent(list);
+        return result;
     }
 }

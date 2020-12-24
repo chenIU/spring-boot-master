@@ -67,5 +67,37 @@
             order by ${orderBy} desc
         </if>
     </select>
+
+    <select id="selectByIdList" resultType="com.ruida.springbootdemo.entity.User">
+        select * from t_user
+        where id in
+            <foreach collection="list" item="id" index="index" open="(" close=")" separator=",">
+                #{id}
+            </foreach>
+    </select>
+
+    <select id="selectByIdArray" resultType="com.ruida.springbootdemo.entity.User">
+        select * from t_user
+        where id in
+        <foreach collection="array" item="id" index="index" open="(" close=")" separator=",">
+            #{id}
+        </foreach>
+    </select>
+
+    <select id="selectMultiArgs1" resultType="com.ruida.springbootdemo.entity.User">
+        select * from t_user
+        where dept_id = #{deptId} and id in
+        <foreach collection="ids" item="id" index="index" open="(" close=")" separator=",">
+            #{id}
+        </foreach>
+    </select>
+
+    <select id="selectMultiArgs2" resultType="com.ruida.springbootdemo.entity.User">
+        select * from t_user
+        where dept_id = #{deptId} and id in
+        <foreach collection="ids" item="id" index="index" open="(" close=")" separator=",">
+            #{id}
+        </foreach>
+    </select>
 </mapper>
 
