@@ -44,6 +44,11 @@ public class TopTest {
 
     public static void main(String[] args) {
 
+        printArgs(1,2,3);
+        System.out.println();
+        printArgs(1,2,3,4,5);
+        System.out.println();
+
         //获取自1970.1.1 0时0分0秒到现在的毫秒数
         System.out.println(System.currentTimeMillis());
 
@@ -471,6 +476,12 @@ public class TopTest {
             System.out.println(e.getMessage());
             System.out.println(e.getClass().getSimpleName());
             //e.printStackTrace();
+        }
+    }
+
+    public static void printArgs(Object... args){
+        for(Object obj:args){
+            System.out.printf("%s ",obj);
         }
     }
 }
