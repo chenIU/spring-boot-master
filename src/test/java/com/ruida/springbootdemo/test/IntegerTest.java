@@ -8,6 +8,10 @@ package com.ruida.springbootdemo.test;
 public class IntegerTest {
 
     public static void main(String[] args) {
+        Integer a = 30;
+        Integer b = 10;
+        System.out.println(a.compareTo(b));// 1:大于 -1:小于 0:相等
+
         Integer i = 16;
         System.out.println(Integer.toHexString(i));
 
