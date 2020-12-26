@@ -3,7 +3,9 @@ package com.ruida.springbootdemo.test;
 import com.ruida.springbootdemo.lombok.XiaoMiTV;
 
 import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.Set;
+import java.util.TreeSet;
 
 /**
  * @description: set测试类
@@ -15,6 +17,34 @@ import java.util.Set;
  */
 public class SetTest {
     public static void main(String[] args) {
+
+        //HashSet 无序不能重复
+        Set<String> s1 = new HashSet<>();
+        s1.add("jack");
+        s1.add("mike");
+        s1.add("tom");
+        s1.forEach(e -> System.out.printf("%s ",e));
+
+        System.out.println();
+
+        //LinkedHashSet 有序不能重复
+        Set<String> s2 = new LinkedHashSet<>();
+        s2.add("jack");
+        s2.add("mike");
+        s2.add("tom");
+        s2.forEach(e -> System.out.printf("%s ",e));
+
+        System.out.println();
+
+        //TreeSet有排序功能
+        Set<String> s3 = new TreeSet<>();
+        s3.add("jack");
+        s3.add("mike");
+        s3.add("tom");
+        s3.add("amy");
+        s3.forEach(e -> System.out.printf("%s ",e));
+
+        System.out.println();
 
         Set<String> set = new HashSet<>();
         set.add("hello");
