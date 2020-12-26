@@ -491,4 +491,13 @@ public class TopTest {
             System.out.printf("%s ",obj);
         }
     }
+
+    /**
+     * @see Test#say(java.lang.String, java.lang.String)
+     * @param a
+     */
+    @Deprecated
+    public void say(String a){
+        System.out.println(a);
+    }
 }
