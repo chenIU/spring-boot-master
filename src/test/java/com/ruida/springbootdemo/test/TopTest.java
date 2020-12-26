@@ -44,6 +44,13 @@ public class TopTest {
 
     public static void main(String[] args) {
 
+        String name = "李白";
+        char[] chars = name.toCharArray();
+        for (int i = 0; i < chars.length; i++) {
+            String s = Integer.toHexString(chars[i]);
+            System.out.println("字符："+chars[i] + ",对应的unicode编码是：" + s);
+        }
+
         printArgs(1,2,3);
         System.out.println();
         printArgs(1,2,3,4,5);
