@@ -8,6 +8,13 @@ package com.ruida.springbootdemo.test;
 public class IntegerTest {
 
     public static void main(String[] args) {
+
+        //valueOf：自动装箱
+        Integer integer = Integer.valueOf(100);
+
+        //intValue：自动拆箱
+        int i5 = integer.intValue();
+
         Integer a = 30;
         Integer b = 10;
         System.out.println(a.compareTo(b));// 1:大于 -1:小于 0:相等
