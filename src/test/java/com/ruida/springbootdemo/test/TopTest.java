@@ -19,6 +19,7 @@ import com.ruida.springbootdemo.utils.ValidateMT;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.util.Assert;
 import java.lang.reflect.Array;
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
@@ -514,5 +515,14 @@ public class TopTest {
     @org.junit.Test
     public void test1(){
         System.out.println(getUserInfo().size());
+    }
+
+    public void aaa(Object obj){
+        Assert.notNull(obj,"入参不能为空");
+    }
+
+    @org.junit.Test
+    public void testAssert(){
+        aaa(null);
     }
 }
