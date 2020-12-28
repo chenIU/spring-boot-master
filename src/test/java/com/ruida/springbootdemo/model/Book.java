@@ -1,5 +1,6 @@
 package com.ruida.springbootdemo.model;
 
+import com.ruida.springbootdemo.utils.excel.ExcelAnnotation;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -24,12 +25,15 @@ import org.springframework.stereotype.Component;
 public class Book {
 
     //@Value("${book.id}")
+    @ExcelAnnotation(title = "序号")
     private Long id;
 
     //@Value("${book.name}")
+    @ExcelAnnotation(title = "书籍名称")
     private String name;
 
     //@Value("${book.author}")
+    @ExcelAnnotation(title = "作者")
     private String author;
 
     @Override

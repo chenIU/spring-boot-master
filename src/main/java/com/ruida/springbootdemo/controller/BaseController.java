@@ -1,9 +1,15 @@
 package com.ruida.springbootdemo.controller;
 
+import com.ruida.springbootdemo.constant.SystemConstant;
+import org.apache.poi.ss.usermodel.Workbook;
 import org.springframework.util.CollectionUtils;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
+
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.OutputStream;
+import java.net.URLEncoder;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
@@ -45,6 +51,18 @@ public class BaseController {
             }
         }
         return params;
+    }
+
+    protected void download(HttpServletResponse response, Workbook workbook,String fileName) throws Exception {
+        //防止中文乱码
+        fileName = URLEncoder.encode(fileName, SystemConstant.UTF8);
+
+        response.setContentType(SystemConstant.DOWNLOAD_PROTOCOL);
+        response.setHeader("Content-disposition", "attachment;filename=" + fileName + ".xlsx");
+        OutputStream os = response.getOutputStream();
+        workbook.write(os);
+        os.flush();
+        os.close();
     }
 
 }

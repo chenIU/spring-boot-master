@@ -3,6 +3,7 @@ package com.ruida.springbootdemo.controller.user;
 import com.github.pagehelper.PageInfo;
 import com.overmind.logging.TimeLog;
 import com.ruida.springbootdemo.config.MultiDataSource;
+import com.ruida.springbootdemo.controller.BaseController;
 import com.ruida.springbootdemo.entity.User;
 import com.ruida.springbootdemo.entity.result.CommonResult;
 import com.ruida.springbootdemo.entity.result.ListResult;
@@ -14,7 +15,9 @@ import com.ruida.springbootdemo.mapper.UserMapper;
 import com.ruida.springbootdemo.service.UserService;
 import com.ruida.springbootdemo.service.impl.UserServiceImpl;
 import com.ruida.springbootdemo.utils.SpringUtil;
+import com.ruida.springbootdemo.utils.excel.ExcelHelper;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.poi.ss.usermodel.Workbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.MessageSource;
@@ -40,7 +43,7 @@ import java.util.Map;
 @RestController()
 @RequestMapping("/user/")
 @Slf4j
-public class UserController {
+public class UserController extends BaseController {
 
     private static final ThreadLocal<Integer> threadLocal = new ThreadLocal<>();
 
@@ -306,6 +309,14 @@ public class UserController {
         result.setErrorMsg("插入成功");
         result.setContent(users);
         return result;
+    }
+
+    @RequestMapping(value = "exportUser",method = RequestMethod.GET)
+    public void exportUser(@RequestParam(required = false) String orderBy,HttpServletResponse response) throws Exception {
+        List<User> userList = userService.selectAllUsers(orderBy);
+        ExcelHelper<User> excelHelper = new ExcelHelper<>(User.class);
+        Workbook workbook = excelHelper.generateWorkbook(userList);
+        download(response,workbook,"学生信息");
     }
 
     @RequestMapping(value = "test",method = RequestMethod.GET)
