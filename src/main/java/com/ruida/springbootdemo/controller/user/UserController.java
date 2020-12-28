@@ -24,10 +24,10 @@ import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Arrays;
@@ -375,5 +375,13 @@ public class UserController extends BaseController {
         List<User> list = userMapper.selectMultiArgs2(map);
         result.setContent(list);
         return result;
+    }
+
+    @GetMapping("aaa")
+    public void aaa(){
+        //模拟数据
+        String str = "abc";
+        ByteArrayInputStream in = new ByteArrayInputStream(str.getBytes());
+        this.download(this.getResponse(),in,"测试.txt");
     }
 }
