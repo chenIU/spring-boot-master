@@ -44,6 +44,11 @@ public class TopTest {
 
     public static void main(String[] args) {
 
+        //StringUtils.hasText(),null、""、" "三种情况为false,其他情况为true
+        System.out.println(org.springframework.util.StringUtils.hasText(null));
+        System.out.println(org.springframework.util.StringUtils.hasText(""));
+        System.out.println(org.springframework.util.StringUtils.hasText(" "));
+
         String name = "李白";
         char[] chars = name.toCharArray();
         for (int i = 0; i < chars.length; i++) {
