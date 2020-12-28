@@ -1,5 +1,7 @@
 package com.ruida.springbootdemo.test;
 
+import org.junit.Test;
+
 import java.util.LinkedList;
 import java.util.List;
 
@@ -24,5 +26,11 @@ public class MathTest {
             list.add(i);
         }
         return list;
+    }
+
+    @Test
+    public void minTest(){
+        System.out.println(Math.min(10,1));//1
+        //Math.max()求两个数的较大值
     }
 }
