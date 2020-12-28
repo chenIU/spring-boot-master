@@ -1,6 +1,7 @@
 package com.ruida.springbootdemo.test;
 
 import com.google.common.collect.Lists;
+import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -71,5 +72,13 @@ public class ListTest {
          * 第二 JDK 的提供的不可变集合实际非常笨重，并且低效，还不安全，所以推荐使用 Guava 不可变集合代替。
          * 最后，切记，不要随便在 foreach增加/删除元素。
          */
+    }
+
+    @Test
+    public void test1(){
+        //Arrays.asList()方法返回的ArrayList是Arrays的内部类,而非java.util.ArrayList.
+        List<String> list = Arrays.asList("1","2","3");
+        System.out.println(list);
+        list.add("4");
     }
 }
