@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Blog {
+public class Blog implements Cloneable{
 
     private int id;
 
@@ -20,4 +20,16 @@ public class Blog {
 
     private String url;
 
+    private BaseInfo baseInfo;
+
+    public Blog(int id, String name, String url) {
+        this.id = id;
+        this.name = name;
+        this.url = url;
+    }
+
+    @Override
+    public Object clone() throws CloneNotSupportedException {
+        return super.clone();
+    }
 }
