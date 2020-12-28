@@ -41,7 +41,7 @@ public class VariableTest {
 
     public void add(int a,int b){
         /**
-         * 局部变量什么之后，Java虚拟机不会给它们初始化为默认值，因此局部变量需要显示的初始化
+         * 局部变量声明之后，Java虚拟机不会给它们初始化为默认值，因此局部变量需要显示的初始化
          */
 
         //1.参与输出

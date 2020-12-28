@@ -152,8 +152,8 @@
   
 + 线程池的拒绝策略
   + AbortPolicy：默认的拒绝策略，抛出 RejectedExecutionException 异常
-  + CallerRunsPolicy：提交任何的线程自己去执行该任务
-  + DiscardOldestPolicy：丢弃最老的任务，加入新的任何
+  + CallerRunsPolicy：提交任务的线程自己去执行该任务
+  + DiscardOldestPolicy：丢弃最老的任务，加入新的任务
   + DiscardPolicy：直接丢弃任务，不抛出异常
   
 + 引用数据类型
