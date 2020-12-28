@@ -180,3 +180,11 @@
   + protected：同类、同包、子类能访问；不同包且无继承关系的类不能访问
   + default：同类、同包能访问；子类和不同包都不能访问
   + private：只有同类中能访问
+  
++ 常见数据类型所处的包：
+  + java.lang.String
+  + java.lang.Integer
+  + java.lang.Double
+  + java.util.Date
+  + java.util.HashMap
+  + java.math.BigDecimal
