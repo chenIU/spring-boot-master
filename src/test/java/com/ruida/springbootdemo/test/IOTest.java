@@ -1,6 +1,11 @@
 package com.ruida.springbootdemo.test;
 
+import org.junit.Test;
+
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.util.Arrays;
 
 /**
  * @description:
@@ -16,5 +21,39 @@ public class IOTest {
 
             file.mkdirs();
         }
+    }
+
+    @Test
+    public void byteArrayInputOutputTest(){
+
+        //测试字节输入流
+        byte[] buf = new byte[]{'a','b','c'};
+        ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(buf);
+        System.out.println("byteArrayInputStream长度:" + byteArrayInputStream.available());
+
+        //read方法
+        int len;
+        while( (len=byteArrayInputStream.read()) != -1){
+            System.out.printf("%s ",len);//97 98 99
+        }
+
+        System.out.println();
+
+        //总结：输入流读出之后会从原输入流中删除其内容
+
+        //read(byte b[],int off,int len)
+        byteArrayInputStream = new ByteArrayInputStream(buf);
+        System.out.println("byteArrayInputStream长度:" + byteArrayInputStream.available());
+        byte[] b = new byte[buf.length];
+        while(byteArrayInputStream.read(b,0,b.length) != -1){
+            System.out.println(Arrays.toString(b));
+        }
+
+        //测试字节输出流
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+        byteArrayOutputStream.write(100);
+        byte[] bytes = byteArrayOutputStream.toByteArray();
+        String s = new String(bytes);
+        System.out.println(s);
     }
 }
