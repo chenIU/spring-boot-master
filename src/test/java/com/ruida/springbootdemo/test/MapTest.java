@@ -1,5 +1,8 @@
 package com.ruida.springbootdemo.test;
 
+import com.ruida.springbootdemo.entity.App;
+import org.junit.Test;
+
 import java.util.*;
 
 /**
@@ -114,5 +117,29 @@ public class MapTest {
 
         //第五种方式：利用lambda表达式
         map.forEach((k,v) -> System.out.println("key==="+k+",value==="+v));
+    }
+
+    @Test
+    public void test(){
+        App app = new App("微信","张小龙","腾讯");
+        App app1 = new App("微信","张小龙","腾讯");
+
+        System.out.println("app的hashcode" + app.hashCode());
+        System.out.println("app1的hashcode" + app1.hashCode());
+        System.out.println(app == app1);//false
+
+        Map<Object,Object> map = new HashMap();
+        map.put(app,"aaa");
+        map.put(app1,"bbb");
+
+        map.forEach((k,v) -> {
+            System.out.println(k);
+        });
+
+        //通过输出结果可知,map的大小为2
+        //原因分析：HashMap通过key的hashCode和equals方法判断key是否重复
+
+        //重写App的hashCode和equals方法(两个方法必须同时重写,只重写其中任意一个都不行)
+        //结果符合预期
     }
 }
