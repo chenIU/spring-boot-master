@@ -1,5 +1,7 @@
 package com.ruida.springbootdemo.test;
 
+import org.junit.Test;
+
 import java.util.UUID;
 
 public class StringTest {
@@ -78,5 +80,22 @@ public class StringTest {
         System.out.println(c.length);
         String s = String.valueOf(c);
         System.out.println(s);*/
+    }
+
+    @Test
+    public void test1(){
+        String str = "abc";
+        char[] chars = str.toCharArray();
+        for(char c : chars){
+            System.out.println("字符:" + c + " - 数字:" + Integer.valueOf(c));
+        }
+
+        //顺便说明char和int的关系
+        int x = 'a';
+        System.out.println(x);
+
+//        char ch = x; //编译异常,因为int的层级关系比char高,需要强制类型转换
+        char ch = (char) x;
+        System.out.println(ch);
     }
 }
