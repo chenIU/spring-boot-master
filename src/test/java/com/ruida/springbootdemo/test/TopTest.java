@@ -500,4 +500,14 @@ public class TopTest {
     public void say(String a){
         System.out.println(a);
     }
+
+    public  List<Object> getUserInfo(){
+        //返回集合的数组建议返回空集合而不是null,调用端不用进行null值判断
+        return Collections.emptyList();
+    }
+
+    @org.junit.Test
+    public void test1(){
+        System.out.println(getUserInfo().size());
+    }
 }
