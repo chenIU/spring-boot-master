@@ -45,6 +45,8 @@ public class TopTest {
 
     public static void main(String[] args) {
 
+
+
         //StringUtils.hasText(),null、""、" "三种情况为false,其他情况为true
         System.out.println(org.springframework.util.StringUtils.hasText(null));
         System.out.println(org.springframework.util.StringUtils.hasText(""));
@@ -161,8 +163,25 @@ public class TopTest {
         System.out.println(test.getClass().getName());
         System.out.println(test.getClass().getSimpleName());
         System.out.println(test.getClass().getTypeName());
-        System.out.println(test.getClass().getGenericSuperclass());
         System.out.println(test.getClass().getSuperclass());
+        System.out.println(test.getClass().getGenericSuperclass());
+
+        System.out.println("HashMap=======");
+        System.out.println(HashMap.class.getSuperclass());
+        System.out.println(HashMap.class.getGenericSuperclass());
+
+        System.out.println("String=======");
+        System.out.println(String.class.getSuperclass());
+        System.out.println(String.class.getGenericSuperclass());
+
+        System.out.println("Integer=======");
+        System.out.println(Integer.class.getSuperclass());
+        System.out.println(Integer.class.getGenericSuperclass());
+
+        //getSuperclass：返回直接继承的父类(由于编译擦除,没有显示泛型参数)
+        //getGenericSuperclass：返回直接继承的父类(显示泛型参数)
+
+        System.out.println("数组===========");
 
         //比较getName和getTypeName的区别
         System.out.println(String[].class.getName());
