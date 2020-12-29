@@ -45,7 +45,11 @@ public class TopTest {
 
     public static void main(String[] args) {
 
-
+        //集合的isEmpty方法只能判断集合中的元素是否为空,不能用于判断集合对象本身是否为null
+        ArrayList<String> arrayList = null;
+//        System.out.println(arrayList.isEmpty());
+        arrayList = new ArrayList<>();
+        System.out.println(arrayList.isEmpty());
 
         //StringUtils.hasText(),null、""、" "三种情况为false,其他情况为true
         System.out.println(org.springframework.util.StringUtils.hasText(null));
