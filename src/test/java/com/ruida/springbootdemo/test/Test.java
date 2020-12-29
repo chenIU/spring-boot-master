@@ -46,4 +46,8 @@ public class Test {
             System.out.println("list集合不为空");
         }*/
     }
+
+    public void say(String a,String prefix){
+        System.out.println(prefix + a);
+    }
 }

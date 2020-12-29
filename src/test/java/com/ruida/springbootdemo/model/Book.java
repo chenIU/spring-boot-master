@@ -1,6 +1,9 @@
 package com.ruida.springbootdemo.model;
 
+import com.ruida.springbootdemo.utils.excel.ExcelAnnotation;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.PropertySource;
@@ -17,15 +20,20 @@ import org.springframework.stereotype.Component;
 @ConfigurationProperties(prefix = "book")
 @Setter
 @Getter
+@AllArgsConstructor
+@NoArgsConstructor
 public class Book {
 
     //@Value("${book.id}")
+    @ExcelAnnotation(title = "序号")
     private Long id;
 
     //@Value("${book.name}")
+    @ExcelAnnotation(title = "书籍名称")
     private String name;
 
     //@Value("${book.author}")
+    @ExcelAnnotation(title = "作者")
     private String author;
 
     @Override

@@ -22,8 +22,21 @@ public class StringUtil {
 
     public static void main(String[] args) {
 
-        char c = 'A';
-        System.out.println(Integer.valueOf(c));
+        String str = "chenjy.txt";
+        //substring(int beginIndex)：从beginIndex一直到结尾
+        System.out.println(str.substring(3));//njy.txt
+
+        //substring(int beginIndex,int endIndex)：beginIndex(包含)到endIndex(不包含)  下标从0开始
+        System.out.println(str.substring(1,3));//he
+
+        System.out.println(str.lastIndexOf("."));//6
+        System.out.println(str.substring(str.lastIndexOf(".") + 1));//txt
+
+        char c1 = 'A';
+        char c2 = 'a';
+
+        System.out.println(Integer.valueOf(c1));
+        System.out.println(Integer.valueOf(c2));
 
 
        /* String str = "hello";

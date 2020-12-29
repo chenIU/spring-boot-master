@@ -1,12 +1,13 @@
 package com.ruida.springbootdemo.stream;
 
 import com.ruida.springbootdemo.model.Person;
+import com.ruida.springbootdemo.model.PersonCountry;
 
 import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class Test {
+public class StreamApiTest {
 
     public static void main(String[] args) {
         List<Person> personList = new ArrayList<>();
@@ -73,7 +74,7 @@ public class Test {
          * map--接收Lambda，将元素转换成其他形式或提取信息。接收一个函数作为参数，该函数会被应用到每个元素上，并将其映射成一个新的元素。
          */
         System.out.println("=========================普通map");
-        Stream<Stream<Character>> streamStream = strList.stream().map(Test::getCharacterByString);
+        Stream<Stream<Character>> streamStream = strList.stream().map(StreamApiTest::getCharacterByString);
         //streamStream.forEach(System.out::println);
         streamStream.forEach(ss -> ss.forEach(System.out::print));
         System.out.println();
@@ -82,7 +83,7 @@ public class Test {
          * flatMap--接收一个函数作为参数，将流中的每个值都换成另一个流，然后把所有流连接成一个流
          */
         System.out.println("==========================flatMap");
-        Stream<Character> stream = strList.stream().flatMap(Test::getCharacterByString);
+        Stream<Character> stream = strList.stream().flatMap(StreamApiTest::getCharacterByString);
         stream.forEach(System.out::print);
         System.out.println();
 
@@ -141,23 +142,4 @@ public class Test {
         return characterList.stream();
     }
 
-}
-
-class PersonCountry {
-    private String country;
-
-    public String getCountry() {
-        return country;
-    }
-
-    public void setCountry(String country) {
-        this.country = country;
-    }
-
-    @Override
-    public String toString() {
-        return "PersonCountry{" +
-                "country='" + country + '\'' +
-                '}';
-    }
 }

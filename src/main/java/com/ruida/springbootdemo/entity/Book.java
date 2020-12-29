@@ -4,6 +4,8 @@ import com.baomidou.mybatisplus.annotation.*;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.ruida.springbootdemo.enums.StatusEnum;
 import lombok.Data;
+
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 
@@ -16,7 +18,7 @@ import java.util.Date;
  */
 @Data
 @TableName(value = "t_book")
-public class Book {
+public class Book implements Serializable {
 
     @TableId(type = IdType.AUTO)
     private Integer id;

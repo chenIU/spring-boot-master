@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.fasterxml.jackson.annotation.*;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.validation.constraints.NotEmpty;
@@ -27,6 +28,7 @@ import java.util.List;
  * </p>
  */
 @Data
+@NoArgsConstructor
 @JsonIgnoreProperties(value = "age")
 @JsonIgnoreType
 @JsonPropertyOrder({"id","name"})
@@ -55,4 +57,9 @@ public class User implements Serializable {
 
     @TableField(exist = false)
     private List<Phone> phones;
+
+    public User(@NotEmpty(message = "用户姓名不能为空") String username, Integer age) {
+        this.username = username;
+        this.age = age;
+    }
 }

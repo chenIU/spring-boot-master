@@ -14,9 +14,17 @@ public class ApacheStringUtilsTest {
          * 1.1 Empty和Blank
          * 区别：Empty只有null或者空串，才返回true；Blank则会包含所有的空白字符（包括空格、tab、换行、回车等）
          */
-        System.out.println(StringUtils.isEmpty(null));
-        System.out.println(StringUtils.isEmpty(" "));
-        System.out.println(StringUtils.isBlank(" "));
+        System.out.println(StringUtils.isEmpty(null));//true
+        System.out.println(StringUtils.isEmpty(""));//true
+        System.out.println(StringUtils.isEmpty(" "));//false
+        System.out.println(StringUtils.isEmpty("\n"));//false
+        System.out.println(StringUtils.isEmpty("\r"));//false
+        System.out.println(StringUtils.isEmpty("\t"));//false
+        System.out.println(StringUtils.isBlank(" "));//true
+        System.out.println(StringUtils.isBlank(""));//true
+        System.out.println(StringUtils.isBlank("\n"));//true
+        System.out.println(StringUtils.isBlank("\t"));//true
+        System.out.println(StringUtils.isBlank("\r"));//true
 
         /**
          * 1.2 比较字符串

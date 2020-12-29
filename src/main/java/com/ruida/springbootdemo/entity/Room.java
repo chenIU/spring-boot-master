@@ -10,11 +10,16 @@ import lombok.Data;
  */
 @Data
 @AllArgsConstructor
-public class Room {
+public class Room implements Comparable<Room>{
 
     private String length;
 
-    private double width;
+    private Double width;
 
-    private double height;
+    private Double height;
+
+    @Override
+    public int compareTo(Room o) {
+        return height.compareTo(o.height);
+    }
 }

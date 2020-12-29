@@ -11,16 +11,21 @@
 
 package com.ruida.springbootdemo.test;
 
+import com.ruida.springbootdemo.constant.MIMEType;
 import com.ruida.springbootdemo.generic.A;
+import com.ruida.springbootdemo.model.Book;
 import com.ruida.springbootdemo.model.Person;
+import com.ruida.springbootdemo.utils.ValidateMT;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
+import org.springframework.util.Assert;
 import java.lang.reflect.Array;
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
+import java.text.SimpleDateFormat;
+import java.time.Clock;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
@@ -39,6 +44,99 @@ public class TopTest {
     int count;
 
     public static void main(String[] args) {
+
+
+
+        //StringUtils.hasText(),null、""、" "三种情况为false,其他情况为true
+        System.out.println(org.springframework.util.StringUtils.hasText(null));
+        System.out.println(org.springframework.util.StringUtils.hasText(""));
+        System.out.println(org.springframework.util.StringUtils.hasText(" "));
+
+        String name = "李白";
+        char[] chars = name.toCharArray();
+        for (int i = 0; i < chars.length; i++) {
+            String s = Integer.toHexString(chars[i]);
+            System.out.println("字符："+chars[i] + ",对应的unicode编码是：" + s);
+        }
+
+        printArgs(1,2,3);
+        System.out.println();
+        printArgs(1,2,3,4,5);
+        System.out.println();
+
+        //获取自1970.1.1 0时0分0秒到现在的毫秒数
+        System.out.println(System.currentTimeMillis());
+
+        //方法一
+        Calendar calendar = Calendar.getInstance();
+        System.out.println(calendar.getTimeInMillis());
+
+        //方法二
+        System.out.println(Clock.systemDefaultZone().millis());
+
+        //方法三
+        //yyyy-MM-dd HH:mm:ss.SSS 带毫秒的格式
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
+        System.out.println(sdf.format(new Date()));
+
+        char[] value = null;
+//        System.out.println(value.length);
+
+        //编程习惯问题，equals最好不要将变量放在前面，否则变量为空的时候会报空指针异常
+        String username = null;
+//        System.out.println(username.equals("chenjy"));
+        System.out.println("chenjy".equals(username));
+
+        //和null的比较，null放在前面
+        System.out.println(null == username);
+
+        Integer num = 2;
+        System.out.println(num);
+        System.out.println(num << 2);
+
+        String open = "true";
+        System.out.println(open);//String类型的"true"字符串
+        System.out.println(Boolean.valueOf(open));//Boolean类型的true
+
+        System.out.println(MIMEType.getSuffix("image/gif"));
+        MIMEType.types.forEach((k,v) -> {
+            System.out.println("key=="+k);
+            System.out.println("value=="+v);
+        });
+
+        String testStr = "";
+        System.out.println(ValidateMT.isNotNull(testStr));
+
+        List<String> testList = new ArrayList<>();
+        System.out.println(ValidateMT.isNotNull(testList));
+
+        Map<String,Object> map = new HashMap();
+        System.out.println(ValidateMT.isNotNull(map));
+
+        System.out.print("chenjy");
+        System.out.print("\n");
+        System.out.print("liuxy");
+        System.out.print("\n");
+
+        //final修饰的基本数据类型值不能改变;final修饰的引用类型，指针地址不能改变
+        final int count = 0;
+        //count = count + 1;
+
+        final Book book = new Book();
+        book.setAuthor("罗贯中");
+        book.setId(1l);
+        book.setName("三国演义");
+        System.out.println(book);
+
+        book.setId(2l);
+        System.out.println(book);
+
+        double d = 0;
+        System.out.println(d);
+
+        System.out.println(Math.round(-2.5));
+        System.out.println(Math.round(-2.6));
+        System.out.println(Math.round(2.6));
 
         String str1 = null;
         System.out.println(StringUtils.isEmpty(str1));
@@ -65,8 +163,25 @@ public class TopTest {
         System.out.println(test.getClass().getName());
         System.out.println(test.getClass().getSimpleName());
         System.out.println(test.getClass().getTypeName());
-        System.out.println(test.getClass().getGenericSuperclass());
         System.out.println(test.getClass().getSuperclass());
+        System.out.println(test.getClass().getGenericSuperclass());
+
+        System.out.println("HashMap=======");
+        System.out.println(HashMap.class.getSuperclass());
+        System.out.println(HashMap.class.getGenericSuperclass());
+
+        System.out.println("String=======");
+        System.out.println(String.class.getSuperclass());
+        System.out.println(String.class.getGenericSuperclass());
+
+        System.out.println("Integer=======");
+        System.out.println(Integer.class.getSuperclass());
+        System.out.println(Integer.class.getGenericSuperclass());
+
+        //getSuperclass：返回直接继承的父类(由于编译擦除,没有显示泛型参数)
+        //getGenericSuperclass：返回直接继承的父类(显示泛型参数)
+
+        System.out.println("数组===========");
 
         //比较getName和getTypeName的区别
         System.out.println(String[].class.getName());
@@ -394,5 +509,39 @@ public class TopTest {
             System.out.println(e.getClass().getSimpleName());
             //e.printStackTrace();
         }
+    }
+
+    public static void printArgs(Object... args){
+        for(Object obj:args){
+            System.out.printf("%s ",obj);
+        }
+    }
+
+    /**
+     * @see Test#say(java.lang.String, java.lang.String)
+     * @param a
+     */
+    @Deprecated
+    public void say(String a){
+        System.out.println(a);
+    }
+
+    public  List<Object> getUserInfo(){
+        //返回集合的数组建议返回空集合而不是null,调用端不用进行null值判断
+        return Collections.emptyList();
+    }
+
+    @org.junit.Test
+    public void test1(){
+        System.out.println(getUserInfo().size());
+    }
+
+    public void aaa(Object obj){
+        Assert.notNull(obj,"入参不能为空");
+    }
+
+    @org.junit.Test
+    public void testAssert(){
+        aaa(null);
     }
 }

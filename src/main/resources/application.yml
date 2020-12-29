@@ -43,6 +43,7 @@ mybatis-plus:
     db-config:
       logic-delete-value: 1
       logic-not-delete-value: 0
+    banner: false
 
 
 #mybatis:
@@ -59,3 +60,17 @@ logging:
       ruida:
         springbootdemo:
           mapper: debug
+
+#测试@ConfigurationProperties
+app:
+  mail:
+    enabled: true
+    default-subject: test
+    unkonwn: foo
+    smtp-server:
+      - 192.168.127.33
+      - 192.168.127.34
+    pause-between-mails: 5
+    max-attachment-size: 100
+
+cors: true

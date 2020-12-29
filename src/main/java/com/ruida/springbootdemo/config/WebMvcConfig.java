@@ -3,7 +3,9 @@ package com.ruida.springbootdemo.config;
 import com.ruida.springbootdemo.interceptor.GlobalInterceptor;
 import com.ruida.springbootdemo.interceptor.JwtInterceptor;
 import com.ruida.springbootdemo.interceptor.LoginInterceptor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
@@ -17,7 +19,11 @@ import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
  * @create: 2020-04-01 09:55
  */
 @Component
+@Slf4j
 public class WebMvcConfig implements WebMvcConfigurer {
+
+    @Value("${cors}")
+    private String cors;
 
     @Autowired
     private JwtInterceptor jwtInterceptor;
@@ -46,10 +52,13 @@ public class WebMvcConfig implements WebMvcConfigurer {
 
     @Override
     public void addCorsMappings(CorsRegistry registry) {
-        registry.addMapping("/**")
-                .allowedOrigins("http://localhost:8081")
-                .allowedHeaders("*")
-                .allowedMethods("*")
-                .maxAge(30 * 1000);//有效时间，针对探测请求(PUT)
+        if(Boolean.valueOf(cors)){
+            log.warn("open cors...");
+            registry.addMapping("/**")
+                    .allowedOrigins("http://localhost:8081")
+                    .allowedHeaders("*")
+                    .allowedMethods("*")
+                    .maxAge(30 * 1000);//有效时间，针对探测请求(PUT)
+        }
     }
 }

@@ -1,9 +1,18 @@
 package com.ruida.springbootdemo.controller;
 
+import com.ruida.springbootdemo.constant.SystemConstant;
+import org.apache.poi.ss.usermodel.Workbook;
 import org.springframework.util.CollectionUtils;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
+
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
@@ -13,11 +22,19 @@ import java.util.Map;
  * @author: chenjy
  * @create: 2020-04-29 13:04
  */
-public class BaseController {
+public abstract class BaseController {
 
+    public BaseController() {
+//        request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
+//        response = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getResponse();
+    }
 
     protected HttpServletRequest getRequest(){
         return ((ServletRequestAttributes)RequestContextHolder.getRequestAttributes()).getRequest();
+    }
+
+    protected HttpServletResponse getResponse(){
+        return ((ServletRequestAttributes)RequestContextHolder.getRequestAttributes()).getResponse();
     }
 
     protected Map<String,Object> convertParam(){
@@ -45,6 +62,45 @@ public class BaseController {
             }
         }
         return params;
+    }
+
+    protected void download(HttpServletResponse response, Workbook workbook,String fileName) throws Exception {
+        //防止中文乱码
+        fileName = URLEncoder.encode(fileName, SystemConstant.UTF8);
+
+        response.setContentType(SystemConstant.DOWNLOAD_PROTOCOL);
+        response.setHeader("Content-disposition", "attachment;filename=" + fileName + ".xlsx");
+        OutputStream os = response.getOutputStream();
+        workbook.write(os);
+        os.flush();
+        os.close();
+    }
+
+    protected void download(HttpServletResponse response, InputStream in,String fileName){
+        try {
+            fileName = URLEncoder.encode(fileName,SystemConstant.UTF8);
+
+            response.reset();
+            response.setHeader("Content-disposition", "attachment;filename=" + fileName);
+//            response.setContentType("application/octet-stream");
+            //application/octet-stream是默认的未知类型
+            response.setContentType(SystemConstant.DOWNLOAD_PROTOCOL);
+
+            byte[] buf = new byte[in.available()];
+            int len;
+            OutputStream out = response.getOutputStream();
+            while((len =in.read(buf)) != -1){
+                out.write(buf,0,len);
+            }
+
+            out.flush();
+            out.close();
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 
 }

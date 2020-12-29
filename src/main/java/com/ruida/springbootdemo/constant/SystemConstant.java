@@ -18,4 +18,12 @@ public class SystemConstant {
     public static final String DEFAULT_PASSWORD = "123456";
 
     public static final String MD5_SALT = "1qaz2wsx3edc";
+
+    public static final String DATE_FORMAT = "yyyy-MM-dd HH:mm";
+
+    public static final String DOWNLOAD_PROTOCOL = "application/x-download";
+
+    public static final String UTF8 = "UTF-8";
+
+    public static final String DEFAULT_FONT_NAME = "宋体";
 }

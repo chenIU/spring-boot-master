@@ -32,19 +32,19 @@ public class DecimalFormatTest {
     public static void main(String[] args) {
         double pi = 3.1415926;//pai
         // 取整
-        System.out.println(new DecimalFormat("0").format(pi));
+        System.out.println(new DecimalFormat("0").format(pi));//3
 
         // 保留整数和两位小数
-        System.out.println(new DecimalFormat("0.00").format(pi));
+        System.out.println(new DecimalFormat("0.00").format(pi));//3.14
 
         // 取所有整数部分
-        System.out.println(new DecimalFormat("#").format(pi));
+        System.out.println(new DecimalFormat("#").format(pi));//3
 
         // 以百分比形式展示，并取两位小数
-        System.out.println(new DecimalFormat("#.##%").format(pi));
+        System.out.println(new DecimalFormat("#.##%").format(pi));//314.16%
 
         // 以千分比的形式展示
-        System.out.println(new DecimalFormat("#.##\u2030").format(pi));
+        System.out.println(new DecimalFormat("#.##\u2030").format(pi));//3141.59%。
 
         long c = 299792458;//光速
         // 显示为科学计数法，并保留五位小数
