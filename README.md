@@ -188,3 +188,8 @@
   + java.util.Date
   + java.util.HashMap
   + java.math.BigDecimal
+  
++ Java中泛型T和?的区别：
+  + "T"是定义类或者方法时声明的东西,"?"是调用时传入的东西,二者的概念不同;
+  + Class<T>在实例化的时候,T要被替换成具体的类型,Class<?>代表通用泛型,?可以指代任何东西;
+  + Class<? extend T>:有上限,表示T或者T的子类,Class<? super T>:有下限,表示T后者T的父类
