@@ -41,7 +41,9 @@ public class TopTest {
 
     private static final Logger logger = LoggerFactory.getLogger(TopTest.class);
 
-    int count;
+    final String TAG = null;//final类型的变量必须立即初始化
+
+    int count;//非final类型的变量不必初始化,编译器会为此变量赋默认值
 
     public static void main(String[] args) {
 
