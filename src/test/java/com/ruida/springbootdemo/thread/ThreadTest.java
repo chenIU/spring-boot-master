@@ -7,8 +7,11 @@ package com.ruida.springbootdemo.thread;
  */
 public class ThreadTest {
     public static void main(String[] args) throws InterruptedException {
-        for(int i=0;i<10;i++){
-            Thread t = new Thread(() -> System.out.println(Thread.currentThread().getName()));
+        for(int i=1;i<=10;i++){
+            final int tmp = i;
+            Thread t = new Thread(()->{
+                System.out.println(Thread.currentThread().getName() + tmp);
+            },"线程" + i + " i=");
             t.start();
             t.join();
         }
