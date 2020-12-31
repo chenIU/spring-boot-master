@@ -582,4 +582,16 @@ public class TopTest {
 //        int[] arr = new int[]{1,2,3}; // 有数据
         System.out.println(arraysToString(arr));
     }
+
+    @org.junit.Test
+    public void test3(){
+        for (int i = 0; i < 10; i++) {
+            if(i == 5){
+                System.out.println(i);
+                break;
+//                continue;
+            }
+            System.out.println(i);
+        }
+    }
 }
