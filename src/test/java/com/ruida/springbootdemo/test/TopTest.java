@@ -550,4 +550,31 @@ public class TopTest {
     public void testAssert(){
         aaa(null);
     }
+
+    //模拟Arrays.toString(int[] a)
+    public String arraysToString(int[] a){
+        if(a == null)
+            return "null";
+
+        int iMax = a.length - 1;
+        if(iMax == -1)
+            return "[]";
+
+        StringBuilder b = new StringBuilder();
+        b.append("[");
+        for (int i = 0; ; i++) {
+            b.append(a[i]);
+            if(i == iMax)
+                return b.append("]").toString();
+            b.append(", ");
+        }
+    }
+
+    @org.junit.Test
+    public void test2(){
+//        int[] arr = null; // null
+        int [] arr = new int[0]; // 空
+//        int[] arr = new int[]{1,2,3}; // 有数据
+        System.out.println(arraysToString(arr));
+    }
 }
