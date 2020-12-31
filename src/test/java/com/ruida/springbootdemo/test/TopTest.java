@@ -47,6 +47,11 @@ public class TopTest {
 
     public static void main(String[] args) {
 
+        Class<? extends Object[]> classArray = new Object[1].getClass();
+        System.out.println(classArray.getCanonicalName()); // java.lang.Object[] (获取所传类从java语言规范定义的格式输出)
+        System.out.println(classArray.getName()); // [Ljava.lang.object; (实体类型名称)
+        System.out.println(classArray.getSimpleName()); // object[] (返回从源代码中返回实例的名称)
+
         //集合的isEmpty方法只能判断集合中的元素是否为空,不能用于判断集合对象本身是否为null
         ArrayList<String> arrayList = null;
 //        System.out.println(arrayList.isEmpty());
