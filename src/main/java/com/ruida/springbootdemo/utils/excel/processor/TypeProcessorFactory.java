@@ -15,6 +15,9 @@ public class TypeProcessorFactory {
 
     }
 
+    /**
+     * 静态内部类的方式实现单例模式
+     */
     public static class Singleton{
         public static TypeProcessorFactory instance = new TypeProcessorFactory();
     }
