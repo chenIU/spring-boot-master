@@ -147,8 +147,8 @@
   + 持有锁的不同：sleep()不释放锁,wait()释放锁。
   
 + 线程池中execute()和submit()方法的区别：
-  + execute()只能执行runable类型的任务
-  + submit()可以执行runable和callable类型的任务
+  + execute()只能执行runnable类型的任务
+  + submit()可以执行runnable和callable类型的任务
   
 + 线程池的拒绝策略
   + AbortPolicy：默认的拒绝策略，抛出 RejectedExecutionException 异常
@@ -222,3 +222,7 @@
   + StackOverFlowError
   + NoSuchFieldError
   + NoSuchMethodError
+  
++ = 赋值操作的含义
+  + 对于基本数据类型来说,"="赋值操作是直接改变内存地址上的值;
+  + 对于引用类型来说,"="赋值操作是改变引用变量所指向的内存地址;
