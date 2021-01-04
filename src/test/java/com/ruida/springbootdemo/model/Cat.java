@@ -15,6 +15,7 @@ public class Cat {
     public Integer age;
 
     public Cat(String name, Integer age) {
+        System.out.println("调用构造方法...");
         this.name = name;
         this.age = age;
     }
