@@ -231,3 +231,11 @@
   + Boostrap Classloader
   + Extension Classloader
   + Application Classloader
+  
++ Runtime类中常用方法
+  + availableProcessors：获取可用的处理器数量
+  + getRuntime：获取一个运行时环境
+  + exec：在单独的进程中执行指定的字符串命令
+  + maxMemory：JVM虚拟机中最大的内存空间(字节)
+  + totalMemory：JVM虚拟机初始总内存(字节)
+  + freeMemory：可用内存

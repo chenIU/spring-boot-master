@@ -47,6 +47,13 @@ public class TopTest {
 
     public static void main(String[] args) {
 
+        long max = Runtime.getRuntime().maxMemory();
+        long total = Runtime.getRuntime().totalMemory();
+        long free = Runtime.getRuntime().freeMemory();
+        System.out.println("最大内存空间:" + ((double)max / 1024 /1024) + "M");
+        System.out.println("初始化总内存空间:" + ((double)total / 1024 /1024) + "M");
+        System.out.println("可用空间:" + ((double)free / 1024 / 1024) + "M");
+
         System.out.println(Book.class.getClassLoader());
         System.out.println(String.class.getClassLoader());
 
