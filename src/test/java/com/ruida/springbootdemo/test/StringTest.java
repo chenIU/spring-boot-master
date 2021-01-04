@@ -98,4 +98,33 @@ public class StringTest {
         char ch = (char) x;
         System.out.println(ch);
     }
+
+    @Test
+    public void test2(){
+        String s1 = "abc";
+        String s2 = "abc";
+        String s3 = new String("abc");
+        String s4 = new String("abc");
+        System.out.println(s1 == s2);
+        System.out.println(s3 == s2);
+        System.out.println(s3 == s4);
+        s3.intern();
+        s4.intern();
+        System.out.println(s3 == s2);
+        System.out.println(s3 == s4);
+    }
+
+    @Test
+    public void test3(){
+        String s0 = "ab";
+        final String s1 = "b";//带final和不带final的效果不同
+        String s2 = "a" + s1;
+        System.out.println((s0 == s2));
+
+        String str1 = new StringBuilder("计算机").append("软件").toString();
+        System.out.println(str1.intern() == str1);
+
+        String str2 = new StringBuilder("ja").append("va").toString();
+        System.out.println(str2.intern() == str2);
+    }
 }
