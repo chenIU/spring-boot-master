@@ -226,3 +226,8 @@
 + = 赋值操作的含义
   + 对于基本数据类型来说,"="赋值操作是直接改变内存地址上的值;
   + 对于引用类型来说,"="赋值操作是改变引用变量所指向的内存地址;
+  
++ 常见的类加载器
+  + Boostrap Classloader
+  + Extension Classloader
+  + Application Classloader

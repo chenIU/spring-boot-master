@@ -47,6 +47,9 @@ public class TopTest {
 
     public static void main(String[] args) {
 
+        System.out.println(Book.class.getClassLoader());
+        System.out.println(String.class.getClassLoader());
+
         Class<? extends Object[]> classArray = new Object[1].getClass();
         System.out.println(classArray.getCanonicalName()); // java.lang.Object[] (获取所传类从java语言规范定义的格式输出)
         System.out.println(classArray.getName()); // [Ljava.lang.object; (实体类型名称)
