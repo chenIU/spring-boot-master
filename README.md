@@ -216,3 +216,9 @@
   + 保证可见性
   + 不保证原子性
   + 禁止指令重排
+  
++ Java中常见的Error
+  + OutOfMemoryError
+  + StackOverFlowError
+  + NoSuchFieldError
+  + NoSuchMethodError
