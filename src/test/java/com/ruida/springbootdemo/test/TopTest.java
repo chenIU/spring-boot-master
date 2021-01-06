@@ -47,6 +47,12 @@ public class TopTest {
 
     public static void main(String[] args) {
 
+        //System.getenv():获取系统环境变量
+//        Map<String, String> env = System.getenv();
+//        env.forEach((k,v) -> {
+//            System.out.println("key==" + k + " value==" + v);
+//        });
+
         long max = Runtime.getRuntime().maxMemory();
         long total = Runtime.getRuntime().totalMemory();
         long free = Runtime.getRuntime().freeMemory();

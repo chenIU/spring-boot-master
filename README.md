@@ -244,3 +244,21 @@
   + HashTable
   + ConcurrentHashMap
   + Collections.synchronizedHashMap(new HashMap<String,Object>())
+  
++ jdk1.5新特性
+  + 泛型
+  + 自动装箱和拆箱
+  + 枚举
+  + 可变参数
+  + 注解
+  + 新的迭代语句
+  + java.util.Formatter
+  + juc并发包
+  
++ jdk1.8新特性
+  + Lambda表达式
+  + Stream API
+  + Date API
+  + 函数式接口
+  + 方法引用和构造器引用
+  + 接口中静态方法和默认方法
