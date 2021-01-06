@@ -11,7 +11,7 @@
 	<groupId>com.ruida</groupId>
 	<artifactId>spring-boot-demo</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>spring-boot-demo</name>
+	<name>spring-boot-master</name>
 	<description>Demo project for Spring Boot</description>
 
 	<properties>
