@@ -239,3 +239,8 @@
   + maxMemory：JVM虚拟机中最大的内存空间(字节)
   + totalMemory：JVM虚拟机初始总内存(字节)
   + freeMemory：可用内存
+  
++ 线程安全的map
+  + HashTable
+  + ConcurrentHashMap
+  + Collections.synchronizedHashMap(new HashMap<String,Object>())
