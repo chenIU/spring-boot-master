@@ -14,10 +14,19 @@ public class Cat {
     @Deprecated
     public Integer age;
 
+    public Cat(String name){
+        this();//this()关键字调用构造方法
+        this.name = name;
+    }
+
     public Cat(String name, Integer age) {
-        System.out.println("调用构造方法...");
+        this();
         this.name = name;
         this.age = age;
+    }
+
+    private Cat(){
+        System.out.println("调用构造方法");
     }
 
     public String getName() {

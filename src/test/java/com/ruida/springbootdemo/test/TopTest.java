@@ -14,6 +14,7 @@ package com.ruida.springbootdemo.test;
 import com.ruida.springbootdemo.constant.MIMEType;
 import com.ruida.springbootdemo.generic.A;
 import com.ruida.springbootdemo.model.Book;
+import com.ruida.springbootdemo.model.Cat;
 import com.ruida.springbootdemo.model.Person;
 import com.ruida.springbootdemo.utils.ValidateMT;
 import org.apache.commons.lang3.StringUtils;
@@ -46,6 +47,9 @@ public class TopTest {
     int count;//非final类型的变量不必初始化,编译器会为此变量赋默认值
 
     public static void main(String[] args) {
+
+        Cat tom = new Cat("Tom", 3);
+        System.out.println(tom);
 
         //System.getenv():获取系统环境变量
 //        Map<String, String> env = System.getenv();
@@ -546,6 +550,7 @@ public class TopTest {
 
     /**
      * @see Test#say(java.lang.String, java.lang.String)
+     * @see com.ruida.springbootdemo.test.Test#say(String, String)
      * @param a
      */
     @Deprecated
