@@ -19,7 +19,7 @@ public class ThreadTest {
                 System.out.println(Thread.currentThread().getName() + tmp);
             },"线程" + i + " i=");
             t.start();
-            t.join();
+            t.join();//join方法是"插队",优先执行当前线程,而让调用此线程的线程处于等待状态,当前线程执行完毕,唤醒处于等待状态的外层状态.
         }
         System.out.println(Thread.currentThread().getName());
 
