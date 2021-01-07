@@ -20,7 +20,6 @@ import com.ruida.springbootdemo.utils.ValidateMT;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.util.Assert;
 import java.lang.reflect.Array;
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
@@ -47,6 +46,10 @@ public class TopTest {
     int count;//非final类型的变量不必初始化,编译器会为此变量赋默认值
 
     public static void main(String[] args) {
+
+        //重写hashcode使用31的原因
+        System.out.println(31 * 3);//93
+        System.out.println((3<<5) - 3);//0000 0011 -> 0110 0000 -> 0101 1101
 
         Cat tom = new Cat("Tom", 3);
         System.out.println(tom);
@@ -569,7 +572,9 @@ public class TopTest {
     }
 
     public void aaa(Object obj){
-        Assert.notNull(obj,"入参不能为空");
+//        assert obj != null : "input args can not be null!";
+//        Assert.notNull(obj,"入参不能为空");
+        Objects.requireNonNull(obj,"obj can not be null");
     }
 
     @org.junit.Test
