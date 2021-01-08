@@ -65,4 +65,9 @@ public class Cat {
                 ", age=" + age +
                 '}';
     }
+
+    @Override
+    protected void finalize() throws Throwable {
+        System.out.println("Cat对象被GC回收...");
+    }
 }
