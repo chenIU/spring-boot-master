@@ -53,6 +53,8 @@ public class User implements Serializable {
     private Integer deptId;
 
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",locale = "zh",timezone = "GMT+8")
+    //将时间转换成时间戳的形式
+    //@JsonFormat(shape = JsonFormat.Shape.NUMBER)
     private Date createTime;
 
     @TableField(exist = false)
