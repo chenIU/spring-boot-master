@@ -16,6 +16,7 @@ import com.ruida.springbootdemo.generic.A;
 import com.ruida.springbootdemo.model.Book;
 import com.ruida.springbootdemo.model.Cat;
 import com.ruida.springbootdemo.model.Person;
+import com.ruida.springbootdemo.model.Son;
 import com.ruida.springbootdemo.utils.ValidateMT;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
@@ -46,6 +47,8 @@ public class TopTest {
     int count;//非final类型的变量不必初始化,编译器会为此变量赋默认值
 
     public static void main(String[] args) {
+
+        Son son = new Son(1001, "Tom");
 
         //重写hashcode使用31的原因
         System.out.println(31 * 3);//93
