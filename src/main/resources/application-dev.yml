@@ -35,3 +35,8 @@ config:
 time:
   log:
     enable: true
+
+#自定义jackson序列化控制开关
+customize:
+  null-value:
+    enable: false
