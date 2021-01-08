@@ -20,7 +20,7 @@ import java.util.List;
  * <p>
  * 1、JsonIgnore用户排除某个属性，作用于字段
  * 2、JsonIgnoreProperties类注解，在序列化为json时排除某些属性
- * 3、JsonIgnoreType类注解，会排除所有指定类型的属性
+ * 3、JsonIgnoreType类注解，当其他类引用该类时，该属性被忽略
  * 4、JsonPropertyOrder指定序列化时属性的顺序
  * 5、JsonRootName指定json根属性的名称
  * 6、JsonProperty指定序列化为json时的属性名称
@@ -52,7 +52,7 @@ public class User implements Serializable {
     //@JsonIgnore
     private Integer deptId;
 
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",locale = "zh",timezone = "GMT+8")
+    @JsonFormat(shape = JsonFormat.Shape.STRING,pattern = "yyyy-MM-dd HH:mm:ss",locale = "zh",timezone = "GMT+8")
     //将时间转换成时间戳的形式
     //@JsonFormat(shape = JsonFormat.Shape.NUMBER)
     private Date createTime;
