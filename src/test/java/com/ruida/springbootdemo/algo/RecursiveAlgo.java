@@ -1,11 +1,11 @@
 package com.ruida.springbootdemo.algo;
 
 /**
- * @description: 递归加法
+ * @description: 递归算法
  * @author: chenjy
  * @create: 2021-01-04 11:19
  */
-public class RecursivePlus {
+public class RecursiveAlgo {
 
     /**
      * 递归求和
