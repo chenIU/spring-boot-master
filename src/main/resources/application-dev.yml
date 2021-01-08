@@ -31,3 +31,7 @@ jasypt:
 config:
   image:
     path: E:/upload/image/
+
+time:
+  log:
+    enable: true

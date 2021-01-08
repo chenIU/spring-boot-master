@@ -302,6 +302,7 @@ public class UserController extends BaseController {
     }
 
     @RequestMapping(value = "getAllUsers",method = RequestMethod.GET)
+    @TimeLog
     public ListResult getAllUsers(@RequestParam(required = false) String orderBy){
         ListResult<User> result = new ListResult<>();
         List<User> users = userService.selectAllUsers(orderBy);
