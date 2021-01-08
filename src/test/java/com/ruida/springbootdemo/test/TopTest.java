@@ -48,6 +48,12 @@ public class TopTest {
 
     public static void main(String[] args) {
 
+        String empName = "jack";
+
+        System.out.println(CharSequence.class.isAssignableFrom(empName.getClass()));
+
+        //class1.isAssignableFrom(class2)：判断class2是不是class1的子类或者子接口
+
         Son son = new Son(1001, "Tom");
 
         //重写hashcode使用31的原因
