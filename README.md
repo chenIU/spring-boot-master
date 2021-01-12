@@ -267,3 +267,5 @@
   + sleep方法属于Thread类,wait方法属于Object类;
   + sleep方法不会释放锁,wait方法会释放锁;
   + sleep可以作用在任何地方,wait方法只能作用于同步代码块中。
+  
++ @Configuration和@Component注解的主要区别是：前者会被ConfigurationClassPostProcessor后者拦截器拦截,被代理,相同的类会复用。
