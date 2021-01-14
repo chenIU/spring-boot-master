@@ -11,5 +11,7 @@ public class Test {
         dog.getAge();
         dog.getGender();
         dog.getX();
+
+        dog.eatAndSleep();
     }
 }

@@ -1,5 +1,7 @@
 package com.ruida.springbootdemo.test;
 
+import org.junit.Test;
+
 import java.util.Arrays;
 import java.util.stream.Stream;
 
@@ -8,7 +10,7 @@ import java.util.stream.Stream;
  * @author: chenjy
  * @create: 2020-09-29 10:27
  */
-public class ArrayTest {
+public class TestArray {
 
     public static void main(String[] args) {
 
@@ -30,5 +32,20 @@ public class ArrayTest {
         int[][] b = {{1,2,3,4},{5,6,7,8}};
         System.out.println(Arrays.toString(b));
         System.out.println(Arrays.deepToString(b));
+    }
+
+    /**
+     * 三种创建数组的方式
+     */
+    @Test
+    public void createArray(){
+        int[] arr1 = new int[6];
+        System.out.println(arr1.length);
+
+        int[] arr2 = {1,2,3,4};
+        System.out.println(arr2.length);
+
+        int[] arr3 = new int[]{1,2,3,4,5};
+        System.out.println(arr3.length);
     }
 }

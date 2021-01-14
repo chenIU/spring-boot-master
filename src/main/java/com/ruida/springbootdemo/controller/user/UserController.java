@@ -302,6 +302,7 @@ public class UserController extends BaseController {
     }
 
     @RequestMapping(value = "getAllUsers",method = RequestMethod.GET)
+    @TimeLog
     public ListResult getAllUsers(@RequestParam(required = false) String orderBy){
         ListResult<User> result = new ListResult<>();
         List<User> users = userService.selectAllUsers(orderBy);
@@ -327,7 +328,7 @@ public class UserController extends BaseController {
         return id + "," + name;
     }
 
-    @RequestMapping(value = "produces",produces = "text/plain;charset=utf-8")
+    @RequestMapping(value = "produces",produces = "text/plain;charset=utf-8",method = RequestMethod.GET)
     @TimeLog
     public String produces(){
         return "陈俭银";

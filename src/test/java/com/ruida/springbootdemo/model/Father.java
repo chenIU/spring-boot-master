@@ -7,6 +7,10 @@ package com.ruida.springbootdemo.model;
  */
 public class Father {
 
+    public Father() {
+        System.out.println("父类Father无参构造方法...");
+    }
+
     public void say(){
         System.out.println("father saying...");
     }

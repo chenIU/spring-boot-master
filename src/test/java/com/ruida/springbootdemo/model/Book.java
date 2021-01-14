@@ -36,6 +36,11 @@ public class Book {
     @ExcelAnnotation(title = "作者")
     private String author;
 
+    private Book(String name, String author) {
+        this.name = name;
+        this.author = author;
+    }
+
     @Override
     public String toString() {
         return "Book{" +

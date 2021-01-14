@@ -20,6 +20,9 @@ spring:
         jdbc-url: jdbc:mysql://47.101.129.111:3306/slave?characterEncoding=utf8&useSSl=false&serverTimezone=GMT%2B8
         username: ENC(NdHmig0BNBVJGfh83AZMrg==)
         password: ENC(fSjVUUW+WwSowqcDokT1ZClXwxKAp4o7)
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
 
 jasypt:
   encryptor:
@@ -28,3 +31,12 @@ jasypt:
 config:
   image:
     path: E:/upload/image/
+
+time:
+  log:
+    enable: true
+
+#自定义jackson序列化控制开关
+customize:
+  null-value:
+    enable: false

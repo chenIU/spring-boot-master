@@ -147,8 +147,8 @@
   + 持有锁的不同：sleep()不释放锁,wait()释放锁。
   
 + 线程池中execute()和submit()方法的区别：
-  + execute()只能执行runable类型的任务
-  + submit()可以执行runable和callable类型的任务
+  + execute()只能执行runnable类型的任务
+  + submit()可以执行runnable和callable类型的任务
   
 + 线程池的拒绝策略
   + AbortPolicy：默认的拒绝策略，抛出 RejectedExecutionException 异常
@@ -188,3 +188,84 @@
   + java.util.Date
   + java.util.HashMap
   + java.math.BigDecimal
+  
++ Java中泛型T和?的区别：
+  + "T"是定义类或者方法时声明的东西,"?"是调用时传入的东西,二者的概念不同;
+  + Class<T>在实例化的时候,T要被替换成具体的类型,Class<?>代表通用泛型,?可以指代任何东西;
+  + Class<? extend T>:有上限,表示T或者T的子类,Class<? super T>:有下限,表示T后者T的父类
+  
++ 四种引用类型的区别：
+  + 强引用(Strong Reference)：如果JVM垃圾回GC可达性分析为可达,即使JVM发生OOM改对象也不会被回收;
+  + 软引用(Soft Reference)：在JVM内存充足的情况下,软引用对象不会被回收。当内存不足的时候,才会被垃圾回收器回收;
+  + 弱引用(Weak Reference)：弱引用是一种比软引用更短的引用,不论当前内存是否充足,这些引用都只能活到下一次垃圾回收之前;
+  + 虚引用(Phantom Reference)：最弱的一种引用类型,随时都有可能被GC回收
+  
++ final关键字的功能概述
+  + 用来修饰一个引用
+    + 如果引用为基本数据类型,则该引用为常量,该值无法被修改;
+    + 如果引用为引用数据类型,比如对象、数组,则该对象本身可以修改,但指向该对象或者数组地址的引用不可修改;
+    + 如果引用是类的成员变量,则必须当场赋值,否则编译报错。
+  + 用来修饰一个方法 当final修饰一个方法时,这个方法将成为最终方法,无法被子类重写。但是,该方法仍然可以被继承。
+  + 用来修饰类 当final修饰一个类时,该类成为最终类,无法被继承。
+
++ JVM内存区域中栈、虚拟机栈、程序计数器是线程私有的,堆和方法区(类元信息、方法元信息、常量池)是线程之间共享的。
+
++ 方法内部建议使用StringBuilder,因为StringBuilder效率高,而且方法方法内部的局部变量不用考虑线程安全的问题。
+
++ volatile关键字的作用
+  + 保证可见性
+  + 不保证原子性
+  + 禁止指令重排
+  
++ Java中常见的Error
+  + OutOfMemoryError
+  + StackOverFlowError
+  + NoSuchFieldError
+  + NoSuchMethodError
+  
++ = 赋值操作的含义
+  + 对于基本数据类型来说,"="赋值操作是直接改变内存地址上的值;
+  + 对于引用类型来说,"="赋值操作是改变引用变量所指向的内存地址;
+  
++ 常见的类加载器
+  + Boostrap Classloader
+  + Extension Classloader
+  + Application Classloader
+  
++ Runtime类中常用方法
+  + availableProcessors：获取可用的处理器数量
+  + getRuntime：获取一个运行时环境
+  + exec：在单独的进程中执行指定的字符串命令
+  + maxMemory：JVM虚拟机中最大的内存空间(字节)
+  + totalMemory：JVM虚拟机初始总内存(字节)
+  + freeMemory：可用内存
+  
++ 线程安全的map
+  + HashTable
+  + ConcurrentHashMap
+  + Collections.synchronizedHashMap(new HashMap<String,Object>())
+  
++ jdk1.5新特性
+  + 泛型
+  + 自动装箱和拆箱
+  + 枚举
+  + 可变参数
+  + 注解
+  + 新的迭代语句
+  + java.util.Formatter
+  + juc并发包
+  
++ jdk1.8新特性
+  + Lambda表达式
+  + Stream API
+  + Date API
+  + 函数式接口
+  + 方法引用和构造器引用
+  + 接口中静态方法和默认方法
+  
++ sleep和wait方法的主要区别
+  + sleep方法属于Thread类,wait方法属于Object类;
+  + sleep方法不会释放锁,wait方法会释放锁;
+  + sleep可以作用在任何地方,wait方法只能作用于同步代码块中。
+  
++ @Configuration和@Component注解的主要区别是：前者会被ConfigurationClassPostProcessor后者拦截器拦截,被代理,相同的类会复用。

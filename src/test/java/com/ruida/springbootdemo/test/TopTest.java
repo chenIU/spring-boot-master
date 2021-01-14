@@ -14,12 +14,13 @@ package com.ruida.springbootdemo.test;
 import com.ruida.springbootdemo.constant.MIMEType;
 import com.ruida.springbootdemo.generic.A;
 import com.ruida.springbootdemo.model.Book;
+import com.ruida.springbootdemo.model.Cat;
 import com.ruida.springbootdemo.model.Person;
+import com.ruida.springbootdemo.model.Son;
 import com.ruida.springbootdemo.utils.ValidateMT;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.util.Assert;
 import java.lang.reflect.Array;
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
@@ -41,11 +42,53 @@ public class TopTest {
 
     private static final Logger logger = LoggerFactory.getLogger(TopTest.class);
 
-    int count;
+    final String TAG = null;//final类型的变量必须立即初始化
+
+    int count;//非final类型的变量不必初始化,编译器会为此变量赋默认值
 
     public static void main(String[] args) {
 
+        String empName = "jack";
 
+        System.out.println(CharSequence.class.isAssignableFrom(empName.getClass()));
+
+        //class1.isAssignableFrom(class2)：判断class2是不是class1的子类或者子接口
+
+        Son son = new Son(1001, "Tom");
+
+        //重写hashcode使用31的原因
+        System.out.println(31 * 3);//93
+        System.out.println((3<<5) - 3);//0000 0011 -> 0110 0000 -> 0101 1101
+
+        Cat tom = new Cat("Tom", 3);
+        System.out.println(tom);
+
+        //System.getenv():获取系统环境变量
+//        Map<String, String> env = System.getenv();
+//        env.forEach((k,v) -> {
+//            System.out.println("key==" + k + " value==" + v);
+//        });
+
+        long max = Runtime.getRuntime().maxMemory();
+        long total = Runtime.getRuntime().totalMemory();
+        long free = Runtime.getRuntime().freeMemory();
+        System.out.println("最大内存空间:" + ((double)max / 1024 /1024) + "M");
+        System.out.println("初始化总内存空间:" + ((double)total / 1024 /1024) + "M");
+        System.out.println("可用空间:" + ((double)free / 1024 / 1024) + "M");
+
+        System.out.println(Book.class.getClassLoader());
+        System.out.println(String.class.getClassLoader());
+
+        Class<? extends Object[]> classArray = new Object[1].getClass();
+        System.out.println(classArray.getCanonicalName()); // java.lang.Object[] (获取所传类从java语言规范定义的格式输出)
+        System.out.println(classArray.getName()); // [Ljava.lang.object; (实体类型名称)
+        System.out.println(classArray.getSimpleName()); // object[] (返回从源代码中返回实例的名称)
+
+        //集合的isEmpty方法只能判断集合中的元素是否为空,不能用于判断集合对象本身是否为null
+        ArrayList<String> arrayList = null;
+//        System.out.println(arrayList.isEmpty());
+        arrayList = new ArrayList<>();
+        System.out.println(arrayList.isEmpty());
 
         //StringUtils.hasText(),null、""、" "三种情况为false,其他情况为true
         System.out.println(org.springframework.util.StringUtils.hasText(null));
@@ -519,6 +562,7 @@ public class TopTest {
 
     /**
      * @see Test#say(java.lang.String, java.lang.String)
+     * @see com.ruida.springbootdemo.test.Test#say(String, String)
      * @param a
      */
     @Deprecated
@@ -537,11 +581,52 @@ public class TopTest {
     }
 
     public void aaa(Object obj){
-        Assert.notNull(obj,"入参不能为空");
+//        assert obj != null : "input args can not be null!";
+//        Assert.notNull(obj,"入参不能为空");
+        Objects.requireNonNull(obj,"obj can not be null");
     }
 
     @org.junit.Test
     public void testAssert(){
         aaa(null);
+    }
+
+    //模拟Arrays.toString(int[] a)
+    public String arraysToString(int[] a){
+        if(a == null)
+            return "null";
+
+        int iMax = a.length - 1;
+        if(iMax == -1)
+            return "[]";
+
+        StringBuilder b = new StringBuilder();
+        b.append("[");
+        for (int i = 0; ; i++) {
+            b.append(a[i]);
+            if(i == iMax)
+                return b.append("]").toString();
+            b.append(", ");
+        }
+    }
+
+    @org.junit.Test
+    public void test2(){
+//        int[] arr = null; // null
+        int [] arr = new int[0]; // 空
+//        int[] arr = new int[]{1,2,3}; // 有数据
+        System.out.println(arraysToString(arr));
+    }
+
+    @org.junit.Test
+    public void test3(){
+        for (int i = 0; i < 10; i++) {
+            if(i == 5){
+                System.out.println(i);
+                break;
+//                continue;
+            }
+            System.out.println(i);
+        }
     }
 }

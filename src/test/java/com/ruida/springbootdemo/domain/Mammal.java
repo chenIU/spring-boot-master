@@ -5,13 +5,19 @@ package com.ruida.springbootdemo.domain;
  * @author: chenjy
  * @create: 2020-12-28 10:33
  */
-public class Mammal {
+public class Mammal extends Animal{
 
     private Integer age;
 
     private String gender;
 
     protected Object x;
+
+    @Override
+    public void eat() {
+//        super.eat();
+        System.out.println("Mammal eat...");
+    }
 
     public Integer getAge() {
         return age;

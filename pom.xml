@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.ruida</groupId>
-	<artifactId>spring-boot-demo</artifactId>
+	<artifactId>spring-boot-master</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>spring-boot-demo</name>
+	<name>spring-boot-master</name>
 	<description>Demo project for Spring Boot</description>
 
 	<properties>

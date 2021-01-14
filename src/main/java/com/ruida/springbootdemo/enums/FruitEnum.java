@@ -2,7 +2,7 @@ package com.ruida.springbootdemo.enums;
 
 public enum FruitEnum {
     APPLE(1,"apple"),
-    BNANA(2,"bnana"),
+    BANANA(2,"banana"),
     CHERRY(3,"cherry");
 
     private int id;
@@ -47,6 +47,16 @@ public enum FruitEnum {
 
     public static void main(String[] args) {
         System.out.println(getNameById(2));
+        System.out.println(FruitEnum.BANANA.ordinal());
+        System.out.println(FruitEnum.APPLE.toString());
+
+        for (FruitEnum value : FruitEnum.values()) {
+            System.out.println(value.getId() + " " + value.getName());
+        }
+
+        System.out.println(FruitEnum.APPLE.compareTo(FruitEnum.BANANA));// -1
+
+        System.out.println(FruitEnum.CHERRY.name());
     }
 
 }
