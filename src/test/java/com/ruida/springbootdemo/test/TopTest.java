@@ -12,6 +12,7 @@
 package com.ruida.springbootdemo.test;
 
 import com.ruida.springbootdemo.constant.MIMEType;
+import com.ruida.springbootdemo.entity.fruit.Apple;
 import com.ruida.springbootdemo.generic.A;
 import com.ruida.springbootdemo.model.Book;
 import com.ruida.springbootdemo.model.Cat;
@@ -47,6 +48,8 @@ public class TopTest {
     int count;//非final类型的变量不必初始化,编译器会为此变量赋默认值
 
     public static void main(String[] args) {
+
+        System.out.println(Apple.class.getName());
 
         String empName = "jack";
 
