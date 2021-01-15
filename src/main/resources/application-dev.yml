@@ -24,6 +24,14 @@ spring:
     date-format: yyyy-MM-dd HH:mm:ss
     time-zone: GMT+8
 
+knife4j:
+  #production=true：不能查看接口文档;false：非生产环境，可以查看
+  production: true
+  basic:
+    enable: true
+    username: admin
+    password: 123456
+
 jasypt:
   encryptor:
     password: e9fbdb2d3b21 # 盐
