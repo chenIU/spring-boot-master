@@ -3,9 +3,12 @@ package com.ruida.springbootdemo;
 import com.ruida.springbootdemo.annotation.MyAnnotation;
 import com.ruida.springbootdemo.entity.bean.TestBean;
 import com.ruida.springbootdemo.config.ApplicationContextConfig;
+import com.ruida.springbootdemo.entity.fruit.Apple;
+import com.ruida.springbootdemo.entity.fruit.Banana;
 import com.ruida.springbootdemo.service.Vehicle;
 import com.ruida.springbootdemo.service.impl.TestNotNullService;
 import com.ruida.springbootdemo.service.impl.UserServiceImpl;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -19,6 +22,7 @@ import java.util.Set;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes= SpringBootDemoApplication.class)
+@Slf4j
 public class SpringBootDemoApplicationTests {
 
 	@Resource
@@ -27,10 +31,16 @@ public class SpringBootDemoApplicationTests {
 	ApplicationContext applicationContext;
 	@Resource
 	TestNotNullService testNotNullService;
+	@Resource
+	Apple apple;
+	@Resource
+	Banana banana;
 
-/*	@Test
-	void contextLoads() {
-	}*/
+	@Test
+	public void contextLoads() {
+		System.out.println(apple);
+		System.out.println(banana);
+	}
 
 	public static void main(String[] args) {
 		ApplicationContext context = new AnnotationConfigApplicationContext(ApplicationContextConfig.class);

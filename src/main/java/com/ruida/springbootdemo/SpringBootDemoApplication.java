@@ -1,5 +1,6 @@
 package com.ruida.springbootdemo;
 
+import com.ruida.springbootdemo.annotation.EnableFruitConfiguration;
 import lombok.extern.slf4j.Slf4j;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
@@ -18,6 +19,7 @@ import springfox.documentation.spring.web.SpringfoxWebMvcConfiguration;
 @EnableTransactionManagement
 @EnableCaching
 //@EnableScheduling
+@EnableFruitConfiguration
 @Slf4j
 public class SpringBootDemoApplication{
 
