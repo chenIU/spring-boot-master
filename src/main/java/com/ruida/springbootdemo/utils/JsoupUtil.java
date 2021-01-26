@@ -30,6 +30,7 @@ public class JsoupUtil {
                 String src = img.attr("src");
                 URL target = new URL(src);
                 URLConnection urlConnection = target.openConnection();
+                urlConnection.setConnectTimeout(60000);
                 InputStream inputStream = urlConnection.getInputStream();
                 id ++;
                 OutputStream outputStream = new BufferedOutputStream(new FileOutputStream("F:\\Internet\\" + folderName + "\\" + id + ".jpg"));
