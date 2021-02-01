@@ -26,7 +26,7 @@ spring:
 
 knife4j:
   #production=true：不能查看接口文档;false：非生产环境，可以查看
-  production: true
+  production: false
   basic:
     enable: true
     username: admin
