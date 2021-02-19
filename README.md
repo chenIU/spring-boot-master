@@ -34,8 +34,8 @@
 + isEmpty()认为空字符串(" ")不是空，isBlank()认为空字符串是空。
 
 + @Autowired和@Resource的区别
-  + Autowired和注解属于Spring,Resource注解属于JavaEE;
-  + Autowired和默认根据byType注入,Resource在不指定name和type属性的情况下根据byName注入;
+  + Autowired注解属于Spring,Resource注解属于JavaEE;
+  + Autowired默认根据byType注入,Resource在不指定name和type属性的情况下根据byName注入;
   + 当一个类型的bean有多个时Autowired注解可以结合Qualifier注解指定具体的bean名称,Resource可以通过指定name属性来区分不同的bean。
   
 + @Resource的装配顺序
@@ -102,9 +102,9 @@
   
 + File类中mkdir和mkdirs方法的区别：mkdir需要父路径存在;mkdirs没有此限制,可以级联创建
 
-+ @Configuration和@Component的区别是：前者的bean是单例的，后者是原型类型。
++ @Configuration和@Component的区别是：前者的bean是singleton类型，后者是prototype类型。
 
-+ 整型最高位0表示整数，1表示负数。
++ 整型最高位0表示正数，1表示负数。
 
 + JDK1.7中HashMap冲突时，链表采用头插法；1.8采用尾插法。
 
@@ -124,7 +124,7 @@
 
 + 实现多线程的方法：
   + 继承Thread类
-  + 实现Runable接口
+  + 实现Runnable接口
   + 实现Callable接口，利用task接受异步线程执行的结果
   
 + JDK1.8之后switch可以作用byte、short、int、char、boolean、string和enum上
@@ -145,6 +145,7 @@
   + 来源不同：sleep()来自Thread类,wait()来自Object类;
   + 用法不同：sleep()时间到时会自动恢复,wait()需要notify或者notifyAll唤醒;
   + 持有锁的不同：sleep()不释放锁,wait()释放锁。
+  + sleep()可以作用在任何地方,wait()方法只能作用于同步代码块中。
   
 + 线程池中execute()和submit()方法的区别：
   + execute()只能执行runnable类型的任务
@@ -171,8 +172,7 @@
 + POJO类中使用包装数据类型、RPC接口使用包装类型、局部变量使用基本数据类型
 
 + clone方法需要注意的点：
-  + Object类的clone方法是本地方法
-  + 重载之后要把访问修饰符改为public
+  + Object类的clone方法是本地方法,重载之后要把访问修饰符改为public
   + clone方法的返回值是一个Object对象
   
 + 修饰符问题：
@@ -227,7 +227,7 @@
   + 对于基本数据类型来说,"="赋值操作是直接改变内存地址上的值;
   + 对于引用类型来说,"="赋值操作是改变引用变量所指向的内存地址;
   
-+ 常见的类加载器
++ 常见的类加载器(双亲委派)
   + Boostrap Classloader
   + Extension Classloader
   + Application Classloader
@@ -263,9 +263,4 @@
   + 方法引用和构造器引用
   + 接口中静态方法和默认方法
   
-+ sleep和wait方法的主要区别
-  + sleep方法属于Thread类,wait方法属于Object类;
-  + sleep方法不会释放锁,wait方法会释放锁;
-  + sleep可以作用在任何地方,wait方法只能作用于同步代码块中。
-  
-+ @Configuration和@Component注解的主要区别是：前者会被ConfigurationClassPostProcessor后者拦截器拦截,被代理,相同的类会复用。
++ @Configuration和@Component注解的主要区别是：前者会被ConfigurationClassPostProcessor后者拦截器拦截,被代理,相同的类会复用(singleton)。
