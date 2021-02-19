@@ -141,15 +141,30 @@
   
 + http状态码301永久重定向，302暂时重定向。
 
-+ sleep()和wait()的区别：
-  + 来源不同：sleep()来自Thread类,wait()来自Object类;
-  + 用法不同：sleep()时间到时会自动恢复,wait()需要notify或者notifyAll唤醒;
-  + 持有锁的不同：sleep()不释放锁,wait()释放锁。
-  + sleep()可以作用在任何地方,wait()方法只能作用于同步代码块中。
++ sleep和wait的区别：
+  + 来源不同：sleep来自Thread类,wait来自Object类;
+  + 用法不同：sleep时间到时会自动恢复,wait需要notify或者notifyAll唤醒;
+  + 持有锁的不同：sleep不释放锁,wait释放锁。
+  + sleep可以作用在任何地方,wait方法只能作用于同步代码块中。
   
-+ 线程池中execute()和submit()方法的区别：
-  + execute()只能执行runnable类型的任务
-  + submit()可以执行runnable和callable类型的任务
++ sleep和yield方法的区别：
+  + sleep方法不会考虑线程的优先级，所以可能会给低优先级的线程运行机会；yield方法只会给相同优先级或更高优先级的线程运行机会
+  + sleep方法调用之后，线程会进入阻塞状态；yield方法调用之后，线程会进入到就绪状态；
+  + sleep方法声明时抛出了异常；yield方法则没有
+  + sleep方法比yield方法具有更好的移植性。
+  
++ 线程池中execute和submit方法的区别：
+  + execute只能执行runnable类型的任务(提交不需要返回值的任务)
+  + submit可以执行runnable和callable类型的任务(提交需要返回值的任务)
+
++ ThreadPoolExecutor 构造方法参数说明：
+  + corePoolSize：核心线程数，定义了最小可以同时运行的线程数量
+  + maximumPoolSize：最大线程数，当队列中存放的任务达到队列容量的时候，当前可以同时运行的线程数量变为最大线程数
+  + keepAliveTime：存活时间，当线程池中线程数量大于corePoolSize的时候，如果这时候没有新的任务提交，核心线程数不回立即销毁，而是等待，直达等待时间超过了keepAliveTime才会被销毁
+  + unit：时间单位，keepAliveTime参数的时间单位
+  + workQueue：工作队列，当新任务来的时候会判断当前运行的线程数量是否达到核心线程数，如果达到的话，新任务会被存放到队列中
+  + threadFactory：线程工厂，创建新线程的时候会用到
+  + handler：拒绝策略
   
 + 线程池的拒绝策略
   + AbortPolicy：默认的拒绝策略，抛出 RejectedExecutionException 异常
@@ -264,3 +279,70 @@
   + 接口中静态方法和默认方法
   
 + @Configuration和@Component注解的主要区别是：前者会被ConfigurationClassPostProcessor后者拦截器拦截,被代理,相同的类会复用(singleton)。
+
++ PreparedStatement和Statement的主要区别：前者是预编译的，可以防止SQL注入，而后者不能。
+
++ Spring常见的注入方式：setter、constructor、注解
+
++ Spring的核心类：DispatcherServlet
+
++ HashMap链表树化的条件：1.链表的长度超过8；2.桶的个数超过64
+  
++ InnoDB和MyISAM数据引擎的区别：
+  + 前者支持事务；后者不支持
+  + 前者支持行级锁；后者只支持表级锁
+  + 前者支持外键；后者不支持
+  + 前者不支持全文索引，后者支持
+  
++ volatile和synchronized的区别：
+  + volatile仅可改变变量的可见性；而synchronized可以保证变量的可见性和原子性
+  + volatile只可作用于变量；而synchronized可以作用在变量、方法和类上
+  + volatile不回造成线程阻塞；而synchronized会造成线程阻塞
+  
++ mybatis的底层是基于jdk动态代理(MappedStatement对象)，利用RowBounds对象进行分页
+
++ Spring中自动装配的方式：
+  + no：不进行自动装配，手动设置Bean的依赖关系
+  + byName：根据Bean的名字进行装配
+  + byType：根据Bean的类型进行装配
+  + constructor：类似于byType，不过是应用于构造器的参数，如果正好有一个Bean与构造器的参数类型相同则可以自动装配，否则会导致错误。
+  + autodetect：如果有默认的构造器，则通过constructor的方式进行自动装配，否则使用byType的方式进行自动装配。
+  
++ 深拷贝与浅拷贝：
+  + 浅拷贝：对基本数据类型进行值传递，对引用数据类型进行引用传递般的拷贝
+  + 深拷贝：对基本数据类型进行值传递，对引用数据类型，创建一个新对象，并复制其内容
+  
++ 构造器不能被重写，但是能被重载。
+
++ 线程的六种状态：
+  + NEW：初始状态，线程被创建，但是还没有调用start方法
+  + RUNNABLE：运行状态，Java线程将操作系统中的就绪和运行两种状态笼统的称为”运行中“
+  + BLOCKED：阻塞状态，表示线程阻塞与锁
+  + WAITING：等待状态，线程处于等待状态，进入该状态表示当前线程需要其他线程做出一些特定动作（通知或中断）
+  + TIME_WAITING：超时等待，该状态不同与WAITING，可以在指定的时间之后自动恢复
+  + TERMINATED：终止状态，表示该线程执行完毕
+  
++ 浮点数之间的等值判断，基本数据类型不能用 == ，包装类型不能用equals。
+
++ a.compareTo(b)：返回-1表示a小于b；返回0表示a等于b；返回1表示a大于b。
+
++ JDK动态代理只能代理实现接口的类，而cglib动态代理则没有这个问题。
+
++ 链表的查询时间复杂度是O(N),红黑树的查询时间复杂度是O(lgN).
+
++ LinkedList的数据结构是双向链表（jdk1.6之前为双向循环链表，jdk1.7取消了循环）
+
++ 调用start()方法方可启动线程并让线程处于就绪状态，直接运行run()方法不回以多线程状态方式执行。
+
++ 构造方法本身即是线程安全的，不能使用synchronized修饰构造方法。
+
++ synchronized关键字的本质是对对象监视器monitor的获取
+
++ 锁的四种状态：无锁状态、偏向锁状态、轻量级锁状态、重量级锁状态
+
++ 数组的复杂度：
+  + 访问：O(1),访问特定位置的元素
+  + 插入：O(n),最坏的情况插入的元素位于首部，并需要移动所有的元素时
+  + 删除：O(n),最坏的情况发生在删除数组的开头，并需要移动第一个元素后面所有的元素时
+  
++ 链表：链表的插入和删除复杂度都是O(1)，查询复杂度是O(n)
