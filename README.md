@@ -299,7 +299,7 @@
   + volatile只可作用于变量；而synchronized可以作用在变量、方法和类上
   + volatile不回造成线程阻塞；而synchronized会造成线程阻塞
   
-+ mybatis的底层是基于jdk动态代理(MappedStatement对象)，利用RowBounds对象进行分页
++ mybatis的底层是基于jdk动态代理(**MappedStatement**对象)，利用RowBounds对象进行分页
 
 + Spring中自动装配的方式：
   + no：不进行自动装配，手动设置Bean的依赖关系
