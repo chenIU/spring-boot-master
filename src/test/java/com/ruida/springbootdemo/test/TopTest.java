@@ -634,4 +634,14 @@ public class TopTest {
             System.out.println(i);
         }
     }
+
+    @org.junit.Test
+    public void test4(){
+        Map<String,Object> map = new HashMap();
+        map.put("status",0);
+        System.out.println(Objects.equals(map.get("status"),"0"));
+
+        String a = "0";
+        System.out.println(a.equals("0"));
+    }
 }
