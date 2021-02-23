@@ -40,9 +40,7 @@ public class ThreadPoolTest {
                 new ThreadPoolExecutor.AbortPolicy());
 
         for (int i = 0; i < 9; i++) {
-            pool.execute(()-> {
-                System.out.println(Thread.currentThread().getName());
-            });
+            pool.execute(()-> System.out.println(Thread.currentThread().getName()));
         }
 
         /**
@@ -54,6 +52,12 @@ public class ThreadPoolTest {
          * workQueue(工作队列)：存放超出的任务
          * threadFactory：线程工厂
          * handler：拒绝策略
+         *
+         * 拒绝策略种类：
+         * ThreadPoolExecutor.AbortPolicy()：抛出RejectedExecutionException异常
+         * ThreadPoolExecutor.DiscardPolicy()：不处理新任务，直接丢弃掉
+         * ThreadPoolExecutor.DiscardOldestPolicy()：抛弃最早的未处理的任务请求
+         * ThreadPoolExecutor.CallerRunsPolicy()：由调用者执行任务
          */
     }
 }
