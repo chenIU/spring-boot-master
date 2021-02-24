@@ -385,4 +385,10 @@ public class UserController extends BaseController {
         ByteArrayInputStream in = new ByteArrayInputStream(str.getBytes());
         this.download(this.getResponse(),in,"测试.txt");
     }
+
+    @PostMapping("saveList")
+    public CommonResult saveList(@RequestBody List<String> list){
+        System.out.println(list.toString());
+        return new CommonResult();
+    }
 }
