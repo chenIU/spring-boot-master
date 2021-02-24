@@ -644,4 +644,10 @@ public class TopTest {
         String a = "0";
         System.out.println(a.equals("0"));
     }
+
+    @org.junit.Test
+    public void test5(){
+        List<String> list = Arrays.asList("jack", "mike", "tom");
+        System.out.println(StringUtils.join(list,"|"));
+    }
 }
