@@ -53,7 +53,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public int insertUser(User user) {
-        return userMapper.insertUser(user);
+        return userMapper.insert(user);
     }
 
     @Override

@@ -8,6 +8,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.cache.annotation.EnableCaching;
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import springfox.documentation.spring.web.SpringfoxWebMvcConfiguration;
 
@@ -20,6 +21,7 @@ import springfox.documentation.spring.web.SpringfoxWebMvcConfiguration;
 @EnableCaching
 //@EnableScheduling
 @EnableFruitConfiguration
+@EnableAspectJAutoProxy(exposeProxy = true)
 @Slf4j
 public class SpringBootDemoApplication{
 

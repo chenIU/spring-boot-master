@@ -1,10 +1,10 @@
-package com.ruida.springbootdemo.serializer.modifier;
+package com.ruida.springbootdemo.core.serializer.modifier;
 
 import com.fasterxml.jackson.databind.BeanDescription;
 import com.fasterxml.jackson.databind.SerializationConfig;
 import com.fasterxml.jackson.databind.ser.BeanPropertyWriter;
 import com.fasterxml.jackson.databind.ser.BeanSerializerModifier;
-import com.ruida.springbootdemo.serializer.CustomizeNullJsonSerializer;
+import com.ruida.springbootdemo.core.serializer.CustomizeNullJsonSerializer;
 import java.util.Collection;
 import java.util.List;
 

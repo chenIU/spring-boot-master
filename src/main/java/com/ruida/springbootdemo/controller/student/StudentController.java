@@ -5,7 +5,7 @@ import com.ruida.springbootdemo.entity.Student;
 import com.ruida.springbootdemo.entity.result.CommonResult;
 import com.ruida.springbootdemo.entity.result.MapResult;
 import com.ruida.springbootdemo.entity.result.PojoResult;
-import com.ruida.springbootdemo.wrapper.ValidList;
+import com.ruida.springbootdemo.core.wrapper.ValidList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.*;
 import org.springframework.validation.annotation.Validated;

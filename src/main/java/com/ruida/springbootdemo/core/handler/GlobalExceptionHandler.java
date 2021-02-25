@@ -1,4 +1,4 @@
-package com.ruida.springbootdemo.handler;
+package com.ruida.springbootdemo.core.handler;
 
 import com.ruida.springbootdemo.entity.result.CommonResult;
 import com.ruida.springbootdemo.exception.BizException;

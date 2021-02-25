@@ -1,4 +1,4 @@
-package com.ruida.springbootdemo.wrapper;
+package com.ruida.springbootdemo.core.wrapper;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpServletResponseWrapper;

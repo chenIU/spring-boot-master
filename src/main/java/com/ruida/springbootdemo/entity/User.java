@@ -3,6 +3,8 @@ package com.ruida.springbootdemo.entity;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.fasterxml.jackson.annotation.*;
+import com.ruida.springbootdemo.annotation.InEnum;
+import com.ruida.springbootdemo.enums.GenderEnum;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -29,7 +31,7 @@ import java.util.List;
  */
 @Data
 @NoArgsConstructor
-@JsonIgnoreProperties(value = "age")
+//@JsonIgnoreProperties(value = "age")
 @JsonIgnoreType
 @JsonPropertyOrder({"id","name"})
 @JsonRootName("User")
@@ -42,7 +44,12 @@ public class User implements Serializable {
     @TableField(value = "user_name")
     private String username;
 
+    private String password;
+
     private Integer age;
+
+    @InEnum(value = GenderEnum.class,message = "性别必须是{value}")
+    private Integer gender;
 
     //@JsonFormat(pattern = "yyyy/MM/dd")
     //@JsonIgnore

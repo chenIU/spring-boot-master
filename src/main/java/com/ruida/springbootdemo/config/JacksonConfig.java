@@ -1,7 +1,7 @@
 package com.ruida.springbootdemo.config;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.ruida.springbootdemo.serializer.modifier.CustomizeBeanSerializerModifier;
+import com.ruida.springbootdemo.core.serializer.modifier.CustomizeBeanSerializerModifier;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;

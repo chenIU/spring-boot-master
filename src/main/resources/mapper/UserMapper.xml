@@ -2,12 +2,15 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ruida.springbootdemo.mapper.UserMapper">
 
-    <!--<resultMap id="BaseResultMap" type="com.ruida.springbootdemo.entity.User">-->
-        <!--<result column="id" jdbcType="INTEGER" property="id"/>-->
-        <!--<result column="name" jdbcType="VARCHAR" property="name"/>-->
-        <!--<result column="age" jdbcType="INTEGER" property="age"/>-->
-        <!--<result column="dept_id" jdbcType="INTEGER" property="deptId"/>-->
-    <!--</resultMap>-->
+    <resultMap id="BaseResultMap" type="com.ruida.springbootdemo.entity.User">
+        <result column="id" jdbcType="INTEGER" property="id"/>
+        <result column="user_name" jdbcType="VARCHAR" property="username"/>
+        <result column="password" jdbcType="VARCHAR" property="password"/>
+        <result column="age" jdbcType="INTEGER" property="age"/>
+        <result column="birthday" jdbcType="DATE" property="birthday"/>
+        <result column="dept_id" jdbcType="INTEGER" property="deptId"/>
+        <result column="create_time" jdbcType="DATE" property="createTime"/>
+    </resultMap>
 
     <!--<select id="selectUserById" resultMap="BaseResultMap">-->
         <!--select * from t_user where id = #{id}-->

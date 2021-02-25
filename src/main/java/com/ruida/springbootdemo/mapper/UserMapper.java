@@ -18,7 +18,7 @@ public interface UserMapper extends BaseMapper<User> {
 
     List<User> selectAllUserList();
 
-    @Insert("insert into t_user(name,age,dept_id) values(#{name},#{age},#{dept_id})")
+    @Insert("insert into t_user(user_name,password,age,dept_id) values(#{userName},#{password}#{age},#{deptId})")
     int insertUser(User user);
 
     Map<String,Object> selectDeptById(Integer id);

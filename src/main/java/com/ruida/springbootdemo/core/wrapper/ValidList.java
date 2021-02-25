@@ -1,4 +1,4 @@
-package com.ruida.springbootdemo.wrapper;
+package com.ruida.springbootdemo.core.wrapper;
 
 import javax.validation.Valid;
 import java.util.*;
