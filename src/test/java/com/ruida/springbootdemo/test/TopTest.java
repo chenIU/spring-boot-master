@@ -24,6 +24,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import java.lang.reflect.Array;
 import java.math.RoundingMode;
+import java.net.URLEncoder;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
@@ -50,6 +51,7 @@ public class TopTest {
     public static void main(String[] args) {
 
         //source tree
+        System.out.println(URLEncoder.encode("编码"));
 
         System.out.println(Apple.class.getName());
 
