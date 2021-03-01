@@ -1,5 +1,6 @@
 package com.ruida.springbootdemo.test;
 
+import com.google.common.collect.Maps;
 import com.ruida.springbootdemo.entity.App;
 import org.junit.Test;
 
@@ -141,5 +142,40 @@ public class MapTest {
 
         //重写App的hashCode和equals方法(两个方法必须同时重写,只重写其中任意一个都不行)
         //结果符合预期
+    }
+
+    @Test
+    public void test2(){
+        Map<Integer,Object> map = new HashMap();
+        map.put(100,"Amy");
+        map.put(3,"Jack");
+        map.put(1,"Mike");
+        map.put(2,"Tom");
+        System.out.println(map);
+        System.out.println(orderByKey(map,true));
+        System.out.println(orderByKey(map,false));
+    }
+
+    /**
+     * map 排序
+     * @param map 需要排序的map
+     * @param asc 升序还是降序
+     * @param <K> key
+     * @param <V> value
+     * @return
+     */
+    public <K extends Comparable<? super K>,V> Map<K,V> orderByKey(Map<K,V> map,boolean asc){
+        if(map == null || map.isEmpty()){
+            return null;
+        }
+
+        Map<K,V> result = Maps.newLinkedHashMap();
+
+        if(asc){
+            map.entrySet().stream().sorted(Map.Entry.comparingByKey()).forEachOrdered(e -> result.put(e.getKey(),e.getValue()));
+        }else {
+            map.entrySet().stream().sorted(Map.Entry.<K,V>comparingByKey().reversed()).forEachOrdered(e -> result.put(e.getKey(),e.getValue()));
+        }
+        return result;
     }
 }
