@@ -1,7 +1,10 @@
 package com.ruida.springbootdemo.stream;
 
+import com.google.common.collect.Lists;
+import com.ruida.springbootdemo.entity.User;
 import com.ruida.springbootdemo.model.Person;
 import com.ruida.springbootdemo.model.PersonCountry;
+import org.junit.Test;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -140,6 +143,47 @@ public class StreamApiTest {
         }
 
         return characterList.stream();
+    }
+
+    /**
+     * peek & map
+     */
+    @Test
+    public void test1(){
+        Stream.of("one","two","three","four")
+                .filter(e -> e.length() >3)
+                .peek(e -> System.out.println("Filtered value: " + e))
+                .map(String::toUpperCase)
+                .peek(e -> System.out.println("mapped value: " + e))
+                .collect(Collectors.toList());
+
+        /*
+         * peek操作string
+         */
+        List<String> strList = new ArrayList<>(Arrays.asList("one","two","three"));
+        List<String> stringList = strList.stream().peek(e -> e = e.toUpperCase()).collect(Collectors.toList());
+        stringList.forEach(System.out::println);
+
+        //不能改变的原因是peek没有返回值，不会对stream流做修改
+
+        /*
+         * peek操作引用类型
+         */
+        List<User> userList = Lists.newArrayList(
+                new User("jack",18),
+                new User("mike",20)
+        );
+        List<User> users = userList.stream().peek(e -> e.setUsername(e.getUsername().toUpperCase())).collect(Collectors.toList());
+        users.forEach(System.out::println);
+
+        //引用类型字段被修改，和上面并不矛盾，被修改的原因是Java中参数传递类型是值传递，引用类型作为参数的时候，传递的是引用地址，当引用地址上的内容被修改时，对象自然被修改。但是stream并没有被修改
+
+        /*
+         * peek和map的使用场景
+         * 当我们只需要对元素内部进行处理，使用peek比较合适。如果需要返回一个新的Stream，使用map比较合适
+         * 一般peek在debug场景使用比较方便
+         * peek和map操作都不回终端流，但foreach会中断流，只能进行遍历操作
+         */
     }
 
 }
