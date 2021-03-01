@@ -48,4 +48,15 @@ public class TestArray {
         int[] arr3 = new int[]{1,2,3,4,5};
         System.out.println(arr3.length);
     }
+
+    @Test
+    public void test(){
+        int[] a = {1,2,3};
+
+        int[][] b = {{1,2,3},{4,5,6}};
+
+        System.out.println(Arrays.toString(a));
+        System.out.println(Arrays.toString(b));
+        System.out.println(Arrays.deepToString(b));
+    }
 }
