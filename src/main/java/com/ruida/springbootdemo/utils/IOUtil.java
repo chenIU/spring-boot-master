@@ -10,14 +10,14 @@ import java.io.*;
 public class IOUtil {
 
     public static void main(String[] args) {
-        String source = "D:\\IO\\from.txt";
+        String source = "G:\\test.txt";
         String dest = "D:\\IO\\to.txt";
         String objDest = "D:\\IO\\obj.txt";
         String path = "D:\\apache-maven-3.6.3";
         //Student student = new Student("chenjy",26);
         //System.out.println(readFileMethod1(source));
         //System.out.println(readFileMethod2(source));
-        //System.out.println(readFileMethod3(source));
+        System.out.println(readFileMethod3(source));
         //readAndWriteMethod1(source,dest);
         //readAndWriteMethod2(source,dest);
         //readAndWriteMethod3(source,dest);
@@ -25,7 +25,7 @@ public class IOUtil {
         //readAndWriteMethod5(source,dest);
         //writeObject(student,objDest);
         //readOjbect(objDest);
-        listFile(path);
+        //listFile(path);
     }
 
     public static String readFileMethod1(String source){
@@ -62,15 +62,20 @@ public class IOUtil {
         return new String(buffer);
     }
 
+    /**
+     * 这种方法读取数据，有时会出现截取而造成乱码的情况，byte[]数组的大小和文件大小有密切关系
+     * 原因：UTF8编码中，一个汉字占用三个字节
+     * 读取文本推荐使用BufferedReader.readLine()
+     * @param source
+     * @return
+     */
     public static String readFileMethod3(String source){
-        byte[] buffer = new byte[1024];
+        byte[] buff = new byte[29];
         try {
-            InputStream in = new FileInputStream(new File(source));
+            InputStream in = new FileInputStream(source);
             int i;
-            int index=0;
-            while((i=in.read())!=-1){
-                buffer[index] = (byte) i;
-                index++;
+            while((i = in.read(buff)) != -1){
+                System.out.println(new String(buff, 0, i));
             }
             in.close();
         } catch (FileNotFoundException e) {
@@ -78,7 +83,7 @@ public class IOUtil {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return new String(buffer);
+        return null;
     }
 
     public static void readAndWriteMethod1(String source,String dest){
