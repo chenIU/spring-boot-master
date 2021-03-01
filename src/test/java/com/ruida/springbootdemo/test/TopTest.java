@@ -18,10 +18,12 @@ import com.ruida.springbootdemo.model.Book;
 import com.ruida.springbootdemo.model.Cat;
 import com.ruida.springbootdemo.model.Person;
 import com.ruida.springbootdemo.model.Son;
+import com.ruida.springbootdemo.utils.TimeUtil;
 import com.ruida.springbootdemo.utils.ValidateMT;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
 import java.lang.reflect.Array;
 import java.math.RoundingMode;
 import java.net.URLEncoder;
@@ -651,5 +653,18 @@ public class TopTest {
     public void test5(){
         List<String> list = Arrays.asList("jack", "mike", "tom");
         System.out.println(StringUtils.join(list,"|"));
+    }
+
+    @org.junit.Test
+    public void test6(){
+        System.out.println(TimeUtil.getDateFormat(new Date()));
+
+        Calendar instance = Calendar.getInstance();
+        instance.set(Calendar.YEAR,2021);
+        instance.set(Calendar.MONTH,2);
+        instance.set(Calendar.DAY_OF_MONTH,1);
+        instance.set(Calendar.HOUR_OF_DAY,12);
+        System.out.println(instance.getTime());
+        System.out.println(TimeUtil.getDateFormat(instance.getTime()));
     }
 }
