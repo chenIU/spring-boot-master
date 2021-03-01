@@ -11,7 +11,9 @@
 
 package com.ruida.springbootdemo.test;
 
+import com.google.common.collect.Lists;
 import com.ruida.springbootdemo.constant.MIMEType;
+import com.ruida.springbootdemo.entity.User;
 import com.ruida.springbootdemo.entity.fruit.Apple;
 import com.ruida.springbootdemo.generic.A;
 import com.ruida.springbootdemo.model.Book;
@@ -666,5 +668,20 @@ public class TopTest {
         instance.set(Calendar.HOUR_OF_DAY,12);
         System.out.println(instance.getTime());
         System.out.println(TimeUtil.getDateFormat(instance.getTime()));
+    }
+
+    /**
+     * jdk1.8新增方法
+     */
+    @org.junit.Test
+    public void test7(){
+        ArrayList<User> users = Lists.newArrayList(
+                new User("Jack", 21),
+                new User("Mike", 35),
+                new User("Amy", 13)
+        );
+
+        users.removeIf(e -> e.getAge() < 20);
+        System.out.println(users);
     }
 }
