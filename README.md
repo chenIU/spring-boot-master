@@ -354,3 +354,8 @@
 + Java中 -1 0 1 不被认为时魔法值
 
 + BeanFactory是懒加载；ApplicationContext是预加载。
+
++ 创建对象Object obj = new Object()的过程：
+  + 分配一块内存M
+  + 在内存M上初始化该对象
+  + 将内存M的地址赋值给引用变量obj
