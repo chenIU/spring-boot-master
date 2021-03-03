@@ -352,3 +352,5 @@
 + MyBatis动态SQL的执行原理是利用OGNL表达式从SQL参数中计算表达式的值，根据表达式的值动态拼接SQL
 
 + Java中 -1 0 1 不被认为时魔法值
+
++ BeanFactory是懒加载；ApplicationContext是预加载。
