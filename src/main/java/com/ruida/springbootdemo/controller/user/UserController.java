@@ -1,6 +1,5 @@
 package com.ruida.springbootdemo.controller.user;
 
-import com.github.pagehelper.PageInfo;
 import com.overmind.logging.TimeLog;
 import com.ruida.springbootdemo.config.MultiDataSource;
 import com.ruida.springbootdemo.controller.BaseController;
@@ -24,6 +23,7 @@ import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -187,21 +187,6 @@ public class UserController extends BaseController {
     public User getUserByAware(@RequestParam("id")Integer id){
         UserService userService = SpringUtil.getBean(UserServiceImpl.class);
         return userService.selectUserById(id);
-    }
-
-    /**
-     * 分页查询下用户
-     * @param pageNum 页码
-     * @param pageSize 页的大小
-     * @return
-     */
-    @RequestMapping(value = "queryUserListForPage",method = RequestMethod.GET)
-    public PageInfo<User> queryUserListForPage(@RequestParam(value = "pageNum",defaultValue = "1") Integer pageNum,
-                                               @RequestParam(value = "pageSize",defaultValue = "5") Integer pageSize){
-        if(pageNum<=0){
-            throw new BizException(ErrorEnum.E_2001);
-        }
-        return userService.selectAllUserListForPage(pageNum,pageSize);
     }
 
     /**

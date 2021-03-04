@@ -1,8 +1,6 @@
 package com.ruida.springbootdemo.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.github.pagehelper.PageHelper;
-import com.github.pagehelper.PageInfo;
 import com.ruida.springbootdemo.constant.JwtConstants;
 import com.ruida.springbootdemo.entity.User;
 import com.ruida.springbootdemo.entity.result.MapResult;
@@ -15,7 +13,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
-
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
@@ -41,14 +38,6 @@ public class UserServiceImpl implements UserService {
     @Transactional
     public User selectUserById(Integer id) {
         return userMapper.selectUserById(id);
-    }
-
-    @Override
-    public PageInfo<User> selectAllUserListForPage(Integer pageNum, Integer pageSize) {
-        PageHelper.startPage(pageNum,pageSize);
-        List<User> userList = userMapper.selectAllUserList();
-        PageInfo<User> pageInfo = new PageInfo<>(userList);
-        return pageInfo;
     }
 
     @Override
