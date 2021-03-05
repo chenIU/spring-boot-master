@@ -14,6 +14,7 @@ package com.ruida.springbootdemo.test;
 import com.google.common.collect.Lists;
 import com.ruida.springbootdemo.constant.MIMEType;
 import com.ruida.springbootdemo.entity.User;
+import com.ruida.springbootdemo.entity.dto.UserDTO;
 import com.ruida.springbootdemo.entity.fruit.Apple;
 import com.ruida.springbootdemo.generic.A;
 import com.ruida.springbootdemo.model.Book;
@@ -25,6 +26,7 @@ import com.ruida.springbootdemo.utils.ValidateMT;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.BeanUtils;
 
 import java.lang.reflect.Array;
 import java.math.RoundingMode;
@@ -689,5 +691,28 @@ public class TopTest {
     public void test8(){
 //        1 != "1"
         System.out.println(Objects.equals(String.valueOf(1),"1"));
+    }
+
+    @org.junit.Test
+    public void test9(){
+        User user = new User("Jack",21);
+        UserDTO userDTO = new UserDTO();
+        System.out.println(userDTO);
+        BeanUtils.copyProperties(user,userDTO);
+        System.out.println(userDTO);
+
+        User user1 = null;
+        UserDTO userDTO1 = new UserDTO();
+        BeanUtils.copyProperties(user1,userDTO1);
+        System.out.println(userDTO1);
+
+        User user2 = new User("Mike",22);
+        UserDTO userDTO2 = null;
+        BeanUtils.copyProperties(user2,userDTO2);
+        System.out.println(userDTO2);
+
+        //SpringFramework BeanUtils.copyProperties方法source和target都不能为null
+
+        //另外，阿里巴巴代码规范不建议使用Apache 的BeanUtils.copyProperties，原因是性能较差。建议使用Spring BeanUtils 或者Cglib BeanCopier
     }
 }
