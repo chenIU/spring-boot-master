@@ -684,4 +684,10 @@ public class TopTest {
         users.removeIf(e -> e.getAge() < 20);
         System.out.println(users);
     }
+
+    @org.junit.Test
+    public void test8(){
+//        1 != "1"
+        System.out.println(Objects.equals(String.valueOf(1),"1"));
+    }
 }
