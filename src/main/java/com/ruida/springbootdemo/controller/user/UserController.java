@@ -376,4 +376,12 @@ public class UserController extends BaseController {
         System.out.println(list.toString());
         return new CommonResult();
     }
+
+    @GetMapping("getByColumnName")
+    public CommonResult getByColumnName(String columnName){
+        ListResult<Object> res = new ListResult<>();
+        List<Object> objects = userMapper.queryByColumnName(columnName);
+        res.setContent(objects);
+        return res;
+    }
 }

@@ -102,5 +102,9 @@
             #{id}
         </foreach>
     </select>
+
+    <select id="queryByColumnName" resultType="java.lang.Object">
+    select ${columnName} from t_user
+    </select>
 </mapper>
 
