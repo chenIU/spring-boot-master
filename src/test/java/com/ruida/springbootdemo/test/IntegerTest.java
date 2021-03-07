@@ -1,5 +1,8 @@
 package com.ruida.springbootdemo.test;
 
+import org.apache.lucene.util.RamUsageEstimator;
+import org.junit.Test;
+
 /**
  * @description: Integer体现了设计模式总的享元模式(flyweight)
  * @author: chenjy
@@ -40,5 +43,11 @@ public class IntegerTest {
         Integer i3 = 1000;
         int i4 = 1000;
         System.out.println(i3 == i4);
+    }
+
+    @Test
+    public void test1(){
+        Integer integer = new Integer(100);
+        System.out.println(RamUsageEstimator.shallowSizeOf(integer));
     }
 }
