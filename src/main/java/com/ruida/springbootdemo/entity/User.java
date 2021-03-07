@@ -3,9 +3,12 @@ package com.ruida.springbootdemo.entity;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.fasterxml.jackson.annotation.*;
+import com.ruida.springbootdemo.annotation.DesensitizeAnnotation;
 import com.ruida.springbootdemo.annotation.InEnum;
+import com.ruida.springbootdemo.enums.DesensitizationStrategy;
 import com.ruida.springbootdemo.enums.GenderEnum;
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -36,12 +39,14 @@ import java.util.List;
 @JsonPropertyOrder({"id","name"})
 @JsonRootName("User")
 @TableName(value = "t_user")
+@Getter
 public class User implements Serializable {
 
     private Integer id;
 
     @NotEmpty(message = "用户姓名不能为空")
     @TableField(value = "user_name")
+    @DesensitizeAnnotation(strategy = DesensitizationStrategy.USERNAME)
     private String username;
 
     private String password;
