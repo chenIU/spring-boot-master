@@ -210,7 +210,7 @@
   + Class<? extend T>:有上限,表示T或者T的子类,Class<? super T>:有下限,表示T后者T的父类
   
 + 四种引用类型的区别：
-  + 强引用(Strong Reference)：如果JVM垃圾回GC可达性分析为可达,即使JVM发生OOM改对象也不会被回收;
+  + 强引用(Strong Reference)：如果JVM垃圾回GC可达性分析为可达,即使JVM发生OOM该对象也不会被回收;
   + 软引用(Soft Reference)：在JVM内存充足的情况下,软引用对象不会被回收。当内存不足的时候,才会被垃圾回收器回收;
   + 弱引用(Weak Reference)：弱引用是一种比软引用更短的引用,不论当前内存是否充足,这些引用都只能活到下一次垃圾回收之前;
   + 虚引用(Phantom Reference)：最弱的一种引用类型,随时都有可能被GC回收
@@ -359,3 +359,30 @@
   + 分配一块内存M
   + 在内存M上初始化该对象
   + 将内存M的地址赋值给引用变量obj
+  
++ 不知道数组内部实现是数组还是链表，可以通过RandomAccess接口。 数组实现该接口，链表没有实现。
+
++ 频繁调用Collection.contains 方法建议使用Set，可以将时间复杂度由O(n)降低到O(1)
+
++ 工具类应该屏蔽构造函数
+
++ 应该使用String.valueOf(value)代替" " + value
+
++ 构造BigDecimal应该使用BigDecimal.valueOf(double) 而不是 new BigDecimal()
+
++ 需要Map的key和value时，应该迭代entrySet
+
++ 应该使用Collections.isEmpty()检测集合是否为空
+
++ ThreadLocal
+  + 为什么Entry弱引用于ThreadLocal对象? --> 如果是强引用，ThreadLocal对象就会和Entry对象存在强引用关联而无法被GC回收，造成内存泄露，除非线程结束
+    
+  + 内存泄露可能出现的时机? --> 只发生在ThreadLocal对象设为null到线程结束这段时间内
+    
+  + 为什么要调用remove()方法? --> 因为依然存在内存泄露问题，当把ThreadLocal对象的引用置为null后，没有任何强引用指向内存中的ThreadLocal实列，
+    threadLocals的key是它的弱引用，故它将被GC回收。但线程中threadLocals里的value却没有被回收，因为存在着一条从当前线程连接过来的强引用，
+    且无法再通过ThreadLocal对象的get方法获取到这个value，它将永远不会再被访问到了，所以还存在内存泄露的问题。
+    
+  + 一般来说只要线程对象及时被GC回收，就不会造成内存泄露，但是在使用线程池的时候，线程结束后不会被销毁，而是再次使用，这时候会造成真正的内存泄露。
+  
++ 任何一个类，只要没有成员变量，就是线程安全的。 原因：成员变量是分配在堆内存中的，堆中内容是线程共享的。
