@@ -715,4 +715,17 @@ public class TopTest {
 
         //另外，阿里巴巴代码规范不建议使用Apache 的BeanUtils.copyProperties，原因是性能较差。建议使用Spring BeanUtils 或者Cglib BeanCopier
     }
+
+    @org.junit.Test
+    public void test10(){
+        List<User> userList = Lists.newArrayList(
+                new User("Jack",10),
+                new User("Mike",30)
+        );
+
+        //使用list.clear效率比list.removeAll(list)高
+        userList.clear();
+        System.out.println(userList);
+        System.out.println(userList.size());
+    }
 }
