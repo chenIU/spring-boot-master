@@ -7,35 +7,50 @@ import org.springframework.context.ApplicationContextAware;
 import org.springframework.stereotype.Component;
 
 /**
- * @description:
+ * @description: ApplicationContextAware的作用是获取ApplicationContext对象
  * @author: chenjy
  * @create: 2020-04-28 11:20
  */
-@Component
 @Slf4j
-public class SpringUtil implements ApplicationContextAware {
+@Component
+public class SpringContextHolder implements ApplicationContextAware {
 
     private static ApplicationContext applicationContext;
 
     @Override
     public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
         log.info("applicationContext正在初始化...");
-        if (SpringUtil.applicationContext == null) {
-            this.applicationContext = applicationContext;
+        if (SpringContextHolder.applicationContext == null) {
+            SpringContextHolder.applicationContext = applicationContext;
         }
     }
 
-    //通过class获取bean
+    /**
+     * 通过class获取bean
+     * @param clazz
+     * @param <T>
+     * @return
+     */
     public static <T> T getBean(Class<T> clazz){
         return applicationContext.getBean(clazz);
     }
 
-    //通过name获取bean
+    /**
+     * 通过name获取bean
+     * @param name
+     * @return
+     */
     public static Object getBean(String name){
         return applicationContext.getBean(name);
     }
 
-    //通过name和clazz获取bean
+    /**
+     * 通过name和class获取bean
+     * @param name
+     * @param clazz
+     * @param <T>
+     * @return
+     */
     public static <T> T getBean(String name,Class<T> clazz){
         return applicationContext.getBean(name,clazz);
     }
@@ -43,9 +58,9 @@ public class SpringUtil implements ApplicationContextAware {
     public static ApplicationContext getApplicationContext(){
         return applicationContext;
     }
-    private SpringUtil(){
+
+    private SpringContextHolder(){
 
     }
-
 
 }

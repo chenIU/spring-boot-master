@@ -13,7 +13,7 @@ import com.ruida.springbootdemo.exception.BizException;
 import com.ruida.springbootdemo.mapper.UserMapper;
 import com.ruida.springbootdemo.service.UserService;
 import com.ruida.springbootdemo.service.impl.UserServiceImpl;
-import com.ruida.springbootdemo.utils.SpringUtil;
+import com.ruida.springbootdemo.utils.SpringContextHolder;
 import com.ruida.springbootdemo.utils.excel.ExcelHelper;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.poi.ss.usermodel.Workbook;
@@ -185,7 +185,7 @@ public class UserController extends BaseController {
 
     @RequestMapping(value = "getUserByAware",method = RequestMethod.GET)
     public User getUserByAware(@RequestParam("id")Integer id){
-        UserService userService = SpringUtil.getBean(UserServiceImpl.class);
+        UserService userService = SpringContextHolder.getBean(UserServiceImpl.class);
         return userService.selectUserById(id);
     }
 
