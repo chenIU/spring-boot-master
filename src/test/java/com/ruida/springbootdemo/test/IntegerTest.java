@@ -50,4 +50,15 @@ public class IntegerTest {
         Integer integer = new Integer(100);
         System.out.println(RamUsageEstimator.shallowSizeOf(integer));
     }
+
+    /**
+     * Integer.parseInt和Integer.valueOf方法的主要区别是返回值类型不同。一个是基本数据类型，一个是包装数据类型
+     */
+    @Test
+    public void test2(){
+        int i = Integer.parseInt("100");
+        Integer integer = Integer.valueOf("100");
+        System.out.println(i);
+        System.out.println(integer);
+    }
 }
