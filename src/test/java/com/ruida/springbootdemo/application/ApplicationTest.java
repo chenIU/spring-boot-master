@@ -48,6 +48,10 @@ public class ApplicationTest {
                 new User("Mike",30),
                 new User("Tony",20)
         );
+
         redisTemplate.opsForHash().put("test","user",userList);
+        redisTemplate.opsForHash().put("test","name","jack");
+
+        redisTemplate.opsForValue().set("name","Mike");
     }
 }
