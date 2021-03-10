@@ -56,6 +56,9 @@ public class TopTest {
 
     public static void main(String[] args) {
 
+        List<String> nameList = Stream.of("jack").collect(Collectors.toList());
+        System.out.println(nameList);
+
         //source tree
         System.out.println(URLEncoder.encode("编码"));
 
