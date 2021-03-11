@@ -32,7 +32,7 @@ public class UserServiceImpl implements UserService {
     @Resource
     private UserMapper userMapper;
     @Resource
-    private RedisTemplate redisTemplate;
+    private RedisTemplate<String,Object> redisTemplate;
 
     @Override
     @Transactional
@@ -100,7 +100,8 @@ public class UserServiceImpl implements UserService {
             //将token信息放入redis
             String key = String.format(JwtConstants.TOKEN_KEY, user.getId());
             redisTemplate.opsForValue().set(key,token);
-            redisTemplate.expire(key,JwtConstants.EXPIRATION, TimeUnit.SECONDS);//7天后过期
+            //7天后过期
+            redisTemplate.expire(key,JwtConstants.EXPIRATION, TimeUnit.SECONDS);
 
             map.add("token",token);
             map.setErrorMsg("登录成功!");

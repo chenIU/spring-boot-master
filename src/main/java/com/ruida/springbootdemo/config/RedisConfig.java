@@ -5,6 +5,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.serializer.GenericJackson2JsonRedisSerializer;
+import org.springframework.data.redis.serializer.GenericToStringSerializer;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
 
 /**
@@ -27,8 +28,8 @@ public class RedisConfig {
      * @return RedisTemplate对象
      */
     @Bean
-    public RedisTemplate<String,Object> redisTemplate(RedisConnectionFactory connectionFactory){
-        RedisTemplate<String, Object> redisTemplate = new RedisTemplate<>();
+    public RedisTemplate<Object,Object> redisTemplate(RedisConnectionFactory connectionFactory){
+        RedisTemplate<Object, Object> redisTemplate = new RedisTemplate<>();
 
         redisTemplate.setConnectionFactory(connectionFactory);
         redisTemplate.setDefaultSerializer(new GenericJackson2JsonRedisSerializer());
@@ -36,6 +37,9 @@ public class RedisConfig {
         StringRedisSerializer stringRedisSerializer = new StringRedisSerializer();
         redisTemplate.setKeySerializer(stringRedisSerializer);
         redisTemplate.setHashKeySerializer(stringRedisSerializer);
+
+        //使用GenericToStringSerializer的原因是value两端没有引号，更便于复制
+        redisTemplate.setValueSerializer(new GenericToStringSerializer<>(Object.class));
 
         return redisTemplate;
     }

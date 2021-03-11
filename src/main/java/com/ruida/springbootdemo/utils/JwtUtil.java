@@ -19,14 +19,14 @@ public class JwtUtil {
     public static String getToken(Map<String,String> payload){
 
         Calendar instance = Calendar.getInstance();
-        instance.add(Calendar.SECOND,JwtConstants.EXPIRATION);//token7天过期
+        //token7天过期
+        instance.add(Calendar.SECOND,JwtConstants.EXPIRATION);
 
         JWTCreator.Builder builder = JWT.create();
 
-        payload.forEach((k,v) -> builder.withClaim(k,v));
+        payload.forEach(builder::withClaim);
 
-        String token = builder.withExpiresAt(instance.getTime()).sign(Algorithm.HMAC256(JwtConstants.TOKEN_SALT));
-        return token;
+        return builder.withExpiresAt(instance.getTime()).sign(Algorithm.HMAC256(JwtConstants.TOKEN_SALT));
     }
 
     /**
