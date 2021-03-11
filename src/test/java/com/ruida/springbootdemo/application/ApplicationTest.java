@@ -12,6 +12,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.redis.core.RedisTemplate;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -23,7 +25,7 @@ import java.util.List;
 public class ApplicationTest {
 
     @Resource
-    private RedisTemplate redisTemplate;
+    private RedisTemplate<String,Object> redisTemplate;
     @Resource
     private Book book;
     @Autowired
@@ -53,5 +55,18 @@ public class ApplicationTest {
         redisTemplate.opsForHash().put("test","name","jack");
 
         redisTemplate.opsForValue().set("name","Mike");
+
+
+        //删除string类型
+        redisTemplate.delete("name");
+
+        //删除hash类型
+        redisTemplate.delete("test");
+
+        //批量删除
+        List<String> keys = new ArrayList<>(Arrays.asList("L1","S1"));
+        redisTemplate.delete(keys);
+
+        //删除都是调用RedisTemplate的delete方法，不区分数据类型
     }
 }
