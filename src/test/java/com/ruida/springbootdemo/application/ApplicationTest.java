@@ -6,6 +6,7 @@ import com.ruida.springbootdemo.entity.Org;
 import com.ruida.springbootdemo.entity.Unit;
 import com.ruida.springbootdemo.entity.User;
 import com.ruida.springbootdemo.model.Book;
+import com.ruida.springbootdemo.service.order.OrderProducer;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -32,6 +33,8 @@ public class ApplicationTest {
     private Org org;
     @Autowired
     private Unit unit;
+    @Resource
+    private OrderProducer orderProducer;
 
     @Test
     public void test1(){
@@ -68,5 +71,10 @@ public class ApplicationTest {
         redisTemplate.delete(keys);
 
         //删除都是调用RedisTemplate的delete方法，不区分数据类型
+    }
+
+    @Test
+    public void test(){
+        System.out.println(orderProducer.send(500));
     }
 }

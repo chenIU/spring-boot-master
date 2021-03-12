@@ -26,4 +26,6 @@ public class SystemConstant {
     public static final String UTF8 = "UTF-8";
 
     public static final String DEFAULT_FONT_NAME = "宋体";
+
+    public static final String GID = "GID_order_group_";
 }
