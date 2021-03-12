@@ -366,6 +366,12 @@
 			<artifactId>lucene-core</artifactId>
 			<version>4.0.0</version>
 		</dependency>
+
+		<dependency>
+			<groupId>com.aliyun.openservices</groupId>
+			<artifactId>ons-client</artifactId>
+			<version>1.8.7.1.Final</version>
+		</dependency>
 	</dependencies>
 
 	<repositories>
