@@ -4,7 +4,7 @@ import com.ruida.springbootdemo.config.DBConfig;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.ApplicationListener;
-import org.springframework.stereotype.Component;
+
 import javax.annotation.Resource;
 
 /**
@@ -12,8 +12,8 @@ import javax.annotation.Resource;
  * @author: chenjy
  * @create: 2020-12-16 15:11
  */
-@Component
 @Slf4j
+//@Component
 public class StartListener implements ApplicationListener<ApplicationReadyEvent> {
 
     @Resource
@@ -22,8 +22,8 @@ public class StartListener implements ApplicationListener<ApplicationReadyEvent>
     @Override
     public void onApplicationEvent(ApplicationReadyEvent applicationReadyEvent) {
         log.error("项目启动监听...");
-        for(Object key:dbConfig.properties.keySet()){
-            log.info("{}={}",key,dbConfig.properties.getProperty((String) key));
+        for(Object key: DBConfig.properties.keySet()){
+            log.info("{}={}",key, DBConfig.properties.getProperty((String) key));
         }
     }
 }
