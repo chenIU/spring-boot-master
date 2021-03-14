@@ -106,7 +106,7 @@
 
 + 整型最高位0表示正数，1表示负数。
 
-+ JDK1.7中HashMap冲突时，链表采用头插法；1.8采用尾插法。
++ JDK1.7中HashMap冲突时，链表采用头插法；1.8采用尾插法。 原因是头插法会在map扩容,rehash的时候改变链表的顺序，导致出现环，进而导致死循环。
 
 + String、StringBuilder、StringBuffer的区别和联系：
   + String 底层采用了一个不可变字符数组private final char value[],所以它的内容不可变;
@@ -282,7 +282,12 @@
 
 + PreparedStatement和Statement的主要区别：前者是预编译的，可以防止SQL注入，而后者不能。
 
-+ Spring常见的注入方式：setter、constructor、注解
++ Spring常见的注入方式：setter方法注入、构造器注入、filed/注解/变量/ 注入
++ 不推荐使用字段注入的原因:
+  + 目标类的依赖对象可能有很多个，违反了单一职责原则（SPR）
+  + 对单元测试不友好，没办法直接初始化这个类，必须依赖DI容器，和DI容器强耦合
+  + 类的依赖被隐藏依赖，并不能像构造器那样在初始化时，就知道这个类有哪些依赖
++ 使用构造器注入还是setter方法注入-->构造函数注入适合于强制依赖，setter注入适合于可选依赖项
 
 + Spring的核心类：DispatcherServlet
 
@@ -368,7 +373,7 @@
 
 + 应该使用String.valueOf(value)代替" " + value
 
-+ 构造BigDecimal应该使用BigDecimal.valueOf(double) 而不是 new BigDecimal()
++ 构造BigDecimal应该使用BigDecimal.valueOf(double) 而不是 new BigDecimal(double)
 
 + 需要Map的key和value时，应该迭代entrySet
 
@@ -386,3 +391,14 @@
   + 一般来说只要线程对象及时被GC回收，就不会造成内存泄露，但是在使用线程池的时候，线程结束后不会被销毁，而是再次使用，这时候会造成真正的内存泄露。
   
 + 任何一个类，只要没有成员变量，就是线程安全的。 原因：成员变量是分配在堆内存中的，堆中内容是线程共享的。
+
++ 当一个接口有多个实现类时，只用@Autowired会报错，必须结合@Qualifer使用
+
++ synchronized锁的是谁?
+  + 修饰普通方法 -> 锁的是方法的调用者
+  + 修饰静态方法 -> 锁的是类
+  + 修饰代码块  -> 锁的是传入的对象
+  
++ 一般来说获取springContext的方式主要有两种，直接注入ApplicationContext和实现ApplicationContextAware接口，后者的好处是可以在非Spring托管的bean中获取到spring上下文对象（utils中获取dao等）
+
++ JDK动态代理基于接口，cglib动态代理基于继承。spring中两种方式都使用。
