@@ -178,4 +178,14 @@ public class MapTest {
         }
         return result;
     }
+
+    @Test
+    public void test3(){
+        List<String> animals = Arrays.asList("dog", "cat", "cat", "dog", "fish", "dog");
+        Map<String, Integer> map = new HashMap<>();
+        for(String animal : animals){
+            map.compute(animal, (k, v) -> v == null ? 1 : ++v);
+        }
+        System.out.println(map);
+    }
 }
