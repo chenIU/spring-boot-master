@@ -53,7 +53,7 @@
   + compile,默认值是compile。compile表示被依赖的项目需要参与当前项目的编译,包括后续的测试和运行周期也参与其中,是一种比较强的依赖。打包的时候通常需要包含进去。
   + test 表示被依赖的项目仅仅参与参与测试相关的工作,包括测试代码的编译和执行,比较典型的是junit。
   + runtime 表示被依赖的项目无需参与项目的编译,不过后期的测试和运行需要其参与。与compile相比,跳过编译而已。
-  + provided 以为着打包的时候不需要包含进去,别的终端设施(web container)会提供。事实上该依赖理论上可以参与编译、测试和运行。相当于compile,但是在打包阶段做了exclude的动作。
+  + provided 意味着打包的时候不需要包含进去,别的终端设施(web container)会提供。事实上该依赖理论上可以参与编译、测试和运行。相当于compile,但是在打包阶段做了exclude的动作。
   + system 和provided相同,不过依赖不会从maven仓库中获取,而是在本地文件系统中拿,一定要配合systemPath使用。
   
 + HikariPool在配置单数据源时DataSource是:spring.datasource.url;多数据源时是:spring.datasource.jdbc-url
@@ -402,3 +402,9 @@
 + 一般来说获取springContext的方式主要有两种，直接注入ApplicationContext和实现ApplicationContextAware接口，后者的好处是可以在非Spring托管的bean中获取到spring上下文对象（utils中获取dao等）
 
 + JDK动态代理基于接口，cglib动态代理基于继承。spring中两种方式都使用。
+
++ 内部类和静态内部类的主要区别：
+  + 静态内部类创建对象的时候，独立于外部类及其对象，就好像它是一个独立的类，可以和外部类一样使用；
+  + 内部类创建对象的时候，不能独立外部类对象，必须先创建外部类对象，然后利用这个对象new出内部类对象。
+  
++ spi是一种服务发现机制 --> 在classpath下添加一个文件，文件名是接口的全限定类名，内容是接口实现类的全限定类名，多个实现类用换行符分割。
