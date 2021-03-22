@@ -212,7 +212,7 @@
 + 四种引用类型的区别：
   + 强引用(Strong Reference)：如果JVM垃圾回GC可达性分析为可达,即使JVM发生OOM该对象也不会被回收;
   + 软引用(Soft Reference)：在JVM内存充足的情况下,软引用对象不会被回收。当内存不足的时候,才会被垃圾回收器回收;
-  + 弱引用(Weak Reference)：弱引用是一种比软引用更短的引用,不论当前内存是否充足,这些引用都只能活到下一次垃圾回收之前;
+  + 弱引用(Weak Reference)：弱引用是一种比软引用更短地引用,不论当前内存是否充足,这些引用都只能活到下一次垃圾回收之前;
   + 虚引用(Phantom Reference)：最弱的一种引用类型,随时都有可能被GC回收
   
 + final关键字的功能概述
@@ -278,7 +278,7 @@
   + 方法引用和构造器引用
   + 接口中静态方法和默认方法
   
-+ @Configuration和@Component注解的主要区别是：前者会被ConfigurationClassPostProcessor后者拦截器拦截,被代理,相同的类会复用(singleton)。
++ @Configuration和@Component注解的主要区别是：前者会被ConfigurationClassPostProcessor后置拦截器拦截,被代理,相同的类会复用(singleton)。
 
 + PreparedStatement和Statement的主要区别：前者是预编译的，可以防止SQL注入，而后者不能。
 
@@ -302,7 +302,7 @@
 + volatile和synchronized的区别：
   + volatile仅可改变变量的可见性；而synchronized可以保证变量的可见性和原子性
   + volatile只可作用于变量；而synchronized可以作用在变量、方法和类上
-  + volatile不回造成线程阻塞；而synchronized会造成线程阻塞
+  + volatile不会造成线程阻塞；而synchronized会造成线程阻塞
   
 + mybatis的底层是基于jdk动态代理(**MappedStatement**对象)，利用RowBounds对象进行分页
 
@@ -331,7 +331,7 @@
 
 + a.compareTo(b)：返回-1表示a小于b；返回0表示a等于b；返回1表示a大于b。
 
-+ JDK动态代理只能代理实现接口的类，而cglib动态代理则没有这个问题。
++ jdk动态代理只能代理实现接口的类，而cglib动态代理则没有这个限制。
 
 + 链表的查询时间复杂度是O(N),红黑树的查询时间复杂度是O(lgN).
 
@@ -412,3 +412,9 @@
 + 缓存雪崩：大量key同时失效
 + 缓存穿透：大量非法的key，导致越过redis，直接请求到数据库
 + 缓存击穿：某一个热点的key突然失效，导致多个请求都打到数据库上
+
++ MyBatis插件主要操作对象和方法
+  + Executor (update, query, flushStatements, commit, rollback, getTransaction, close, isClosed)
+  + ParameterHandler (getParameterObject, setParameters)
+  + ResultSetHandler (handleResultSets, handleOutputParameters)
+  + StatementHandler (prepare, parameterize, batch, update, query)
