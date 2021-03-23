@@ -16,9 +16,11 @@ import org.reflections.Reflections;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.test.context.junit4.SpringRunner;
 import javax.annotation.Resource;
 import java.util.Set;
+import java.util.concurrent.TimeUnit;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes= SpringBootDemoApplication.class)
@@ -35,6 +37,8 @@ public class SpringBootDemoApplicationTests {
 	Apple apple;
 	@Resource
 	Banana banana;
+	@Resource
+	private RedisTemplate<String,Object> redisTemplate;
 
 	@Test
 	public void contextLoads() {
@@ -94,5 +98,10 @@ public class SpringBootDemoApplicationTests {
 
 		//报错
 		testNotNullService.show(0,null);
+	}
+
+	@Test
+	public void testRedisLock(){
+		redisTemplate.opsForValue().setIfAbsent("LOCK_ORDER_100",Thread.currentThread().getId(),30, TimeUnit.SECONDS);
 	}
 }
