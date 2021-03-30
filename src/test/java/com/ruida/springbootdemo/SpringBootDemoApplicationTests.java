@@ -20,6 +20,7 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.test.context.junit4.SpringRunner;
 import javax.annotation.Resource;
 import java.util.Set;
+import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 
 @RunWith(SpringRunner.class)
@@ -102,6 +103,7 @@ public class SpringBootDemoApplicationTests {
 
 	@Test
 	public void testRedisLock(){
-		redisTemplate.opsForValue().setIfAbsent("LOCK_ORDER_100",Thread.currentThread().getId(),30, TimeUnit.SECONDS);
+		//redisTemplate.opsForValue().setIfAbsent("LOCK_ORDER_100",Thread.currentThread().getId(),30, TimeUnit.SECONDS);
+		System.out.println(redisTemplate.opsForValue().setIfAbsent("lock", UUID.randomUUID(), 60L, TimeUnit.SECONDS));
 	}
 }
