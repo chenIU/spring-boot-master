@@ -22,6 +22,8 @@ import java.util.List;
  * @description: 用户
  * @author: chenjy
  * @create: 2020-04-27 15:10
+ * {@link GenderEnum}
+ * @see com.ruida.springbootdemo.enums.GenderEnum
  * <p>
  * 1、JsonIgnore用户排除某个属性，作用于字段
  * 2、JsonIgnoreProperties类注解，在序列化为json时排除某些属性
