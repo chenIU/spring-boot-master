@@ -1,13 +1,14 @@
 package com.ruida.springbootdemo;
 
 import com.ruida.springbootdemo.annotation.MyAnnotation;
-import com.ruida.springbootdemo.entity.bean.TestBean;
 import com.ruida.springbootdemo.config.ApplicationContextConfig;
+import com.ruida.springbootdemo.entity.bean.TestBean;
 import com.ruida.springbootdemo.entity.fruit.Apple;
 import com.ruida.springbootdemo.entity.fruit.Banana;
 import com.ruida.springbootdemo.service.Vehicle;
 import com.ruida.springbootdemo.service.impl.TestNotNullService;
 import com.ruida.springbootdemo.service.impl.UserServiceImpl;
+import com.ruida.springbootdemo.utils.LockUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.junit.Test;
@@ -105,5 +106,22 @@ public class SpringBootDemoApplicationTests {
 	public void testRedisLock(){
 		//redisTemplate.opsForValue().setIfAbsent("LOCK_ORDER_100",Thread.currentThread().getId(),30, TimeUnit.SECONDS);
 		System.out.println(redisTemplate.opsForValue().setIfAbsent("lock", UUID.randomUUID(), 60L, TimeUnit.SECONDS));
+	}
+
+	@Test
+	public void testRedisLock2(){
+		String lockKey = "SyncData";
+		String requiredId = UUID.randomUUID().toString();
+
+		System.out.println("是否成功获取锁：" + LockUtil.tryLock(lockKey, requiredId , 60, 5, 1000));
+
+		//模拟业务执行时间
+		try {
+			TimeUnit.SECONDS.sleep(30);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+
+		System.out.println("是否成功释放锁：" + LockUtil.releaseLock(lockKey, requiredId));
 	}
 }
