@@ -9,6 +9,7 @@ import com.ruida.springbootdemo.service.Vehicle;
 import com.ruida.springbootdemo.service.impl.TestNotNullService;
 import com.ruida.springbootdemo.service.impl.UserServiceImpl;
 import com.ruida.springbootdemo.utils.LockUtil;
+import com.ruida.springbootdemo.utils.SnowflakeUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.junit.Test;
@@ -19,6 +20,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.test.context.junit4.SpringRunner;
+
 import javax.annotation.Resource;
 import java.util.Set;
 import java.util.UUID;
@@ -123,5 +125,10 @@ public class SpringBootDemoApplicationTests {
 		}
 
 		System.out.println("是否成功释放锁：" + LockUtil.releaseLock(lockKey, requiredId));
+	}
+
+	@Test
+	public void testSnowflake(){
+		System.out.println(SnowflakeUtil.nextId());
 	}
 }
