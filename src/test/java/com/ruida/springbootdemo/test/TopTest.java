@@ -56,6 +56,8 @@ public class TopTest {
 
     public static void main(String[] args) {
 
+        System.out.println(System.currentTimeMillis());//系统时间毫秒数13位
+
         List<String> nameList = Stream.of("jack").collect(Collectors.toList());
         System.out.println(nameList);
 
