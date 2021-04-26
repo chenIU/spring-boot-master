@@ -65,4 +65,12 @@ public class BizException extends RuntimeException {
         this.httpStatus = errorEnum.getHttpStatus();
     }
 
+    /**
+     *
+     * 自定义异常不再爬取堆栈，提高性能
+     */
+    @Override
+    public synchronized Throwable fillInStackTrace() {
+        return this;
+    }
 }

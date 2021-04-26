@@ -16,6 +16,8 @@ import com.ruida.springbootdemo.constant.MIMEType;
 import com.ruida.springbootdemo.entity.User;
 import com.ruida.springbootdemo.entity.dto.UserDTO;
 import com.ruida.springbootdemo.entity.fruit.Apple;
+import com.ruida.springbootdemo.enums.ErrorEnum;
+import com.ruida.springbootdemo.exception.BizException;
 import com.ruida.springbootdemo.generic.A;
 import com.ruida.springbootdemo.model.Book;
 import com.ruida.springbootdemo.model.Cat;
@@ -732,5 +734,10 @@ public class TopTest {
         userList.clear();
         System.out.println(userList);
         System.out.println(userList.size());
+    }
+
+    @org.junit.Test
+    public void test(){
+        throw new BizException(ErrorEnum.SERVER_ERR.getErrorCode(),"自定义异常");
     }
 }
