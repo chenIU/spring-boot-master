@@ -48,3 +48,8 @@ time:
 customize:
   null-value:
     enable: false
+
+myApp:
+  system:
+    snowflake:
+      workerId: 0
