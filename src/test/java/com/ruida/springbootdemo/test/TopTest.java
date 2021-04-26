@@ -11,6 +11,7 @@
 
 package com.ruida.springbootdemo.test;
 
+import cn.hutool.core.util.IdUtil;
 import com.google.common.collect.Lists;
 import com.ruida.springbootdemo.constant.MIMEType;
 import com.ruida.springbootdemo.entity.User;
@@ -57,6 +58,8 @@ public class TopTest {
     int count;//非final类型的变量不必初始化,编译器会为此变量赋默认值
 
     public static void main(String[] args) {
+
+        System.out.println(IdUtil.fastUUID());
 
         System.out.println(20302 / 100);//203
         System.out.println(20302 % 100);//2
