@@ -140,4 +140,11 @@ public class StringTest {
             System.out.println(s);
         }
     }
+
+    @Test
+    public void test5(){
+        String str = "         分割符号的法国发过法国发过覆盖给";
+        String s = str.replaceAll("\\s", "&nbsp;");
+        System.out.println(s);
+    }
 }
