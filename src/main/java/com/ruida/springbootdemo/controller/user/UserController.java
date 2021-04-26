@@ -15,6 +15,7 @@ import com.ruida.springbootdemo.service.UserService;
 import com.ruida.springbootdemo.service.impl.UserServiceImpl;
 import com.ruida.springbootdemo.utils.SpringContextHolder;
 import com.ruida.springbootdemo.utils.excel.ExcelHelper;
+import eu.bitwalker.useragentutils.UserAgent;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +24,8 @@ import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -310,6 +313,11 @@ public class UserController extends BaseController {
     public String test(String id,String name){
         log.info("===============id:{}",id);
         log.info("===============name:{}",name);
+        ServletRequestAttributes requestAttributes = (ServletRequestAttributes)RequestContextHolder.getRequestAttributes();
+        HttpServletRequest request = requestAttributes.getRequest();
+        String userAgentStr = request.getHeader("User-Agent");
+        UserAgent userAgent = UserAgent.parseUserAgentString(userAgentStr);
+        log.warn("系统名称：[{}]，浏览器名称：[{}]",userAgent.getOperatingSystem().getName(),userAgent.getBrowser().getName());
         return id + "," + name;
     }
 
