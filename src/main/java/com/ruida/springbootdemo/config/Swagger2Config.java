@@ -31,12 +31,20 @@ import java.util.ArrayList;
 @Import(BeanValidatorPluginsConfiguration.class)
 public class Swagger2Config {
 
+    private boolean enable;
+
+    @Value("${swagger.enable:false}")
+    private void setEnable(boolean enable){
+        this.enable = enable;
+    }
+
     @Value("${server.port}")
     private String port;
 
     @Bean(value = "defaultApi2")
     public Docket defaultApi2() {
         Docket docket=new Docket(DocumentationType.SWAGGER_2)
+                .enable(enable)
                 .apiInfo(apiInfo())
                 //分组名称
                 .groupName("2.X版本")

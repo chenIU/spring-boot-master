@@ -53,3 +53,6 @@ myApp:
   system:
     snowflake:
       workerId: 0
+
+swagger:
+  enable: false
