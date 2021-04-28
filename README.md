@@ -485,3 +485,9 @@
   + 内存泄露：无用对象没有回收
   
 + 在多核CPU下，使用总线嗅探技术，保证内存可见性
+
++ Precondition.checkArgument()、Precondition.checkState()
+
++ 先执行过滤器，再执行拦截器
+
++ StandardCharsets.UTF-8

@@ -53,7 +53,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
     @Override
     public void addCorsMappings(CorsRegistry registry) {
         if(Boolean.valueOf(cors)){
-            log.warn("open cors...");
+            //log.warn("open cors...");
             registry.addMapping("/**")
                     .allowedOrigins("http://localhost:8081")
                     .allowedHeaders("*")

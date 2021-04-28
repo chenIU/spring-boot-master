@@ -27,7 +27,7 @@ public class SpringBootDemoApplication{
 	public static void main(String[] args) {
 		//http://localhost:8080/actuator 监控
 		SpringApplication.run(SpringBootDemoApplication.class, args);
-		log.warn("application start successful...");
+		log.warn("Application started successfully...");
 	}
 
 }
