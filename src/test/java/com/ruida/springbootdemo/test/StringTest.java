@@ -147,4 +147,9 @@ public class StringTest {
         String s = str.replaceAll("\\s", "&nbsp;");
         System.out.println(s);
     }
+
+    @Test
+    public void test6(){
+        System.out.println("\u4f18\u79c0");
+    }
 }
