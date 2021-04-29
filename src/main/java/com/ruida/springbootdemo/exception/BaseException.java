@@ -7,7 +7,7 @@ import com.ruida.springbootdemo.enums.ErrorEnum;
  * @author: chenjy
  * @create: 2020-03-30 10:06
  */
-public class BizException extends RuntimeException {
+public class BaseException extends RuntimeException {
 
     private String errorCode;
 
@@ -44,22 +44,22 @@ public class BizException extends RuntimeException {
         return this.errorMsg;
     }
 
-    public BizException(){
+    public BaseException(){
         super();
     }
 
-    public BizException(String errorCode,String errorMsg){
+    public BaseException(String errorCode, String errorMsg){
         this.errorCode = errorCode;
         this.errorMsg = errorMsg;
     }
 
-    public BizException(String errorCode, String errorMsg, int httpStatus){
+    public BaseException(String errorCode, String errorMsg, int httpStatus){
         this.errorCode = errorCode;
         this.errorMsg = errorMsg;
         this.httpStatus = httpStatus;
     }
 
-    public BizException(ErrorEnum errorEnum){
+    public BaseException(ErrorEnum errorEnum){
         this.errorCode = errorEnum.getErrorCode();
         this.errorMsg = errorEnum.getErrorMsg();
         this.httpStatus = errorEnum.getHttpStatus();

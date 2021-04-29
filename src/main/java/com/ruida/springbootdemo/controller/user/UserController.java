@@ -9,7 +9,7 @@ import com.ruida.springbootdemo.entity.result.ListResult;
 import com.ruida.springbootdemo.entity.result.MapResult;
 import com.ruida.springbootdemo.entity.result.PojoResult;
 import com.ruida.springbootdemo.enums.ErrorEnum;
-import com.ruida.springbootdemo.exception.BizException;
+import com.ruida.springbootdemo.exception.BaseException;
 import com.ruida.springbootdemo.mapper.UserMapper;
 import com.ruida.springbootdemo.service.UserService;
 import com.ruida.springbootdemo.service.impl.UserServiceImpl;
@@ -139,7 +139,7 @@ public class UserController extends BaseController {
 
     @GetMapping("exception")
     public CommonResult exception() {
-        throw new BizException("E_100500", "手机号码绑定失败", 500);
+        throw new BaseException("E_100500", "手机号码绑定失败", 500);
     }
 
     @GetMapping("getUserInfo")
@@ -260,7 +260,7 @@ public class UserController extends BaseController {
 
     @RequestMapping(value = "testMapResult",method = RequestMethod.GET)
     public PojoResult<User> testMapResult(){
-        throw new BizException("500","出现异常了...");
+        throw new BaseException("500","出现异常了...");
         //return  new MapResult();
     }
 

@@ -1,7 +1,7 @@
 package com.ruida.springbootdemo.core.handler;
 
 import com.ruida.springbootdemo.entity.result.CommonResult;
-import com.ruida.springbootdemo.exception.BizException;
+import com.ruida.springbootdemo.exception.BaseException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.BindingResult;
@@ -55,9 +55,9 @@ public class GlobalExceptionHandler {
      * @return
      */
     @ResponseBody
-    @ExceptionHandler(BizException.class)
+    @ExceptionHandler(BaseException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
-    public CommonResult bizExceptionHandler(BizException e){
+    public CommonResult bizExceptionHandler(BaseException e){
         //log.error("业务异常={}", JSONObject.toJSON(e));
         CommonResult commonResult = new CommonResult(e.getErrorCode(),e.getErrorMsg());
         return commonResult;

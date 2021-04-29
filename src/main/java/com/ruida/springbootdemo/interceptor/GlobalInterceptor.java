@@ -1,7 +1,7 @@
 package com.ruida.springbootdemo.interceptor;
 
 import com.ruida.springbootdemo.enums.ErrorEnum;
-import com.ruida.springbootdemo.exception.BizException;
+import com.ruida.springbootdemo.exception.BaseException;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
@@ -41,7 +41,7 @@ public class GlobalInterceptor implements HandlerInterceptor {
     private boolean check(HttpServletRequest request,HttpServletResponse response){
         String requestHeader = request.getHeader("Authorization");
         if(null==requestHeader||"".equals(requestHeader)){
-            throw new BizException(ErrorEnum.E_10001);
+            throw new BaseException(ErrorEnum.E_10001);
         }
         return true;
     }

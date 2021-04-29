@@ -3,7 +3,7 @@ package com.ruida.springbootdemo.controller.upload;
 import com.ruida.springbootdemo.entity.result.CommonResult;
 import com.ruida.springbootdemo.config.ImageConfig;
 import com.ruida.springbootdemo.constant.SystemConstant;
-import com.ruida.springbootdemo.exception.BizException;
+import com.ruida.springbootdemo.exception.BaseException;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -41,10 +41,10 @@ public class UploadController {
                 String path = imageConfig.getImgPath() + imageConfig.getSubPath() + "/";
                 file.transferTo(new File(path + name));
             } catch (Exception e) {
-                throw new BizException("500", "图片上传失败");
+                throw new BaseException("500", "图片上传失败");
             }
         } else {
-            throw new BizException("500", "图片格式不正确");
+            throw new BaseException("500", "图片格式不正确");
         }
         return result;
     }

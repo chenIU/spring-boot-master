@@ -3,7 +3,7 @@ package com.ruida.springbootdemo.aop;
 import com.alibaba.fastjson.JSONObject;
 import com.ruida.springbootdemo.entity.result.CommonResult;
 import com.ruida.springbootdemo.enums.ErrorEnum;
-import com.ruida.springbootdemo.exception.BizException;
+import com.ruida.springbootdemo.exception.BaseException;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
@@ -99,7 +99,7 @@ public class WebLogAspect {
 
             result = pjp.proceed();
             stopWatch.stop();
-        }catch (BizException biz){
+        }catch (BaseException biz){
             log.error("around 业务异常信息：{}",biz.getErrorMsg());
             if(VOID_TYPE.equals(returnType.getTypeName())){
                 return errorResult;

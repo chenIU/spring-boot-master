@@ -18,7 +18,7 @@ import com.ruida.springbootdemo.entity.User;
 import com.ruida.springbootdemo.entity.dto.UserDTO;
 import com.ruida.springbootdemo.entity.fruit.Apple;
 import com.ruida.springbootdemo.enums.ErrorEnum;
-import com.ruida.springbootdemo.exception.BizException;
+import com.ruida.springbootdemo.exception.BaseException;
 import com.ruida.springbootdemo.generic.A;
 import com.ruida.springbootdemo.model.Book;
 import com.ruida.springbootdemo.model.Cat;
@@ -744,6 +744,6 @@ public class TopTest {
 
     @org.junit.Test
     public void test(){
-        throw new BizException(ErrorEnum.SERVER_ERR.getErrorCode(),"自定义异常");
+        throw new BaseException(ErrorEnum.SERVER_ERR.getErrorCode(),"自定义异常");
     }
 }
