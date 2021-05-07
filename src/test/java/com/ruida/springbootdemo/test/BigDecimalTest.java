@@ -1,5 +1,7 @@
 package com.ruida.springbootdemo.test;
 
+import org.junit.Test;
+
 import java.math.BigDecimal;
 
 /**
@@ -69,5 +71,17 @@ public class BigDecimalTest {
         System.out.printf("字母A的散列码是：%h %n", 'A');
         System.out.printf("布尔结果是：%b", "小超".equals("帅哥"));*/
 
+    }
+
+    @Test
+    public void test(){
+        BigDecimal bd = new BigDecimal("1E13");
+        System.out.println(bd);
+        System.out.println(bd.toPlainString());
+        System.out.println(bd.toEngineeringString());
+
+        // toString()：有必要时使用科学计数法
+        // toPlainString()：不使用任何指数
+        // toEngineeringString()：有必要时使用工程计数法。工程记数法是一种工程计算中经常使用的记录数字的方法，与科学技术法类似，但要求10的幂必须是3的倍数
     }
 }
