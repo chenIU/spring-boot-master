@@ -6,6 +6,8 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.PostConstruct;
+
 /**
  * @description: ApplicationContextAware的作用是获取ApplicationContext对象
  * @author: chenjy
@@ -16,6 +18,19 @@ import org.springframework.stereotype.Component;
 public class SpringContextHolder implements ApplicationContextAware {
 
     private static ApplicationContext applicationContext;
+
+    /**
+     * 特点
+     * 1、只有一个非静态方法能使用此注解
+     * 2、被注解的方法不得有任何参数
+     * 3、被注解的方法返回值必须为void
+     * 4、被注解方法不得抛出已检查异常
+     * 5、此方法只会被执行一次
+     */
+    @PostConstruct
+    public void init(){
+        log.info("init...");
+    }
 
     @Override
     public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
