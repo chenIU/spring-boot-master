@@ -746,4 +746,19 @@ public class TopTest {
     public void test(){
         throw new BaseException(ErrorEnum.SERVER_ERR.getErrorCode(),"自定义异常");
     }
+
+    @org.junit.Test
+    public void test11() {
+        int count = 0;
+        int total = 0;
+        for (int i = 0; i < 10; i++) {
+            if (count == 5) {
+                System.out.println(count);
+                break;
+            }
+            count++;
+            total++;
+        }
+        System.out.println("一共执行了" + total + "次");
+    }
 }
