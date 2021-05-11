@@ -392,4 +392,12 @@ public class UserController extends BaseController {
         res.setContent(objects);
         return res;
     }
+
+    @GetMapping("getUserWithCache")
+    public CommonResult getUserWithCache(Integer userId){
+        User user = userService.getUserWithCache(userId);
+        PojoResult<User> result = new PojoResult<>();
+        result.setContent(user);
+        return result;
+    }
 }

@@ -1,6 +1,8 @@
 package com.ruida.springbootdemo.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.google.common.cache.Cache;
+import com.google.common.cache.CacheBuilder;
 import com.ruida.springbootdemo.constant.JwtConstants;
 import com.ruida.springbootdemo.entity.User;
 import com.ruida.springbootdemo.entity.result.MapResult;
@@ -33,6 +35,16 @@ public class UserServiceImpl implements UserService {
     private UserMapper userMapper;
     @Resource
     private RedisTemplate<String,Object> redisTemplate;
+
+    private final static Cache<String,Object> CACHE = CacheBuilder.newBuilder()
+            //设置cache的初始大小为10，要合理设置该值
+            .initialCapacity(10)
+            //设置并发数为5，即同一时间最多只能有5个线程往cache执行写入操作
+            .concurrencyLevel(5)
+            //设置cache中的数据在写入之后的存活时间为一天
+            .expireAfterWrite(1,TimeUnit.DAYS)
+            //构建实例
+            .build();
 
     @Override
     @Transactional
@@ -121,5 +133,18 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<User> selectAllUsers(String orderBy) {
         return userMapper.selectAllUsers(orderBy);
+    }
+
+    @Override
+    public User getUserWithCache(Integer userId){
+        // 优先从缓存中获取
+        Object cacheObj = CACHE.getIfPresent("userId:" + userId);
+        if(cacheObj != null){
+            return (User) cacheObj;
+        }
+
+        User user = userMapper.selectUserById(userId);
+        CACHE.put("userId:" + userId , user);
+        return user;
     }
 }

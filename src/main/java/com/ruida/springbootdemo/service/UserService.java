@@ -25,4 +25,6 @@ public interface UserService {
     Integer insertNameAndAge(String username,int age);
 
     List<User> selectAllUsers(String orderBy);
+
+    User getUserWithCache(Integer userId);
 }
