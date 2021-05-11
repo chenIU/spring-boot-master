@@ -4,6 +4,7 @@ import com.google.common.collect.Lists;
 import org.junit.Test;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -47,5 +48,34 @@ public class ArrayListTest {
         List<Integer> list = Lists.newArrayList(10,8,20,3,89,30);
         list = list.stream().sorted(Integer::compareTo).collect(Collectors.toList());
         System.out.println(list);
+    }
+
+    @Test
+    public  void  test4(){
+        List<Integer>  list  = Lists.newArrayList();
+        for(int i=1;i<=5;i++){
+            list.add(i);
+        }
+        Iterator<Integer> iterator = list.iterator();
+        while(iterator.hasNext()){
+            Integer integer = iterator.next();
+            if(integer==3)
+                list.remove(integer);
+        }
+    }
+
+    @Test
+    public void test5() {
+        List<Integer> list = Lists.newArrayList();
+        list.add(1);
+        list.add(2);
+        list.add(2);
+        list.add(2);
+        Iterator<Integer> iterator = list.iterator();
+        while (iterator.hasNext()) {
+            Integer integer = iterator.next();
+            if (integer == 2)
+                iterator.remove();
+        }
     }
 }
