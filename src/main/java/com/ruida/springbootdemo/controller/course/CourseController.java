@@ -31,9 +31,9 @@ public class CourseController {
         CommonResult result = null;
         Course c = courseDao.save(course);
         if (c != null) {
-            result = new CommonResult(ErrorEnum.OK);
+            result = CommonResult.build(ErrorEnum.OK);
         }else {
-            result =  new CommonResult(ErrorEnum.ERROR);
+            result =  CommonResult.build(ErrorEnum.ERROR);
         }
         return result;
     }
@@ -43,9 +43,9 @@ public class CourseController {
         CommonResult result;
         Course course = courseDao.selectById(id);
         if (course != null) {
-            result = new CommonResult(ErrorEnum.OK.getErrorCode(),ErrorEnum.OK.getErrorMsg());
+            result = CommonResult.build(ErrorEnum.OK.getErrorCode(),ErrorEnum.OK.getErrorMsg());
         }else {
-            result = new CommonResult(ErrorEnum.NO_DATA);
+            result = CommonResult.build(ErrorEnum.NO_DATA);
         }
         return result;
     }

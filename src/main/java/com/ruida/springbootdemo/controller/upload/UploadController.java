@@ -41,10 +41,10 @@ public class UploadController {
                 String path = imageConfig.getImgPath() + imageConfig.getSubPath() + "/";
                 file.transferTo(new File(path + name));
             } catch (Exception e) {
-                throw new BaseException("500", "图片上传失败");
+                throw new BaseException(500, "图片上传失败");
             }
         } else {
-            throw new BaseException("500", "图片格式不正确");
+            throw new BaseException(500, "图片格式不正确");
         }
         return result;
     }

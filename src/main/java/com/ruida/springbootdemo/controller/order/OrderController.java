@@ -29,8 +29,7 @@ public class OrderController {
     public ListResult<Order> list(){
         ListResult<Order> result = new ListResult<>();
         result.setContent(orderService.list(null));
-        result.setSuccess(true);
-        result.setErrorMsg("查询成功!");
+        result.setMsg("查询成功!");
         return result;
     }
 
@@ -38,8 +37,7 @@ public class OrderController {
     public CommonResult add(@RequestBody Order order){
         orderService.save(order);
         CommonResult result = new CommonResult();
-        result.setSuccess(true);
-        result.setErrorMsg("插入成功!");
+        result.setMsg("插入成功!");
         return result;
     }
 }

@@ -107,8 +107,8 @@ public class WebLogAspect {
                 //返回页面处理
 
             }else {
-                errorResult.setErrorCode(biz.getErrorCode());
-                errorResult.setErrorMsg(biz.getErrorMsg());
+                errorResult.setCode(biz.getErrorCode());
+                errorResult.setMsg(biz.getErrorMsg());
                 return errorResult;
             }
         }catch (Throwable e){
@@ -119,8 +119,8 @@ public class WebLogAspect {
                 //返回页面处理
 
             }else {
-                errorResult.setErrorCode(ErrorEnum.ERROR.getErrorCode());
-                errorResult.setErrorMsg(ErrorEnum.ERROR.getErrorMsg());
+                errorResult.setCode(ErrorEnum.ERROR.getErrorCode());
+                errorResult.setMsg(ErrorEnum.ERROR.getErrorMsg());
                 return errorResult;
             }
         }finally {

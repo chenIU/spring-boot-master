@@ -133,13 +133,13 @@ public class UserController extends BaseController {
         }
         PojoResult result = new PojoResult();
         result.setContent(userService.queryUserById(userId));
-        result.setErrorMsg("查询成功");
+        result.setMsg("查询成功");
         return result;
     }
 
     @GetMapping("exception")
     public CommonResult exception() {
-        throw new BaseException("E_100500", "手机号码绑定失败", 500);
+        throw new BaseException(500, "手机号码绑定失败", 500);
     }
 
     @GetMapping("getUserInfo")
@@ -177,11 +177,9 @@ public class UserController extends BaseController {
         CommonResult result = new CommonResult();
         User user = userService.selectUserById(id);
         if(user != null){
-            result.setSuccess(true);
-            result.setErrorMsg("查询成功");
+            result.setMsg("查询成功");
         }else {
-            result.setSuccess(false);
-            result.setErrorMsg("查询失败");
+            result.setMsg("查询失败");
         }
         return result;
     }
@@ -201,9 +199,9 @@ public class UserController extends BaseController {
     public CommonResult addUser(@RequestBody @Validated User user){
         log.info(user.toString());
         if(userService.insertUser(user)>0){
-            return new CommonResult(ErrorEnum.OK);
+            return CommonResult.build(ErrorEnum.OK);
         }else {
-            return new CommonResult(ErrorEnum.ERROR);
+            return CommonResult.build(ErrorEnum.ERROR);
         }
     }
 
@@ -224,7 +222,7 @@ public class UserController extends BaseController {
 
         System.out.println("deptId=="+map.get("deptId")+",roleId=="+map.get("roleId"));
 
-        return new CommonResult(ErrorEnum.OK);
+        return CommonResult.build(ErrorEnum.OK);
     }
 
     /**
@@ -250,17 +248,17 @@ public class UserController extends BaseController {
 
     @RequestMapping(value = "getUserError",method = RequestMethod.GET)
     public CommonResult getUserError(){
-        return CommonResult.error("1001","根据用户id查询失败");
+        return CommonResult.build(1001,"根据用户id查询失败");
     }
 
     @RequestMapping(value = "getUserOK",method = RequestMethod.GET)
     public CommonResult getUserOK(){
-        return CommonResult.OK();
+        return CommonResult.build(ErrorEnum.OK);
     }
 
     @RequestMapping(value = "testMapResult",method = RequestMethod.GET)
     public PojoResult<User> testMapResult(){
-        throw new BaseException("500","出现异常了...");
+        throw new BaseException(500,"出现异常了...");
         //return  new MapResult();
     }
 
@@ -280,11 +278,9 @@ public class UserController extends BaseController {
         CommonResult result = new CommonResult();
         Integer count = userService.insertNameAndAge(username,age);
         if(count > 0){
-            result.setSuccess(true);
-            result.setErrorMsg("插入成功");
+            result.setMsg("插入成功");
         }else {
-            result.setSuccess(false);
-            result.setErrorMsg("插入失败");
+            result.setMsg("插入失败");
         }
         return result;
     }
@@ -294,8 +290,7 @@ public class UserController extends BaseController {
     public ListResult getAllUsers(@RequestParam(required = false) String orderBy){
         ListResult<User> result = new ListResult<>();
         List<User> users = userService.selectAllUsers(orderBy);
-        result.setSuccess(true);
-        result.setErrorMsg("插入成功");
+        result.setMsg("插入成功");
         result.setContent(users);
         return result;
     }

@@ -116,11 +116,9 @@ public class UserServiceImpl implements UserService {
             redisTemplate.expire(key,JwtConstants.EXPIRATION, TimeUnit.SECONDS);
 
             map.add("token",token);
-            map.setErrorMsg("登录成功!");
-            map.setSuccess(true);
+            map.setMsg("登录成功!");
         }else {
-            map.setErrorMsg("用户名或密码错误!");
-            map.setSuccess(false);
+            map.setMsg("用户名或密码错误!");
         }
         return map;
     }

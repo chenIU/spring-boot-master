@@ -44,8 +44,8 @@ public class GlobalExceptionHandler {
             sb.append("\n");
         }
 
-        result.setErrorMsg(sb.toString());
-        result.setErrorCode("500");
+        result.setMsg(sb.toString());
+        result.setCode(500);
         return result;
     }
 
@@ -58,9 +58,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(BaseException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public CommonResult bizExceptionHandler(BaseException e){
-        //log.error("业务异常={}", JSONObject.toJSON(e));
-        CommonResult commonResult = new CommonResult(e.getErrorCode(),e.getErrorMsg());
-        return commonResult;
+        return CommonResult.build(e.getErrorCode(),e.getErrorMsg());
     }
 
     /**
@@ -72,9 +70,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(Exception.class)
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     public CommonResult exceptionHandler(Exception e){
-        //log.error("普通异常={}", JSONObject.toJSON(e));
-        CommonResult commonResult = new CommonResult(String.valueOf(HttpStatus.INTERNAL_SERVER_ERROR.value()),e.getMessage());
-        return commonResult;
+        return CommonResult.build(HttpStatus.INTERNAL_SERVER_ERROR.value(),e.getMessage());
     }
 
 }

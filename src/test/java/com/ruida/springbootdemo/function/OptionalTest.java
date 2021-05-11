@@ -27,7 +27,7 @@ public class OptionalTest {
         System.out.println(name3.orElseGet(() -> "hello"));
         //System.out.println(Optional.ofNullable(name).orElseThrow(() -> new BizException("500","illegal argument")));
         try {
-            name3.orElseThrow(() -> new BaseException("500","error"));
+            name3.orElseThrow(() -> new BaseException(500,"error"));
         } catch (Throwable throwable) {
             throwable.printStackTrace();
         }

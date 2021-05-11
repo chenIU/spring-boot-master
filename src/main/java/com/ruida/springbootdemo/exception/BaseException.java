@@ -9,17 +9,17 @@ import com.ruida.springbootdemo.enums.ErrorEnum;
  */
 public class BaseException extends RuntimeException {
 
-    private String errorCode;
+    private int errorCode;
 
     private String errorMsg;
 
     private int httpStatus;
 
-    public String getErrorCode() {
+    public int getErrorCode() {
         return errorCode;
     }
 
-    public void setErrorCode(String errorCode) {
+    public void setErrorCode(int errorCode) {
         this.errorCode = errorCode;
     }
 
@@ -48,12 +48,12 @@ public class BaseException extends RuntimeException {
         super();
     }
 
-    public BaseException(String errorCode, String errorMsg){
+    public BaseException(int errorCode, String errorMsg){
         this.errorCode = errorCode;
         this.errorMsg = errorMsg;
     }
 
-    public BaseException(String errorCode, String errorMsg, int httpStatus){
+    public BaseException(int errorCode, String errorMsg, int httpStatus){
         this.errorCode = errorCode;
         this.errorMsg = errorMsg;
         this.httpStatus = httpStatus;
