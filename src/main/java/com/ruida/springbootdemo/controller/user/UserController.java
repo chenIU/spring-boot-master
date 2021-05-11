@@ -1,5 +1,6 @@
 package com.ruida.springbootdemo.controller.user;
 
+import com.alibaba.fastjson.JSONObject;
 import com.overmind.logging.TimeLog;
 import com.ruida.springbootdemo.config.MultiDataSource;
 import com.ruida.springbootdemo.controller.BaseController;
@@ -33,6 +34,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.PrintWriter;
+import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -394,5 +397,24 @@ public class UserController extends BaseController {
         PojoResult<User> result = new PojoResult<>();
         result.setContent(user);
         return result;
+    }
+
+    @GetMapping("originResponse")
+    public void originResponse(HttpServletRequest request,HttpServletResponse response){
+        User user = new User();
+        user.setUsername("李小龙");
+        user.setAge(35);
+
+        //通知浏览器对数据进行缓存
+        response.setHeader("Cache-Control","max-age=" + 3600 * 24);
+        response.setDateHeader("Expires",System.currentTimeMillis() + 3600 * 24 * 1000);
+        response.setCharacterEncoding(StandardCharsets.UTF_8.toString());
+        try {
+            PrintWriter writer = response.getWriter();
+            writer.write(JSONObject.toJSONString(user));
+            writer.flush();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
