@@ -55,4 +55,4 @@ myApp:
       workerId: 0
 
 swagger:
-  enable: false
+  enable: true
