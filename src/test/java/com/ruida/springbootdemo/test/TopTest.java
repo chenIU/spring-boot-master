@@ -761,4 +761,17 @@ public class TopTest {
         }
         System.out.println("一共执行了" + total + "次");
     }
+
+    @org.junit.Test
+    public void testSort(){
+        ArrayList<User> userList = Lists.newArrayList(
+                new User("jack", 20),
+                new User("mike", 10),
+                new User("tom", 50)
+        );
+
+        System.out.println(userList);
+        userList.sort(Comparator.comparingInt(User::getAge));
+        System.out.println(userList);
+    }
 }
