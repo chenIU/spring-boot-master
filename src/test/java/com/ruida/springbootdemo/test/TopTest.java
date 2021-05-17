@@ -774,4 +774,28 @@ public class TopTest {
         userList.sort(Comparator.comparingInt(User::getAge));
         System.out.println(userList);
     }
+
+    @org.junit.Test
+    public void testCollectionRemove(){
+        List<Integer> list = new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5));
+        // 报错
+        /*for (Integer i : list){
+            if (i == 2){
+                list.remove(i);
+            }
+        }*/
+
+        // 使用迭代器遍历（正确）
+       /* Iterator<Integer> iterator = list.iterator();
+        while (iterator.hasNext()){
+            Integer next = iterator.next();
+            if(next == 2){
+                iterator.remove();
+            }
+        }*/
+
+        // 使用Collection.removeIf方法删除（正确）
+        list.removeIf(x -> x == 2);
+        System.out.println(list);
+    }
 }
