@@ -59,6 +59,8 @@ public class TopTest {
 
     public static void main(String[] args) {
 
+        String suffix = ".xlsx";
+        System.out.println(suffix.substring(1));
         System.out.println(IdUtil.fastUUID());
 
         System.out.println(20302 / 100);//203
