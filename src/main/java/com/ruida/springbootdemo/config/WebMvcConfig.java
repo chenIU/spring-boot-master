@@ -3,6 +3,7 @@ package com.ruida.springbootdemo.config;
 import com.ruida.springbootdemo.interceptor.GlobalInterceptor;
 import com.ruida.springbootdemo.interceptor.JwtInterceptor;
 import com.ruida.springbootdemo.interceptor.LoginInterceptor;
+import com.ruida.springbootdemo.utils.FileUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -12,6 +13,8 @@ import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
+
+import java.io.File;
 
 /**
  * @description: web配置
@@ -32,10 +35,20 @@ public class WebMvcConfig implements WebMvcConfigurer {
     @Autowired
     private LoginInterceptor loginInterceptor;
 
+    /**
+     * 此方法可以控制资源访问
+     * @param registry
+     */
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("doc.html").addResourceLocations("classpath:/META-INF/resources/");
         registry.addResourceHandler("/webjars/**").addResourceLocations("classpath:/META-INF/resources/webjars/");
+
+        //定义静态资源访问路径和
+        //addResourceHandler是指通过url请求的路径
+        //addResourceLocations是图片存放的真实路径
+        registry.addResourceHandler("/" + FileUtil.STATIC_DIR + "/**")
+                .addResourceLocations("file:" + FileUtil.getStaticDir() + File.separator);
     }
 
     @Override
