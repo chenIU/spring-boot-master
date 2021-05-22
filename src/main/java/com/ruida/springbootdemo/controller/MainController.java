@@ -86,9 +86,20 @@ public class MainController {
 
     @GetMapping("download")
     public CommonResult download(HttpServletRequest request, HttpServletResponse response){
+        //获取客户端的User-Agent
+        String header = request.getHeader("User-Agent");
         Map<String, Object> body = HttpRequestUtil.getBody(request);
         String path = (String) body.get("path");
         log.info(path);
+
+        String fileName = "xxx.xls";
+
+        //清除空白行
+        response.reset();
+        //设置附件情况
+        response.setHeader("Content-Disposition","attachment;filename=" + fileName);
+        //设置Content-Type
+        response.setContentType("application/octet-stream");
         return CommonResult.success();
     }
 }
