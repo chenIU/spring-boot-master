@@ -495,3 +495,7 @@
 + application/octet-stream表明是二进制文件，属于http Content-Type规范
 + application/x-www-form-urlencoded 通常用于浏览器表单提交，不属于http Content-Type规范
 + multipart/form-data 既可以提交普通键值对，也可以提交文件（多个）键值对，属于http Content-Type规范
+
++ 转换流：
+  + InputStreamReader： 将InputStream转换成Reader
+  + OutputStreamWriter：将OutputStream转换成Writer
