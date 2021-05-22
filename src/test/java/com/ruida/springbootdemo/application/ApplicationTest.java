@@ -7,12 +7,18 @@ import com.ruida.springbootdemo.entity.Unit;
 import com.ruida.springbootdemo.entity.User;
 import com.ruida.springbootdemo.model.Book;
 import com.ruida.springbootdemo.service.order.OrderProducer;
+import lombok.SneakyThrows;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.data.redis.core.RedisTemplate;
 
 import javax.annotation.Resource;
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -76,5 +82,21 @@ public class ApplicationTest {
     @Test
     public void test(){
         System.out.println(orderProducer.send(500));
+    }
+
+    @SneakyThrows
+    @Test
+    public void testClassPathResource(){
+        ClassPathResource cpr = new ClassPathResource("static" + File.separator + "gayhub.jpg");
+        InputStream in = cpr.getInputStream();
+
+        byte[] buf = new byte[8 * 1024];
+        int len;
+        BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream("D://gayhub.jpg"));
+        while ((len = in.read(buf)) != -1){
+            bos.write(buf, 0, len);
+        }
+        //输出流的flush()方法一定要特别注意，否则可能出现少量数据未输出的情况
+        bos.flush();
     }
 }
