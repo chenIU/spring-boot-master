@@ -34,4 +34,10 @@ public class DateTest {
         Date date = format.parse("2021.5.9");
         System.out.println(date);
     }
+
+    @Test
+    public void test2(){
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss:SSS");
+        System.out.println(format.format(new Date()));
+    }
 }
