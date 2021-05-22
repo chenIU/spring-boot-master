@@ -1,10 +1,9 @@
 package com.ruida.springbootdemo.test;
 
+import org.apache.poi.util.IOUtils;
 import org.junit.Test;
 
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.File;
+import java.io.*;
 import java.util.Arrays;
 
 /**
@@ -55,5 +54,20 @@ public class IOTest {
         byte[] bytes = byteArrayOutputStream.toByteArray();
         String s = new String(bytes);
         System.out.println(s);
+    }
+
+    @Test
+    public void readAndWriteExcel() throws Exception {
+//        Workbook wb = new XSSFWorkbook();
+//        wb.createSheet("测试一下");
+//        wb.write();
+
+        FileInputStream in = new FileInputStream("D://test.xlsx");
+        FileOutputStream out = new FileOutputStream("D://test2.xlsx");
+        IOUtils.copy(in,out);
+
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+        byteArrayOutputStream.toByteArray();
+        ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(byteArrayOutputStream.toByteArray());
     }
 }
