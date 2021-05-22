@@ -27,6 +27,13 @@ public class SpringBootDemoApplication{
 	public static void main(String[] args) {
 		//http://localhost:8080/actuator 监控
 		SpringApplication.run(SpringBootDemoApplication.class, args);
+		log.info("os.name --> {}",System.getProperty("os.name"));
+		log.info("os.arch --> {}",System.getProperty("os.arch"));
+		log.info("os.version --> {}",System.getProperty("os.version"));
+		log.info("user.home --> {}",System.getProperty("user.home"));
+		log.info("user.name --> {}",System.getProperty("user.name"));
+		log.info("user.dir --> {}",System.getProperty("user.dir"));
+		log.info("file.separator --> {}",System.getProperty("file.separator"));
 		log.warn("Application started successfully...");
 	}
 
