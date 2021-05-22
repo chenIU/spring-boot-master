@@ -1,7 +1,10 @@
 package com.ruida.springbootdemo.controller;
 
+import com.ruida.springbootdemo.entity.result.CommonResult;
 import com.ruida.springbootdemo.entity.result.PojoResult;
 import com.ruida.springbootdemo.enums.OrderStatusEnum;
+import com.ruida.springbootdemo.utils.HttpRequestUtil;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 
@@ -10,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.util.Arrays;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 /**
@@ -18,6 +22,8 @@ import java.util.stream.Collectors;
  * @create: 2020-10-29 13:39
  */
 @RestController
+@RequestMapping("/main/")
+@Slf4j
 public class MainController {
 
     @Value("${server.port}")
@@ -76,5 +82,13 @@ public class MainController {
             return Arrays.stream(cookies).map(c -> c.getName() + "=" + c.getValue()).collect(Collectors.joining(", "));
         }
         return "No Cookies!";
+    }
+
+    @GetMapping("download")
+    public CommonResult download(HttpServletRequest request, HttpServletResponse response){
+        Map<String, Object> body = HttpRequestUtil.getBody(request);
+        String path = (String) body.get("path");
+        log.info(path);
+        return CommonResult.success();
     }
 }
