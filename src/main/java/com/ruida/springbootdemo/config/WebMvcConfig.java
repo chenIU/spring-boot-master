@@ -7,6 +7,7 @@ import com.ruida.springbootdemo.utils.FileUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
@@ -15,6 +16,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
 
 import java.io.File;
+import java.util.List;
 
 /**
  * @description: web配置
@@ -73,5 +75,14 @@ public class WebMvcConfig implements WebMvcConfigurer {
                     .allowedMethods("*")
                     .maxAge(30 * 1000);//有效时间，针对探测请求(PUT)
         }
+    }
+
+    @Override
+    public void extendMessageConverters(List<HttpMessageConverter<?>> converters) {
+        WebMvcConfigurer.super.extendMessageConverters(converters);
+
+        //使用FastJson消息转换器
+//        converters.clear();
+//        converters.add(AppConfig.getFastJsonHttpMessageConverter());
     }
 }
