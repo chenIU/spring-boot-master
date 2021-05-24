@@ -62,7 +62,6 @@ public class BaseException extends RuntimeException {
     public BaseException(ErrorEnum errorEnum){
         this.errorCode = errorEnum.getErrorCode();
         this.errorMsg = errorEnum.getErrorMsg();
-        this.httpStatus = errorEnum.getHttpStatus();
     }
 
     public BaseException(ErrorEnum errorEnum, String msg){
