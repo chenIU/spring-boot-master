@@ -499,3 +499,10 @@
 + 转换流：
   + InputStreamReader： 将InputStream转换成Reader
   + OutputStreamWriter：将OutputStream转换成Writer
+  
++ System.arraycopy()
+  + src      -> 源数组
+  + srcPos   -> 源数组要复制的位置
+  + dest     -> 目的数组
+  + destPos  -> 目的数组放置的起始位置
+  + length   -> 复制的长度
