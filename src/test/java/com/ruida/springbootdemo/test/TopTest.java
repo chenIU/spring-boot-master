@@ -24,6 +24,7 @@ import com.ruida.springbootdemo.model.Book;
 import com.ruida.springbootdemo.model.Cat;
 import com.ruida.springbootdemo.model.Person;
 import com.ruida.springbootdemo.model.Son;
+import com.ruida.springbootdemo.utils.EncryptUtil;
 import com.ruida.springbootdemo.utils.TimeUtil;
 import com.ruida.springbootdemo.utils.ValidateMT;
 import org.apache.commons.lang3.StringUtils;
@@ -58,6 +59,12 @@ public class TopTest {
     int count;//非final类型的变量不必初始化,编译器会为此变量赋默认值
 
     public static void main(String[] args) {
+
+        System.out.println(EncryptUtil.md5("chenjy"));
+
+        System.out.println(EncryptUtil.encryptPassword("chenjy","123456"));
+        System.out.println(EncryptUtil.encryptPassword("lxy","123456"));
+        System.out.println(EncryptUtil.encryptPassword("chenjy","123456"));
 
         String suffix = ".xlsx";
         System.out.println(suffix.substring(1));
