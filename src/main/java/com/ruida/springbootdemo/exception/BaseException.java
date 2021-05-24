@@ -65,6 +65,13 @@ public class BaseException extends RuntimeException {
         this.httpStatus = errorEnum.getHttpStatus();
     }
 
+    public BaseException(ErrorEnum errorEnum, String msg){
+        if(errorEnum != null){
+            this.errorCode = errorEnum.getErrorCode();
+            this.errorMsg = msg;
+        }
+    }
+
     /**
      *
      * 自定义异常不再爬取堆栈，提高性能

@@ -3,6 +3,7 @@ package com.ruida.springbootdemo.controller;
 import com.ruida.springbootdemo.entity.result.CommonResult;
 import com.ruida.springbootdemo.entity.result.PojoResult;
 import com.ruida.springbootdemo.enums.OrderStatusEnum;
+import com.ruida.springbootdemo.utils.ExcelUtil;
 import com.ruida.springbootdemo.utils.HttpRequestUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
@@ -101,5 +102,14 @@ public class MainController {
         //设置Content-Type
         response.setContentType("application/octet-stream");
         return CommonResult.success();
+    }
+
+    @GetMapping("downloadTemplate")
+    public void downloadTemplate(HttpServletRequest request,HttpServletResponse response){
+        try {
+            ExcelUtil.downloadStaticFile(request,response,"工伤处理导入模板.xlsx");
+        } catch (Exception e) {
+            log.error("工伤处理导入模板下载失败");
+        }
     }
 }
