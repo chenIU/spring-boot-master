@@ -60,6 +60,10 @@ public class TopTest {
 
     public static void main(String[] args) {
 
+        System.out.println(Integer.toHexString(1));//1
+        System.out.println(Integer.toHexString(9));//9
+        System.out.println(Integer.toHexString(10));//a
+
         System.out.println(EncryptUtil.md5("chenjy"));
 
         System.out.println(EncryptUtil.encryptPassword("chenjy","123456"));
