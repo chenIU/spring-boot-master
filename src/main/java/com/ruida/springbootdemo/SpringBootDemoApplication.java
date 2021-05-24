@@ -34,6 +34,7 @@ public class SpringBootDemoApplication{
 		log.info("user.name --> {}",System.getProperty("user.name"));
 		log.info("user.dir --> {}",System.getProperty("user.dir"));
 		log.info("file.separator --> {}",System.getProperty("file.separator"));
+		log.info("file.encoding --> {}",System.getProperty("file.encoding"));
 		log.warn("Application started successfully...");
 	}
 
