@@ -1,6 +1,5 @@
 package com.ruida.springbootdemo.controller;
 
-import com.ruida.springbootdemo.entity.result.CommonResult;
 import com.ruida.springbootdemo.entity.result.PojoResult;
 import com.ruida.springbootdemo.enums.OrderStatusEnum;
 import com.ruida.springbootdemo.utils.ExcelUtil;
@@ -13,6 +12,9 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.io.FileInputStream;
+import java.io.OutputStream;
+import java.net.URLEncoder;
 import java.util.Arrays;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -85,23 +87,33 @@ public class MainController {
         return "No Cookies!";
     }
 
-    @GetMapping("download")
-    public CommonResult download(HttpServletRequest request, HttpServletResponse response){
+    @GetMapping("downloadExcel")
+    public void download(HttpServletRequest request, HttpServletResponse response) throws Exception {
         //获取客户端的User-Agent
         String header = request.getHeader("User-Agent");
         Map<String, Object> body = HttpRequestUtil.getBody(request);
         String path = (String) body.get("path");
         log.info(path);
 
-        String fileName = "xxx.xls";
+        String fileName = "测试.xlsx";
 
         //清除空白行
         response.reset();
         //设置附件情况
-        response.setHeader("Content-Disposition","attachment;filename=" + fileName);
+        //URLEncoder.encode 处理文件名中文乱码情况
+        response.setHeader("Content-Disposition","attachment;filename=" + URLEncoder.encode(fileName,"UTF-8"));
         //设置Content-Type
         response.setContentType("application/octet-stream");
-        return CommonResult.success();
+
+        FileInputStream fis = new FileInputStream("D://测试.xlsx");
+        OutputStream out = response.getOutputStream();
+        byte[] buf = new byte[8 * 1024];
+        int len;
+        while((len = fis.read(buf)) != -1){
+            out.write(buf, 0, len);
+        }
+        out.flush();
+        fis.close();
     }
 
     @GetMapping("downloadTemplate")
