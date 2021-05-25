@@ -25,6 +25,7 @@ import com.ruida.springbootdemo.model.Cat;
 import com.ruida.springbootdemo.model.Person;
 import com.ruida.springbootdemo.model.Son;
 import com.ruida.springbootdemo.utils.EncryptUtil;
+import com.ruida.springbootdemo.utils.HttpClientUtil;
 import com.ruida.springbootdemo.utils.TimeUtil;
 import com.ruida.springbootdemo.utils.ValidateMT;
 import org.apache.commons.lang3.StringUtils;
@@ -59,6 +60,8 @@ public class TopTest {
     int count;//非final类型的变量不必初始化,编译器会为此变量赋默认值
 
     public static void main(String[] args) {
+
+//        System.out.println(HttpClientUtil.doGet("https://www.baidu.com"));
 
         System.out.println(Integer.toHexString(1));//1
         System.out.println(Integer.toHexString(9));//9
