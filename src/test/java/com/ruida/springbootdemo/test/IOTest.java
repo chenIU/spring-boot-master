@@ -70,4 +70,40 @@ public class IOTest {
         byteArrayOutputStream.toByteArray();
         ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(byteArrayOutputStream.toByteArray());
     }
+
+    @Test
+    public void testVideo(){
+        FileInputStream fis = null;
+        FileOutputStream fos = null;
+        try {
+            long start = System.currentTimeMillis();
+            fis = new FileInputStream("F:\\video\\灵笼-特别篇.flv");
+            fos = new FileOutputStream("G://test.flv");
+            byte[] buf = new byte[8 * 1024];
+            int len;
+            while((len = fis.read(buf)) != -1){
+                fos.write(buf, 0, len);
+            }
+            fos.flush();
+            System.out.println("耗时" + (System.currentTimeMillis() - start) + "ms");
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            if(fis != null){
+                try {
+                    fis.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            if(fos != null){
+                try {
+                    fos.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
 }
