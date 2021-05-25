@@ -811,4 +811,15 @@ public class TopTest {
         list.removeIf(x -> x == 2);
         System.out.println(list);
     }
+
+    @org.junit.Test
+    public void test12(){
+        byte[] bytes = "chenjianyin".getBytes();
+        String encodeStr = Base64.getEncoder().encodeToString(bytes);
+        System.out.println(encodeStr);
+
+        byte[] decode = Base64.getDecoder().decode(encodeStr);
+        String decodeStr = new String(decode);
+        System.out.println(decodeStr);
+    }
 }
