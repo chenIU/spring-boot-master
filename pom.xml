@@ -431,6 +431,13 @@
 			<artifactId>httpmime</artifactId>
 			<version>4.5</version>
 		</dependency>
+
+		<!--AES加解密-->
+		<dependency>
+			<groupId>org.bouncycastle</groupId>
+			<artifactId>bcprov-jdk15on</artifactId>
+			<version>1.56</version>
+		</dependency>
 	</dependencies>
 
 	<repositories>
