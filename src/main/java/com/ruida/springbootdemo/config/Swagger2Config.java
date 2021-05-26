@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
+import org.springframework.core.env.Environment;
+import org.springframework.core.env.Profiles;
 import springfox.bean.validators.configuration.BeanValidatorPluginsConfiguration;
 import springfox.documentation.builders.ApiInfoBuilder;
 import springfox.documentation.builders.PathSelectors;
@@ -42,9 +44,12 @@ public class Swagger2Config {
     private String port;
 
     @Bean(value = "defaultApi2")
-    public Docket defaultApi2() {
+    public Docket defaultApi2(Environment env) {
+        Profiles profiles = Profiles.of("dev");
+        boolean flag = env.acceptsProfiles(profiles);
+
         Docket docket=new Docket(DocumentationType.SWAGGER_2)
-                .enable(enable)
+                .enable(flag)
                 .apiInfo(apiInfo())
                 //分组名称
                 .groupName("2.X版本")
