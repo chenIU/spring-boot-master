@@ -3,7 +3,12 @@ package com.ruida.springbootdemo.entity;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.fasterxml.jackson.annotation.*;
+import com.ruida.springbootdemo.annotation.DesensitizeAnnotation;
+import com.ruida.springbootdemo.annotation.InEnum;
+import com.ruida.springbootdemo.enums.DesensitizationStrategy;
+import com.ruida.springbootdemo.enums.GenderEnum;
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -17,6 +22,8 @@ import java.util.List;
  * @description: 用户
  * @author: chenjy
  * @create: 2020-04-27 15:10
+ * {@link GenderEnum}
+ * @see com.ruida.springbootdemo.enums.GenderEnum
  * <p>
  * 1、JsonIgnore用户排除某个属性，作用于字段
  * 2、JsonIgnoreProperties类注解，在序列化为json时排除某些属性
@@ -29,20 +36,27 @@ import java.util.List;
  */
 @Data
 @NoArgsConstructor
-@JsonIgnoreProperties(value = "age")
+//@JsonIgnoreProperties(value = "age")
 @JsonIgnoreType
 @JsonPropertyOrder({"id","name"})
 @JsonRootName("User")
 @TableName(value = "t_user")
+@Getter
 public class User implements Serializable {
 
     private Integer id;
 
     @NotEmpty(message = "用户姓名不能为空")
     @TableField(value = "user_name")
+    @DesensitizeAnnotation(strategy = DesensitizationStrategy.USERNAME)
     private String username;
 
+    private String password;
+
     private Integer age;
+
+    @InEnum(value = GenderEnum.class,message = "性别必须是{value}")
+    private Integer gender;
 
     //@JsonFormat(pattern = "yyyy/MM/dd")
     //@JsonIgnore

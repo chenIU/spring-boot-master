@@ -9,13 +9,13 @@ public class GenericClassTest {
     public static void main(String[] args) {
 
         //string类型
-        GenericClass<String> test1 = new GenericClass<>();
-        test1.setT("hello");
-        System.out.println(test1.getT());
+        com.ruida.springbootdemo.generic.Generic<String> test1 = new com.ruida.springbootdemo.generic.Generic<>();
+        test1.setKey("hello");
+        System.out.println(test1.getKey());
 
         //Integer类型
-        GenericClass<Integer> test2 = new GenericClass<>();
-        test2.setT(100);
-        System.out.println(test2.getT());
+        com.ruida.springbootdemo.generic.Generic<Integer> test2 = new com.ruida.springbootdemo.generic.Generic<>();
+        test2.setKey(100);
+        System.out.println(test2.getKey());
     }
 }

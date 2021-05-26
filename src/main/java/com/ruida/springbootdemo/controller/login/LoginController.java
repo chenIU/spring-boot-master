@@ -76,7 +76,7 @@ public class LoginController extends BaseController {
         //redisTemplate.opsForValue().set(String.format(SystemConstant.LOGIN_KEY,username),password);
         log.error(username);
         log.error(password);
-        return new CommonResult(ErrorEnum.OK);
+        return CommonResult.build(ErrorEnum.OK);
     }
 
     @RequestMapping(value = "sensitive",method = RequestMethod.GET)

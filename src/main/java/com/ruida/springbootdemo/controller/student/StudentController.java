@@ -5,7 +5,7 @@ import com.ruida.springbootdemo.entity.Student;
 import com.ruida.springbootdemo.entity.result.CommonResult;
 import com.ruida.springbootdemo.entity.result.MapResult;
 import com.ruida.springbootdemo.entity.result.PojoResult;
-import com.ruida.springbootdemo.wrapper.ValidList;
+import com.ruida.springbootdemo.core.wrapper.ValidList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.*;
 import org.springframework.validation.annotation.Validated;
@@ -23,11 +23,9 @@ public class StudentController {
         CommonResult result = new CommonResult();
         redisTemplate.opsForValue().set("student", JSON.toJSONString(student));
         if(redisTemplate.hasKey("student")){
-            result.setSuccess(true);
-            result.setErrorMsg("插入成功!");
+            result.setMsg("插入成功!");
         }else {
-            result.setSuccess(false);
-            result.setErrorMsg("插入失败!");
+            result.setMsg("插入失败!");
         }
         return result;
     }
@@ -38,11 +36,9 @@ public class StudentController {
         Student student = (Student) redisTemplate.opsForValue().get(id);
         if(student != null){
             result.setContent(student);
-            result.setSuccess(true);
-            result.setErrorMsg("查询成功!");
+            result.setMsg("查询成功!");
         }else {
-            result.setSuccess(false);
-            result.setErrorMsg("key不存在!");
+            result.setMsg("key不存在!");
         }
         return result;
     }
@@ -52,11 +48,9 @@ public class StudentController {
         CommonResult result = new CommonResult();
         boolean flag = redisTemplate.delete(id);
         if(flag){
-            result.setSuccess(true);
-            result.setErrorMsg("删除成功!");
+            result.setMsg("删除成功!");
         }else {
-            result.setSuccess(false);
-            result.setErrorMsg("删除失败!");
+            result.setMsg("删除失败!");
         }
         return result;
     }
@@ -67,8 +61,7 @@ public class StudentController {
         String str = "hello world";
         redisTemplate.opsForValue().set("str",str);
         result.add("str",redisTemplate.opsForValue().get("str"));
-        result.setSuccess(true);
-        result.setErrorMsg("操作成功");
+        result.setMsg("操作成功");
         return result;
     }
 
@@ -83,8 +76,7 @@ public class StudentController {
         list.leftPush("list","java");
         list.leftPush("list","java");
         result.add("list",redisTemplate.opsForList().range("list",0,-1));
-        result.setSuccess(true);
-        result.setErrorMsg("操作成功");
+        result.setMsg("操作成功");
         return result;
     }
 
@@ -99,8 +91,7 @@ public class StudentController {
         set.add("set","java");
         set.add("set","java");
         result.add("set",redisTemplate.opsForSet().members("set"));
-        result.setSuccess(true);
-        result.setErrorMsg("操作成功");
+        result.setMsg("操作成功");
         return result;
     }
 
@@ -112,8 +103,7 @@ public class StudentController {
         zset.add("zset","world",1);
         zset.add("zset","java",2);
         result.add("zset",redisTemplate.opsForZSet().range("zset",0,-1));
-        result.setSuccess(true);
-        result.setErrorMsg("操作成功");
+        result.setMsg("操作成功");
         return result;
     }
 
@@ -123,8 +113,7 @@ public class StudentController {
         HashOperations hash = redisTemplate.opsForHash();
         hash.put("hash","key","value");
         result.add("hash",redisTemplate.opsForHash().get("hash","key"));
-        result.setSuccess(true);
-        result.setErrorMsg("操作成功");
+        result.setMsg("操作成功");
         return result;
     }
 

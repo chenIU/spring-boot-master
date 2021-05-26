@@ -1,7 +1,7 @@
 package com.ruida.springbootdemo.filter;
 
-import com.ruida.springbootdemo.wrapper.CustomHttpServletRequestWrapper;
-import com.ruida.springbootdemo.wrapper.CustomHttpServletResponseWrapper;
+import com.ruida.springbootdemo.core.wrapper.CustomHttpServletRequestWrapper;
+import com.ruida.springbootdemo.core.wrapper.CustomHttpServletResponseWrapper;
 
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;

@@ -18,7 +18,7 @@ public interface UserMapper extends BaseMapper<User> {
 
     List<User> selectAllUserList();
 
-    @Insert("insert into t_user(name,age,dept_id) values(#{name},#{age},#{dept_id})")
+    @Insert("insert into t_user(user_name,password,age,dept_id) values(#{userName},#{password}#{age},#{deptId})")
     int insertUser(User user);
 
     Map<String,Object> selectDeptById(Integer id);
@@ -38,4 +38,11 @@ public interface UserMapper extends BaseMapper<User> {
     List<User> selectMultiArgs1(@Param("deptId") Integer deptId,@Param("ids") String[] ids);
 
     List<User> selectMultiArgs2(Map<String,Object> param);
+
+    /**
+     * 根据字段名称查询内容
+     * @param columnName
+     * @return
+     */
+    List<Object> queryByColumnName(@Param("columnName") String columnName);
 }

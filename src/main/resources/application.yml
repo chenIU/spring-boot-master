@@ -26,14 +26,6 @@ spring:
     multipart:
       max-file-size: 20MB
 
-knife4j:
-  #production=true：不能查看接口文档;false：非生产环境，可以查看
-  production: false
-  basic:
-    enable: true
-    username: admin
-    password: 123456
-
 mybatis-plus:
   mapper-locations: classpath:mapper/*Mapper.xml
   type-enums-package: com.ruida.springbootdemo.enums

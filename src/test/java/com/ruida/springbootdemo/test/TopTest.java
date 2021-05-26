@@ -11,18 +11,31 @@
 
 package com.ruida.springbootdemo.test;
 
+import cn.hutool.core.util.IdUtil;
+import com.google.common.collect.Lists;
 import com.ruida.springbootdemo.constant.MIMEType;
+import com.ruida.springbootdemo.entity.User;
+import com.ruida.springbootdemo.entity.dto.UserDTO;
+import com.ruida.springbootdemo.entity.fruit.Apple;
+import com.ruida.springbootdemo.enums.ErrorEnum;
+import com.ruida.springbootdemo.exception.BaseException;
 import com.ruida.springbootdemo.generic.A;
 import com.ruida.springbootdemo.model.Book;
 import com.ruida.springbootdemo.model.Cat;
 import com.ruida.springbootdemo.model.Person;
 import com.ruida.springbootdemo.model.Son;
+import com.ruida.springbootdemo.utils.EncryptUtil;
+import com.ruida.springbootdemo.utils.HttpClientUtil;
+import com.ruida.springbootdemo.utils.TimeUtil;
 import com.ruida.springbootdemo.utils.ValidateMT;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.BeanUtils;
+
 import java.lang.reflect.Array;
 import java.math.RoundingMode;
+import java.net.URLEncoder;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
@@ -47,6 +60,35 @@ public class TopTest {
     int count;//非final类型的变量不必初始化,编译器会为此变量赋默认值
 
     public static void main(String[] args) {
+
+//        System.out.println(HttpClientUtil.doGet("https://www.baidu.com"));
+
+        System.out.println(Integer.toHexString(1));//1
+        System.out.println(Integer.toHexString(9));//9
+        System.out.println(Integer.toHexString(10));//a
+
+        System.out.println(EncryptUtil.md5("chenjy"));
+
+        System.out.println(EncryptUtil.encryptPassword("chenjy","123456"));
+        System.out.println(EncryptUtil.encryptPassword("lxy","123456"));
+        System.out.println(EncryptUtil.encryptPassword("chenjy","123456"));
+
+        String suffix = ".xlsx";
+        System.out.println(suffix.substring(1));
+        System.out.println(IdUtil.fastUUID());
+
+        System.out.println(20302 / 100);//203
+        System.out.println(20302 % 100);//2
+
+        System.out.println(System.currentTimeMillis());//系统时间毫秒数13位
+
+        List<String> nameList = Stream.of("jack").collect(Collectors.toList());
+        System.out.println(nameList);
+
+        //source tree
+        System.out.println(URLEncoder.encode("编码"));
+
+        System.out.println(Apple.class.getName());
 
         String empName = "jack";
 
@@ -624,9 +666,163 @@ public class TopTest {
             if(i == 5){
                 System.out.println(i);
                 break;
-//                continue;
+                //continue;
             }
             System.out.println(i);
         }
+    }
+
+    @org.junit.Test
+    public void test4(){
+        Map<String,Object> map = new HashMap();
+        map.put("status",0);
+        System.out.println(Objects.equals(map.get("status"),"0"));
+
+        String a = "0";
+        System.out.println(a.equals("0"));
+    }
+
+    @org.junit.Test
+    public void test5(){
+        List<String> list = Arrays.asList("jack", "mike", "tom");
+        System.out.println(StringUtils.join(list,"|"));
+    }
+
+    @org.junit.Test
+    public void test6(){
+        System.out.println(TimeUtil.getDateFormat(new Date()));
+
+        Calendar instance = Calendar.getInstance();
+        instance.set(Calendar.YEAR,2021);
+        instance.set(Calendar.MONTH,2);
+        instance.set(Calendar.DAY_OF_MONTH,1);
+        instance.set(Calendar.HOUR_OF_DAY,12);
+        System.out.println(instance.getTime());
+        System.out.println(TimeUtil.getDateFormat(instance.getTime()));
+    }
+
+    /**
+     * jdk1.8新增方法
+     */
+    @org.junit.Test
+    public void test7(){
+        ArrayList<User> users = Lists.newArrayList(
+                new User("Jack", 21),
+                new User("Mike", 35),
+                new User("Amy", 13)
+        );
+
+        users.removeIf(e -> e.getAge() < 20);
+        System.out.println(users);
+    }
+
+    @org.junit.Test
+    public void test8(){
+//        1 != "1"
+        System.out.println(Objects.equals(String.valueOf(1),"1"));
+    }
+
+    @org.junit.Test
+    public void test9(){
+        User user = new User("Jack",21);
+        UserDTO userDTO = new UserDTO();
+        System.out.println(userDTO);
+        BeanUtils.copyProperties(user,userDTO);
+        System.out.println(userDTO);
+
+        User user1 = null;
+        UserDTO userDTO1 = new UserDTO();
+        BeanUtils.copyProperties(user1,userDTO1);
+        System.out.println(userDTO1);
+
+        User user2 = new User("Mike",22);
+        UserDTO userDTO2 = null;
+        BeanUtils.copyProperties(user2,userDTO2);
+        System.out.println(userDTO2);
+
+        //SpringFramework BeanUtils.copyProperties方法source和target都不能为null
+
+        //另外，阿里巴巴代码规范不建议使用Apache 的BeanUtils.copyProperties，原因是性能较差。建议使用Spring BeanUtils 或者Cglib BeanCopier
+    }
+
+    @org.junit.Test
+    public void test10(){
+        List<User> userList = Lists.newArrayList(
+                new User("Jack",10),
+                new User("Mike",30)
+        );
+
+        //使用list.clear效率比list.removeAll(list)高
+        userList.clear();
+        System.out.println(userList);
+        System.out.println(userList.size());
+    }
+
+    @org.junit.Test
+    public void test(){
+        throw new BaseException(ErrorEnum.SERVER_ERR.getErrorCode(),"自定义异常");
+    }
+
+    @org.junit.Test
+    public void test11() {
+        int count = 0;
+        int total = 0;
+        for (int i = 0; i < 10; i++) {
+            if (count == 5) {
+                System.out.println(count);
+                break;
+            }
+            count++;
+            total++;
+        }
+        System.out.println("一共执行了" + total + "次");
+    }
+
+    @org.junit.Test
+    public void testSort(){
+        ArrayList<User> userList = Lists.newArrayList(
+                new User("jack", 20),
+                new User("mike", 10),
+                new User("tom", 50)
+        );
+
+        System.out.println(userList);
+        userList.sort(Comparator.comparingInt(User::getAge));
+        System.out.println(userList);
+    }
+
+    @org.junit.Test
+    public void testCollectionRemove(){
+        List<Integer> list = new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5));
+        // 报错
+        /*for (Integer i : list){
+            if (i == 2){
+                list.remove(i);
+            }
+        }*/
+
+        // 使用迭代器遍历（正确）
+       /* Iterator<Integer> iterator = list.iterator();
+        while (iterator.hasNext()){
+            Integer next = iterator.next();
+            if(next == 2){
+                iterator.remove();
+            }
+        }*/
+
+        // 使用Collection.removeIf方法删除（正确）
+        list.removeIf(x -> x == 2);
+        System.out.println(list);
+    }
+
+    @org.junit.Test
+    public void test12(){
+        byte[] bytes = "chenjianyin".getBytes();
+        String encodeStr = Base64.getEncoder().encodeToString(bytes);
+        System.out.println(encodeStr);
+
+        byte[] decode = Base64.getDecoder().decode(encodeStr);
+        String decodeStr = new String(decode);
+        System.out.println(decodeStr);
     }
 }

@@ -3,8 +3,8 @@ package com.ruida.springbootdemo.entity.result;
 import com.ruida.springbootdemo.enums.ErrorEnum;
 import lombok.Getter;
 import lombok.Setter;
-
 import java.io.Serializable;
+import java.util.Objects;
 
 /**
  * @description: 通用返回结果
@@ -13,55 +13,76 @@ import java.io.Serializable;
  */
 @Getter
 @Setter
-public class CommonResult implements Serializable {
+public class CommonResult<T> implements Serializable {
 
     private static final long serialVersionUID = -2922415836378367968L;
 
-    private static final String ERROR_CODE = "0";
+    private int code;
 
-    private boolean success;
+    private String msg;
 
-    private String errorCode;
-
-    private String errorMsg;
+    private T data;
 
     public CommonResult() {
-        this.success = true;
-        this.errorCode = ERROR_CODE;
+        this.code = ErrorEnum.OK.getErrorCode();
+        this.msg = ErrorEnum.OK.getErrorMsg();
     }
 
-    public CommonResult(String errorCode, String errorMsg) {
-        this.errorCode = errorCode;
-        this.errorMsg = errorMsg;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        CommonResult<?> that = (CommonResult<?>) o;
+        return code == that.code && Objects.equals(msg, that.msg) && Objects.equals(data, that.data);
     }
 
-    public CommonResult(ErrorEnum e){
-        this.errorCode = e.getErrorCode();
-        this.errorMsg = e.getErrorMsg();
-    }
-
-    public static <T extends CommonResult> T error(String errorCode,String errorMsg){
-        CommonResult error = new CommonResult();
-        error.setSuccess(false);
-        error.setErrorCode(errorCode);
-        error.setErrorMsg(errorMsg);
-        return (T)error;
-    }
-
-    public static <T extends CommonResult> T OK(){
-        CommonResult OK = new CommonResult();
-        OK.setSuccess(false);
-        OK.setErrorCode("000000");
-        OK.setErrorMsg("成功");
-        return (T)OK;
+    @Override
+    public int hashCode() {
+        return Objects.hash(code, msg, data);
     }
 
     @Override
     public String toString() {
         return "CommonResult{" +
-                "success=" + success +
-                ", errorCode='" + errorCode + '\'' +
-                ", errorMsg='" + errorMsg + '\'' +
+                "code=" + code +
+                ", msg='" + msg + '\'' +
+                ", data=" + data +
                 '}';
+    }
+
+    public static <T> CommonResult<T> build(ErrorEnum errorEnum, T data) {
+        return build(errorEnum.getErrorCode(), errorEnum.getErrorMsg(), data);
+    }
+
+    public static <T> CommonResult<T> build(ErrorEnum errorEnum) {
+        return build(errorEnum.getErrorCode(), errorEnum.getErrorMsg(), null);
+    }
+
+    public static <T> CommonResult<T> build(ErrorEnum errorEnum, String msg) {
+        return build(errorEnum.getErrorCode(), msg, null);
+    }
+
+    public static <T> CommonResult<T> build(ErrorEnum errorEnum, String msg, T data) {
+        return build(errorEnum.getErrorCode(), msg, data);
+    }
+
+    public static <T> CommonResult<T> build(int code, String msg) {
+        return build(code, msg, null);
+    }
+
+    public static <T> CommonResult<T> build(int code, String msg, T data) {
+        CommonResult<T> response = new CommonResult<>();
+        response.setCode(code);
+        response.setMsg(msg);
+        response.setData(data);
+        return response;
+    }
+
+    public static <T> CommonResult<T> success() {
+        return build(ErrorEnum.OK);
+    }
+
+    public static <T> CommonResult<T> success(T data) {
+        return build(ErrorEnum.OK.getErrorCode(), ErrorEnum.OK.getErrorMsg(), data);
     }
 }

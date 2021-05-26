@@ -127,4 +127,29 @@ public class StringTest {
         String str2 = new StringBuilder("ja").append("va").toString();
         System.out.println(str2.intern() == str2);
     }
+
+    /**
+     * split同时支持多种分隔符
+     */
+    @Test
+    public void test4(){
+        // \\\\代表以\分割内容
+        String origin = "1\\2\\3\\4";
+        String[] arr = origin.split("[,\\.，。、\\\\]");
+        for(String s : arr){
+            System.out.println(s);
+        }
+    }
+
+    @Test
+    public void test5(){
+        String str = "         分割符号的法国发过法国发过覆盖给";
+        String s = str.replaceAll("\\s", "&nbsp;");
+        System.out.println(s);
+    }
+
+    @Test
+    public void test6(){
+        System.out.println("\u4f18\u79c0");
+    }
 }

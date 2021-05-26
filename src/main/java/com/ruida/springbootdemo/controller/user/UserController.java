@@ -1,6 +1,6 @@
 package com.ruida.springbootdemo.controller.user;
 
-import com.github.pagehelper.PageInfo;
+import com.alibaba.fastjson.JSONObject;
 import com.overmind.logging.TimeLog;
 import com.ruida.springbootdemo.config.MultiDataSource;
 import com.ruida.springbootdemo.controller.BaseController;
@@ -10,12 +10,13 @@ import com.ruida.springbootdemo.entity.result.ListResult;
 import com.ruida.springbootdemo.entity.result.MapResult;
 import com.ruida.springbootdemo.entity.result.PojoResult;
 import com.ruida.springbootdemo.enums.ErrorEnum;
-import com.ruida.springbootdemo.exception.BizException;
+import com.ruida.springbootdemo.exception.BaseException;
 import com.ruida.springbootdemo.mapper.UserMapper;
 import com.ruida.springbootdemo.service.UserService;
 import com.ruida.springbootdemo.service.impl.UserServiceImpl;
-import com.ruida.springbootdemo.utils.SpringUtil;
+import com.ruida.springbootdemo.utils.SpringContextHolder;
 import com.ruida.springbootdemo.utils.excel.ExcelHelper;
+import eu.bitwalker.useragentutils.UserAgent;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,12 +25,17 @@ import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
+
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.PrintWriter;
+import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -130,13 +136,13 @@ public class UserController extends BaseController {
         }
         PojoResult result = new PojoResult();
         result.setContent(userService.queryUserById(userId));
-        result.setErrorMsg("查询成功");
+        result.setMsg("查询成功");
         return result;
     }
 
     @GetMapping("exception")
     public CommonResult exception() {
-        throw new BizException("E_100500", "手机号码绑定失败", 500);
+        throw new BaseException(500, "手机号码绑定失败", 500);
     }
 
     @GetMapping("getUserInfo")
@@ -174,34 +180,17 @@ public class UserController extends BaseController {
         CommonResult result = new CommonResult();
         User user = userService.selectUserById(id);
         if(user != null){
-            result.setSuccess(true);
-            result.setErrorMsg("查询成功");
+            result.setMsg("查询成功");
         }else {
-            result.setSuccess(false);
-            result.setErrorMsg("查询失败");
+            result.setMsg("查询失败");
         }
         return result;
     }
 
     @RequestMapping(value = "getUserByAware",method = RequestMethod.GET)
     public User getUserByAware(@RequestParam("id")Integer id){
-        UserService userService = SpringUtil.getBean(UserServiceImpl.class);
+        UserService userService = SpringContextHolder.getBean(UserServiceImpl.class);
         return userService.selectUserById(id);
-    }
-
-    /**
-     * 分页查询下用户
-     * @param pageNum 页码
-     * @param pageSize 页的大小
-     * @return
-     */
-    @RequestMapping(value = "queryUserListForPage",method = RequestMethod.GET)
-    public PageInfo<User> queryUserListForPage(@RequestParam(value = "pageNum",defaultValue = "1") Integer pageNum,
-                                               @RequestParam(value = "pageSize",defaultValue = "5") Integer pageSize){
-        if(pageNum<=0){
-            throw new BizException(ErrorEnum.E_2001);
-        }
-        return userService.selectAllUserListForPage(pageNum,pageSize);
     }
 
     /**
@@ -213,9 +202,9 @@ public class UserController extends BaseController {
     public CommonResult addUser(@RequestBody @Validated User user){
         log.info(user.toString());
         if(userService.insertUser(user)>0){
-            return new CommonResult(ErrorEnum.OK);
+            return CommonResult.build(ErrorEnum.OK);
         }else {
-            return new CommonResult(ErrorEnum.ERROR);
+            return CommonResult.build(ErrorEnum.ERROR);
         }
     }
 
@@ -236,7 +225,7 @@ public class UserController extends BaseController {
 
         System.out.println("deptId=="+map.get("deptId")+",roleId=="+map.get("roleId"));
 
-        return new CommonResult(ErrorEnum.OK);
+        return CommonResult.build(ErrorEnum.OK);
     }
 
     /**
@@ -262,17 +251,17 @@ public class UserController extends BaseController {
 
     @RequestMapping(value = "getUserError",method = RequestMethod.GET)
     public CommonResult getUserError(){
-        return CommonResult.error("1001","根据用户id查询失败");
+        return CommonResult.build(1001,"根据用户id查询失败");
     }
 
     @RequestMapping(value = "getUserOK",method = RequestMethod.GET)
     public CommonResult getUserOK(){
-        return CommonResult.OK();
+        return CommonResult.build(ErrorEnum.OK);
     }
 
     @RequestMapping(value = "testMapResult",method = RequestMethod.GET)
     public PojoResult<User> testMapResult(){
-        throw new BizException("500","出现异常了...");
+        throw new BaseException(500,"出现异常了...");
         //return  new MapResult();
     }
 
@@ -292,11 +281,9 @@ public class UserController extends BaseController {
         CommonResult result = new CommonResult();
         Integer count = userService.insertNameAndAge(username,age);
         if(count > 0){
-            result.setSuccess(true);
-            result.setErrorMsg("插入成功");
+            result.setMsg("插入成功");
         }else {
-            result.setSuccess(false);
-            result.setErrorMsg("插入失败");
+            result.setMsg("插入失败");
         }
         return result;
     }
@@ -306,8 +293,7 @@ public class UserController extends BaseController {
     public ListResult getAllUsers(@RequestParam(required = false) String orderBy){
         ListResult<User> result = new ListResult<>();
         List<User> users = userService.selectAllUsers(orderBy);
-        result.setSuccess(true);
-        result.setErrorMsg("插入成功");
+        result.setMsg("插入成功");
         result.setContent(users);
         return result;
     }
@@ -325,6 +311,11 @@ public class UserController extends BaseController {
     public String test(String id,String name){
         log.info("===============id:{}",id);
         log.info("===============name:{}",name);
+        ServletRequestAttributes requestAttributes = (ServletRequestAttributes)RequestContextHolder.getRequestAttributes();
+        HttpServletRequest request = requestAttributes.getRequest();
+        String userAgentStr = request.getHeader("User-Agent");
+        UserAgent userAgent = UserAgent.parseUserAgentString(userAgentStr);
+        log.warn("系统名称：[{}]，浏览器名称：[{}]",userAgent.getOperatingSystem().getName(),userAgent.getBrowser().getName());
         return id + "," + name;
     }
 
@@ -384,5 +375,46 @@ public class UserController extends BaseController {
         String str = "abc";
         ByteArrayInputStream in = new ByteArrayInputStream(str.getBytes());
         this.download(this.getResponse(),in,"测试.txt");
+    }
+
+    @PostMapping("saveList")
+    public CommonResult saveList(@RequestBody List<String> list){
+        System.out.println(list.toString());
+        return new CommonResult();
+    }
+
+    @GetMapping("getByColumnName")
+    public CommonResult getByColumnName(String columnName){
+        ListResult<Object> res = new ListResult<>();
+        List<Object> objects = userMapper.queryByColumnName(columnName);
+        res.setContent(objects);
+        return res;
+    }
+
+    @GetMapping("getUserWithCache")
+    public CommonResult getUserWithCache(Integer userId){
+        User user = userService.getUserWithCache(userId);
+        PojoResult<User> result = new PojoResult<>();
+        result.setContent(user);
+        return result;
+    }
+
+    @GetMapping("originResponse")
+    public void originResponse(HttpServletRequest request,HttpServletResponse response){
+        User user = new User();
+        user.setUsername("李小龙");
+        user.setAge(35);
+
+        //通知浏览器对数据进行缓存
+        response.setHeader("Cache-Control","max-age=" + 3600 * 24);
+        response.setDateHeader("Expires",System.currentTimeMillis() + 3600 * 24 * 1000);
+        response.setCharacterEncoding(StandardCharsets.UTF_8.toString());
+        try {
+            PrintWriter writer = response.getWriter();
+            writer.write(JSONObject.toJSONString(user));
+            writer.flush();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

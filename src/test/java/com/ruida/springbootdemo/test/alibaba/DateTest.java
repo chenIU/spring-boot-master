@@ -1,5 +1,8 @@
 package com.ruida.springbootdemo.test.alibaba;
 
+import org.junit.Test;
+
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.Date;
@@ -23,5 +26,18 @@ public class DateTest {
 
         int days = LocalDate.now().lengthOfYear();
         System.out.println(days);
+    }
+
+    @Test
+    public void test1() throws ParseException {
+        SimpleDateFormat format = new SimpleDateFormat("yyyy.MM.dd");
+        Date date = format.parse("2021.5.9");
+        System.out.println(date);
+    }
+
+    @Test
+    public void test2(){
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss:SSS");
+        System.out.println(format.format(new Date()));
     }
 }

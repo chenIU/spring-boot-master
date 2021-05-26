@@ -1,5 +1,8 @@
 package com.ruida.springbootdemo.test;
 
+import org.apache.lucene.util.RamUsageEstimator;
+import org.junit.Test;
+
 /**
  * @description: Integer体现了设计模式总的享元模式(flyweight)
  * @author: chenjy
@@ -40,5 +43,22 @@ public class IntegerTest {
         Integer i3 = 1000;
         int i4 = 1000;
         System.out.println(i3 == i4);
+    }
+
+    @Test
+    public void test1(){
+        Integer integer = new Integer(100);
+        System.out.println(RamUsageEstimator.shallowSizeOf(integer));
+    }
+
+    /**
+     * Integer.parseInt和Integer.valueOf方法的主要区别是返回值类型不同。一个是基本数据类型，一个是包装数据类型
+     */
+    @Test
+    public void test2(){
+        int i = Integer.parseInt("100");
+        Integer integer = Integer.valueOf("100");
+        System.out.println(i);
+        System.out.println(integer);
     }
 }

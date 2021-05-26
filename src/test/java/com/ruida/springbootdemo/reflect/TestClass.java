@@ -1,6 +1,9 @@
 package com.ruida.springbootdemo.reflect;
 
 import com.ruida.springbootdemo.model.Cat;
+import com.ruida.springbootdemo.service.order.OrderConsumer;
+import org.apache.commons.lang3.StringUtils;
+import org.junit.jupiter.api.Test;
 
 /**
  * @description: 测试获取class
@@ -18,5 +21,21 @@ public class TestClass {
         Cat cat = new Cat("Tom",3);
         Class<? extends Cat> c3 = cat.getClass();
         System.out.println(c3);
+    }
+
+    @Test
+    public void test(){
+        Class<?> clazz = OrderConsumer.class;
+        //class com.ruida.springbootdemo.service.order.OrderConsumer
+        System.out.println(clazz);
+
+        //com.ruida.springbootdemo.service.order.OrderConsumer
+        System.out.println(clazz.getName());
+
+        //OrderConsumer
+        System.out.println(clazz.getSimpleName());
+
+        //orderConsumer
+        System.out.println(StringUtils.uncapitalize(clazz.getSimpleName()));
     }
 }

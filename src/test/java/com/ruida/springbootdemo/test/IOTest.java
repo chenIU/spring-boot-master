@@ -1,10 +1,9 @@
 package com.ruida.springbootdemo.test;
 
+import org.apache.poi.util.IOUtils;
 import org.junit.Test;
 
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.File;
+import java.io.*;
 import java.util.Arrays;
 
 /**
@@ -55,5 +54,56 @@ public class IOTest {
         byte[] bytes = byteArrayOutputStream.toByteArray();
         String s = new String(bytes);
         System.out.println(s);
+    }
+
+    @Test
+    public void readAndWriteExcel() throws Exception {
+//        Workbook wb = new XSSFWorkbook();
+//        wb.createSheet("测试一下");
+//        wb.write();
+
+        FileInputStream in = new FileInputStream("D://test.xlsx");
+        FileOutputStream out = new FileOutputStream("D://test2.xlsx");
+        IOUtils.copy(in,out);
+
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+        byteArrayOutputStream.toByteArray();
+        ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(byteArrayOutputStream.toByteArray());
+    }
+
+    @Test
+    public void testVideo(){
+        FileInputStream fis = null;
+        FileOutputStream fos = null;
+        try {
+            long start = System.currentTimeMillis();
+            fis = new FileInputStream("F:\\video\\灵笼-特别篇.flv");
+            fos = new FileOutputStream("G://test.flv");
+            byte[] buf = new byte[8 * 1024];
+            int len;
+            while((len = fis.read(buf)) != -1){
+                fos.write(buf, 0, len);
+            }
+            fos.flush();
+            System.out.println("耗时" + (System.currentTimeMillis() - start) + "ms");
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            if(fis != null){
+                try {
+                    fis.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            if(fos != null){
+                try {
+                    fos.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
     }
 }

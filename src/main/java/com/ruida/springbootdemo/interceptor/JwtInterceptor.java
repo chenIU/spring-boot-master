@@ -21,19 +21,18 @@ public class JwtInterceptor implements HandlerInterceptor {
         log.info("token is :{}",token);
 
         MapResult<String,String> map = new MapResult<>();
-        map.setSuccess(false);
         try {
             JwtUtil.verify(token);
             return true;
         }catch (TokenExpiredException e){
-            map.setErrorMsg("token已过期!");
+            map.setMsg("token已过期!");
         }catch (AlgorithmMismatchException e){
-            map.setErrorMsg("签名算法不匹配!");
+            map.setMsg("签名算法不匹配!");
         }catch (SignatureVerificationException e){
-            map.setErrorMsg("签名错误!");
+            map.setMsg("签名错误!");
         }catch (Exception e){
             //e.printStackTrace();
-            map.setErrorMsg("无效token");
+            map.setMsg("无效token");
         }
 
         String json = new ObjectMapper().writeValueAsString(map);//jackson将对象转为json字符串

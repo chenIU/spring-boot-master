@@ -1,5 +1,10 @@
 package com.ruida.springbootdemo.test;
 
+import cn.hutool.core.date.BetweenFormatter;
+import cn.hutool.core.date.DateUtil;
+import lombok.SneakyThrows;
+import org.junit.Test;
+
 import java.time.*;
 import java.util.Date;
 
@@ -67,5 +72,13 @@ public class TimeTest {
         Instant instant = date.toInstant();
         LocalDateTime localDateTime = LocalDateTime.ofInstant(instant,ZoneId.systemDefault());
         System.out.println("LocalDateTime:"+localDateTime);
+    }
+
+    @SneakyThrows
+    @Test
+    public void test(){
+        long start = System.currentTimeMillis();
+        Thread.sleep(1345);
+        System.out.println(DateUtil.formatBetween(System.currentTimeMillis() - start, BetweenFormatter.Level.MILLISECOND));
     }
 }

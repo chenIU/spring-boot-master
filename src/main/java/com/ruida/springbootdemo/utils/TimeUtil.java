@@ -1,6 +1,10 @@
 package com.ruida.springbootdemo.utils;
 
-import java.text.SimpleDateFormat;
+import java.time.Duration;
+import java.time.Instant;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
 /**
@@ -9,13 +13,33 @@ import java.util.Date;
  * @create: 2020-04-01 17:35
  */
 public class TimeUtil {
-    public static final String FORMAT = "yyyy-MM-dd";
 
-    public static void main(String[] args) {
-        SimpleDateFormat sdf = new SimpleDateFormat(FORMAT);
-        System.out.println(sdf.format(new Date()));
-        Date date = new Date();
-        System.out.println(date.getTime());
+    public static String getDateFormat(Date date){
+        Instant nowInstant = new Date().toInstant();
+        Instant instant = date.toInstant();
+        Duration duration = Duration.between(instant, nowInstant);
+        long days = duration.toDays();
+        if(days < 1){
+            long minutes = duration.toMinutes();
+            if(minutes < 5){
+                return "刚刚";
+            } else {
+                long hours = duration.toHours();
+                if(hours < 1){
+                    return minutes + "分钟前";
+                } else {
+                    return hours + "小时前";
+                }
+            }
+        } else if(days < 7){
+            return days + "天前";
+        } else {
+            LocalDateTime localDateTime = LocalDateTime.ofInstant(instant, ZoneId.systemDefault());
+            if(days < 365) {
+                return DateTimeFormatter.ofPattern("MM-dd hh:mm").format(localDateTime);
+            }else {
+                return DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm").format(localDateTime);
+            }
+        }
     }
-
 }

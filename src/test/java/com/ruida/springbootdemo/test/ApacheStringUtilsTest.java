@@ -1,6 +1,7 @@
 package com.ruida.springbootdemo.test;
 
 import org.apache.commons.lang3.StringUtils;
+import org.junit.Test;
 
 /**
  * @description:
@@ -190,5 +191,23 @@ public class ApacheStringUtilsTest {
         System.out.println(StringUtils.countMatches("hello",'l')); // 计算匹配的次数
         System.out.println(StringUtils.getCommonPrefix("abcdef","abcxyz")); // 截取相同前缀
         System.out.println(StringUtils.indexOfDifference("abcdef","abcxyz")); // 返回字符差异的索引位置
+    }
+
+    /**
+     * StringUtils.isEmpty()和StringUtils.isBlank()的区别
+     */
+    @Test
+    public void difference(){
+        //StringUtils.isEmpty(String str) 判断字符串是否为空，判断的标准是str==null 或 str.length==0
+        System.out.println(StringUtils.isEmpty(null));
+        System.out.println(StringUtils.isEmpty(""));
+        System.out.println(StringUtils.isEmpty(" "));
+        System.out.println(StringUtils.isEmpty("dd"));
+
+        //StringUtils.isBlank(String str) 判断某字符串是否为空或长度为0或由空白符(whitespace) 构成
+        System.out.println(StringUtils.isBlank(null));
+        System.out.println(StringUtils.isBlank(""));
+        System.out.println(StringUtils.isBlank(" "));
+        System.out.println(StringUtils.isBlank("dd"));
     }
 }

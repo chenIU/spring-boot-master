@@ -11,6 +11,8 @@ import com.ruida.springbootdemo.service.impl.CalcImpl;
 public class Test {
 
     public static void main(String[] args) {
+        //查看动态生成的代理类
+//        System.setProperty("sun.misc.ProxyGenerator.saveGeneratedFiles", "true");
         Calc  calc = new CalcImpl();
         MyInvocationHandler myInvocationHandler = new MyInvocationHandler();
         Calc calc1 = (Calc) myInvocationHandler.bind(calc);

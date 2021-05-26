@@ -1,6 +1,10 @@
 package com.ruida.springbootdemo.test;
 
+import com.google.common.collect.Lists;
+import org.junit.Test;
+
 import java.util.Arrays;
+import java.util.List;
 
 /**
  * @description:
@@ -23,5 +27,21 @@ public class ArraysTest {
         //扩充知识点
         //Q：为什么数组打印时内容被中括号包围
         //A：查看Arrays.toString源码可得到答案
+    }
+
+    /**
+     * 将数组转换成集合推荐使用Guava的Lists.newArrayList()方法
+     * 使用Lists的asList转换成的ArrayList是java.Arrays.ArrayList而非java.util.ArrayList
+     */
+    @Test
+    public void test(){
+        Integer[] array = new Integer[]{1,2,3,4};
+        List<Integer> integers = Arrays.asList(array);
+//        System.out.println(integers.add(5));
+        System.out.println(integers);
+
+        List<Integer> list = Lists.newArrayList(array);
+        list.add(5);
+        System.out.println(list);
     }
 }
