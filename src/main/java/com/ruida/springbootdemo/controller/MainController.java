@@ -124,4 +124,9 @@ public class MainController {
             log.error("工伤处理导入模板下载失败");
         }
     }
+
+    @GetMapping({"/","/index"})
+    public String index(){
+        return "index";
+    }
 }
