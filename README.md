@@ -437,7 +437,7 @@
   + 可重入锁：不仅判断锁有没有被锁上，还会判断锁是谁上的，当就是自己锁上的时候，那么它依旧可以访问临界资源，并把加锁次数加一
   
 + CAS两大问题：
-  + 在线程比较多，并发量比较打情况下，会一直自旋，比较消耗CPU资源
+  + 在线程比较多，并发量比较大的情况下，会一直自旋，比较消耗CPU资源
   + ABA问题，解决ABA问题可以添加版本号
   
 + jdk1.6之后对synchronized实现了优化，主要是引入了偏向锁和轻量级锁
@@ -486,6 +486,17 @@
   + 内存泄露：无用对象没有回收
   
 + 在多核CPU下，使用总线嗅探技术，保证内存可见性
+
++ synchronized是悲观锁、非公平锁
+
++ 不建议使用Executors创建线程池的原因：newFixedThreadPool和newSingleThreadPool的任务队列长度都是Integer.MAX_VALUE；
+newCachedThreadPool和newScheduledThreadPool的最大线程数都是Integer.MAX_VALUE 容易造成OOM。
+  
++ 可重入：同一线程对某个锁进行多次加锁不会产生死锁
+
++ shutdown和shutdownNow的区别：
+  + shutdown：将线程池标记为shutdown状态，不再接受新的线程。等到正在执行的线程和等待队列中的线程执行完毕后，关闭线程池。
+  + shutdownNow：将线程池标记为stop状态，拒绝新的任务，对正在执行人物的线程发送interrupt，等待队列中的任务不执行，以队列形式返回 
 
 + Precondition.checkArgument()、Precondition.checkState()
 
