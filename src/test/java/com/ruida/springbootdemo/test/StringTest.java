@@ -152,4 +152,9 @@ public class StringTest {
     public void test6(){
         System.out.println("\u4f18\u79c0");
     }
+
+    @Test
+    public void test7(){
+        System.out.println("12600738747".matches("^1[3,4,5,6,7,8,9]\\d{9}$"));
+    }
 }
