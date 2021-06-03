@@ -1,5 +1,6 @@
 package com.ruida.springbootdemo.test.alibaba;
 
+import cn.hutool.core.date.DateUtil;
 import org.junit.Test;
 
 import java.text.ParseException;
@@ -39,5 +40,10 @@ public class DateTest {
     public void test2(){
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss:SSS");
         System.out.println(format.format(new Date()));
+    }
+
+    @Test
+    public void test3(){
+        System.out.println(DateUtil.year(new Date()));
     }
 }
