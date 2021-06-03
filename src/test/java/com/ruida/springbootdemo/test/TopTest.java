@@ -27,9 +27,9 @@ import com.ruida.springbootdemo.model.Son;
 import com.ruida.springbootdemo.utils.EncryptUtil;
 import com.ruida.springbootdemo.utils.TimeUtil;
 import com.ruida.springbootdemo.utils.ValidateMT;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
 
 import java.lang.reflect.Array;
@@ -45,14 +45,17 @@ import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import static org.slf4j.LoggerFactory.getLogger;
+
 /**
  * @description: 顶级测试类
  * @author: chenjy
  * @create: 2020-04-24 16:04
  */
+@Slf4j
 public class TopTest {
 
-    private static final Logger logger = LoggerFactory.getLogger(TopTest.class);
+    private static final Logger logger = getLogger(TopTest.class);
 
     final String TAG = null;//final类型的变量必须立即初始化
 
@@ -86,6 +89,26 @@ public class TopTest {
 
         System.out.println(System.currentTimeMillis());//系统时间毫秒数13位
 
+        //AtomicStampedReference
+        //AtomicMarkableReference
+        System.out.println(Thread.currentThread().getId());
+        /* ---------------- 分割线注释Live Template -------------- */
+
+        for (int i = 0; i < 100; i++) {
+            if(i == 99){
+                System.out.println(i);
+            }
+        }
+
+        String[] split = "chenjianyin".split(",");
+        System.out.println(split[0]);//ctrl + alt + t
+
+        System.out.println("TopTest.main");//soutm
+        System.out.println("split = " + split);//soutv
+        System.out.println("args = " + Arrays.deepToString(args));//soutp
+        System.out.print("");//souf
+        System.err.println("this is a bug");//serr
+
         List<String> nameList = Stream.of("jack").collect(Collectors.toList());
         System.out.println(nameList);
 
@@ -95,6 +118,11 @@ public class TopTest {
         System.out.println(Apple.class.getName());
 
         String empName = "jack";
+
+        //ifn
+        if (empName == null) {
+
+        }
 
         System.out.println(CharSequence.class.isAssignableFrom(empName.getClass()));
 
