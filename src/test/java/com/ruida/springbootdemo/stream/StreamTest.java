@@ -2,6 +2,7 @@ package com.ruida.springbootdemo.stream;
 
 import com.google.common.collect.Lists;
 import com.ruida.springbootdemo.entity.Student;
+import org.junit.Test;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -60,5 +61,12 @@ public class StreamTest {
             System.out.println("返回新的流");
             return x;
         }).collect(Collectors.toList());
+    }
+
+    @Test
+    public void test(){
+        List<String> list = Arrays.asList("1","2","3","4");
+        String collect = list.stream().collect(Collectors.joining("|"));
+        System.out.println(collect);
     }
 }
