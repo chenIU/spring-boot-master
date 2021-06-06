@@ -18,7 +18,7 @@
 
     <resultMap id="userInfoMap" type="com.ruida.springbootdemo.entity.User">
         <id column="id" property="id"/>
-        <result column="name" property="username"/>
+        <result column="user_name" property="username"/>
         <result column="birthday" property="birthday"/>
         <result column="dept_id" property="deptId"/>
         <result column="create_time" property="createTime"/>
@@ -43,7 +43,7 @@
     </select>
 
     <select id="selectDeptById" resultType="java.util.Map">
-        select dept_id as deptId,role_id as roleId from t_user where id = #{id}
+        select dept_id as deptId from t_user where id = #{id}
     </select>
 
     <select id="countUser" resultType="java.lang.Integer">
