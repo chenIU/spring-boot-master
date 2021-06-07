@@ -21,13 +21,13 @@ public interface UserMapper extends BaseMapper<User> {
     @Insert("insert into t_user(user_name,password,age,dept_id) values(#{userName},#{password}#{age},#{deptId})")
     int insertUser(User user);
 
-    Map<String,Object> selectDeptById(Integer id);
+    Map<String, Object> selectDeptById(Integer id);
 
     int countUser();
 
     User queryUserById(String userId);
 
-    Integer insertNameAndAge(String username,int age);
+    Integer insertNameAndAge(@Param("username") String username, @Param("age") int age);
 
     List<User> selectAllUsers(@Param("orderBy") String orderBy);
 
@@ -35,12 +35,13 @@ public interface UserMapper extends BaseMapper<User> {
 
     List<User> selectByIdArray(String[] ids);
 
-    List<User> selectMultiArgs1(@Param("deptId") Integer deptId,@Param("ids") String[] ids);
+    List<User> selectMultiArgs1(@Param("deptId") Integer deptId, @Param("ids") String[] ids);
 
-    List<User> selectMultiArgs2(Map<String,Object> param);
+    List<User> selectMultiArgs2(Map<String, Object> param);
 
     /**
      * 根据字段名称查询内容
+     *
      * @param columnName
      * @return
      */
