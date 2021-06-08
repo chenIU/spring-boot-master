@@ -61,4 +61,10 @@ public class IntegerTest {
         System.out.println(i);
         System.out.println(integer);
     }
+
+    @Test
+    public void test3(){
+        Integer i = -1;
+        System.out.println(i);
+    }
 }
