@@ -69,4 +69,12 @@ public class StreamTest {
         String collect = list.stream().collect(Collectors.joining("|"));
         System.out.println(collect);
     }
+
+    @Test
+    public void testJoining(){
+        List<String> list = Arrays.asList("A", "B", "C", "D");
+        System.out.println(list.stream().collect(Collectors.joining()));
+        System.out.println(list.stream().collect(Collectors.joining("-")));
+        System.out.println(list.stream().collect(Collectors.joining(",","[","]")));
+    }
 }
