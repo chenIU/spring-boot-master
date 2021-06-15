@@ -5,6 +5,7 @@ import cn.hutool.core.date.DateUtil;
 import lombok.SneakyThrows;
 import org.junit.Test;
 
+import java.text.SimpleDateFormat;
 import java.time.*;
 import java.util.Date;
 
@@ -80,5 +81,15 @@ public class TimeTest {
         long start = System.currentTimeMillis();
         Thread.sleep(1345);
         System.out.println(DateUtil.formatBetween(System.currentTimeMillis() - start, BetweenFormatter.Level.MILLISECOND));
+    }
+
+    @Test
+    @SneakyThrows
+    public void testTimeBeforeAfter(){
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        Date d1 = sdf.parse("2021-06-06");
+        Date d2 = sdf.parse("2021-06-09");
+        System.out.println(d1.before(d2));
+        System.out.println(d2.after(d1));
     }
 }
