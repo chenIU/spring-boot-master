@@ -1,5 +1,8 @@
 package com.ruida.springbootdemo.test;
 
+import org.junit.Test;
+
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
@@ -15,5 +18,11 @@ public class DateTest {
 
         Date date1 = new Date(System.currentTimeMillis()+1000 * 60 * 60);
         System.out.println(date1);
+    }
+
+    @Test
+    public void test(){
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        System.out.println(format.format(new Date()));
     }
 }
