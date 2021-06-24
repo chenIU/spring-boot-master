@@ -1,7 +1,11 @@
 package com.ruida.springbootdemo.test;
 
+import com.google.common.base.Joiner;
 import com.google.common.collect.*;
+import org.junit.Test;
+
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -74,5 +78,15 @@ public class GuavaTest {
         ClassToInstanceMap<Number> numbers = MutableClassToInstanceMap.create();
         numbers.putInstance(Integer.class, 1);
         numbers.putInstance(Double.class, 1.5);
+    }
+
+    /**
+     * Joiner将内容以指定字符串分割
+     */
+    @Test
+    public void testJoiner(){
+        System.out.println(Joiner.on(";").join(1, 2, 3));
+        List<Integer> list = Lists.newArrayList(1, 2, 3);
+        System.out.println(Joiner.on("#").join(list));
     }
 }
