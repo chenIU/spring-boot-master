@@ -44,4 +44,21 @@ public class ArraysTest {
         list.add(5);
         System.out.println(list);
     }
+
+    /**
+     * System.arraycopy(Object src, int srcPos, Object dest, int destPos, int length)
+     */
+    @Test
+    public void testArrayCopy(){
+        int[] src = new int[]{1,2,3,4,5};
+        int[] dest;
+
+        // 数组截取
+        System.arraycopy(src, 0, dest = new int[3], 0, 3);
+        System.out.println(Arrays.toString(dest));
+
+        // 数组扩容
+        System.arraycopy(src, 0, dest = new int[10], 0, src.length);
+        System.out.println(Arrays.toString(dest));
+    }
 }
