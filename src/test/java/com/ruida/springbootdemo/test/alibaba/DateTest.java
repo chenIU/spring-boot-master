@@ -1,11 +1,13 @@
 package com.ruida.springbootdemo.test.alibaba;
 
+import cn.hutool.core.date.DateUnit;
 import cn.hutool.core.date.DateUtil;
 import org.junit.Test;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.util.Calendar;
 import java.util.Date;
 
 /**
@@ -45,5 +47,18 @@ public class DateTest {
     @Test
     public void test3(){
         System.out.println(DateUtil.year(new Date()));
+    }
+
+    /**
+     * 测试hutool工具类计算两个时间的差值，不区分开始时间和结束时间
+     */
+    @Test
+    public void testTimeBetween(){
+        Date startTime = new Date();
+        Calendar instance = Calendar.getInstance();
+        instance.add(Calendar.HOUR,3);
+        Date endTime = instance.getTime();
+        long between = DateUtil.between(startTime, endTime, DateUnit.MINUTE);
+        System.out.println(between);
     }
 }
