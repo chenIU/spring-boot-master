@@ -67,6 +67,8 @@ public class TopTest {
         String riskNumber = "JLXC2021000010104";
         System.out.println(riskNumber.substring(riskNumber.length() - 2));
 
+        // test git auto pull
+
         String email = "1414680900@qq.com";
         System.out.println(email.substring(0,email.lastIndexOf("@")));
 //        System.out.println(HttpClientUtil.doGet("https://www.baidu.com"));
