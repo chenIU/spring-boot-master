@@ -62,6 +62,7 @@ public class TopTest {
     int count;//非final类型的变量不必初始化,编译器会为此变量赋默认值
 
     public static void main(String[] args) {
+        //test
 
         String riskNumber = "JLXC2021000010104";
         System.out.println(riskNumber.substring(riskNumber.length() - 2));
