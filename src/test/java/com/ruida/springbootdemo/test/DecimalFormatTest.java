@@ -30,18 +30,29 @@ import java.text.DecimalFormat;
  */
 public class DecimalFormatTest {
     public static void main(String[] args) {
-        double pi = 3.1415926;//pai
+        double pi = 3.1415926;
         // 取整
         System.out.println(new DecimalFormat("0").format(pi));//3
 
+        //取所有整数部分，不足两位补0
+        System.out.println(new DecimalFormat("00").format(pi));//03
+
         // 保留整数和两位小数
         System.out.println(new DecimalFormat("0.00").format(pi));//3.14
+
+        // 取两位整数和三位小数（四舍五入）
+        System.out.println(new DecimalFormat("00.000").format(pi));//03.142
 
         // 取所有整数部分
         System.out.println(new DecimalFormat("#").format(pi));//3
 
         // 以百分比形式展示，并取两位小数
+        // %的作用是将原数字乘以100，并在末尾加上"%"
         System.out.println(new DecimalFormat("#.##%").format(pi));//314.16%
+
+        System.out.println(new DecimalFormat("#.##%").format((float) 2050/3536));
+
+        System.out.println(new DecimalFormat("#.##%").format(0.579));
 
         // 以千分比的形式展示
         System.out.println(new DecimalFormat("#.##\u2030").format(pi));//3141.59%。
@@ -58,5 +69,17 @@ public class DecimalFormatTest {
 
         // 在格式中嵌入文本
         System.out.println(new DecimalFormat("光速大小为每秒,###米").format(c));
+
+        // '' 的作用是将目标数字加上前缀或者后缀
+        System.out.println(new DecimalFormat("'$'#").format(100));
+
+        // - 表示负数，要放在最前面
+        System.out.println(new DecimalFormat("-0.00").format(pi));
+
+        // 千分位
+        System.out.println(new DecimalFormat("#.##\u2030").format(pi));
+
+        // 分组分割符
+        System.out.println(new DecimalFormat(",###").format(898347373));
     }
 }
