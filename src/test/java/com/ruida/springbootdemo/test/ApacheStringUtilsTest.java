@@ -210,4 +210,11 @@ public class ApacheStringUtilsTest {
         System.out.println(StringUtils.isBlank(" "));
         System.out.println(StringUtils.isBlank("dd"));
     }
+
+    @Test
+    public void testLeftAndRight(){
+        String str = "china";
+        System.out.println(StringUtils.left(str, 2));
+        System.out.println(StringUtils.right(str, 2));
+    }
 }
