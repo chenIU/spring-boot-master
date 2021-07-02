@@ -14,5 +14,7 @@ public class RandomTest {
         Random random = new Random();
         System.out.println(random.nextInt());
 
+        // random.nextInt(n)：产生一个[0,n)之间的数字
+        System.out.println(random.nextInt(10));
     }
 }
