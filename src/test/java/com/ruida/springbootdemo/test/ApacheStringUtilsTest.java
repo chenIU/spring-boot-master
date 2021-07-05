@@ -157,7 +157,7 @@ public class ApacheStringUtilsTest {
         System.out.println(StringUtils.lowerCase("HELLO")); // 转换成小写
         System.out.println(StringUtils.capitalize("hello")); // 首字母大写
         System.out.println(StringUtils.uncapitalize("HELLO")); // 首字母小写
-        System.out.println(StringUtils.swapCase("hELlO"));
+        System.out.println(StringUtils.swapCase("hELlO"));//小写转换（大写变小写；小写变大写）
 
         /**
          * 5.2 字符串缩略
