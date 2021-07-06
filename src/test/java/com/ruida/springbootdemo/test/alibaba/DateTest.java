@@ -2,6 +2,9 @@ package com.ruida.springbootdemo.test.alibaba;
 
 import cn.hutool.core.date.DateUnit;
 import cn.hutool.core.date.DateUtil;
+import lombok.SneakyThrows;
+import org.apache.commons.lang3.time.DateFormatUtils;
+import org.apache.commons.lang3.time.DateUtils;
 import org.junit.Test;
 
 import java.text.DateFormat;
@@ -109,5 +112,21 @@ public class DateTest {
         calendar.add(Calendar.DATE, -2);
         System.out.println(calendar.getTime());
         System.out.println(calendar.get(Calendar.DAY_OF_WEEK));
+    }
+
+    /**
+     * 利用common-lang3操作时间
+     */
+    @Test
+    @SneakyThrows
+    public void formatDate(){
+        // 日期转字符串
+        System.out.println(DateFormatUtils.format(new Date(), "yyyy-MM-dd HH:mm:ss"));
+
+        // 字符串转日期
+        System.out.println(DateUtils.parseDate("2021-07-05", "yyyy-MM-dd"));
+
+        // 当前时间加一小时
+        System.out.println(DateUtils.addHours(new Date(), 1));
     }
 }
