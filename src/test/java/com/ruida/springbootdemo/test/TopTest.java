@@ -29,6 +29,8 @@ import com.ruida.springbootdemo.utils.TimeUtil;
 import com.ruida.springbootdemo.utils.ValidateMT;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.tuple.ImmutablePair;
+import org.apache.commons.lang3.tuple.ImmutableTriple;
 import org.slf4j.Logger;
 import org.springframework.beans.BeanUtils;
 
@@ -862,5 +864,19 @@ public class TopTest {
         byte[] decode = Base64.getDecoder().decode(encodeStr);
         String decodeStr = new String(decode);
         System.out.println(decodeStr);
+    }
+
+    /**
+     * 包装临时对象
+     */
+    @org.junit.Test
+    public void test13(){
+        // 返回两个字段
+        ImmutablePair<Integer, String> pair = ImmutablePair.of(1, "yideng");
+        System.out.println(pair.getLeft() + "," + pair.getRight());
+
+        // 返回三个字段
+        ImmutableTriple<Integer, String, Date> triple = ImmutableTriple.of(1, "yideng", new Date());
+        System.out.println(triple.getLeft() + "," + triple.getMiddle() + "," + triple.getRight());
     }
 }
