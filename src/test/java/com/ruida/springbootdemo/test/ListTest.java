@@ -81,4 +81,21 @@ public class ListTest {
         System.out.println(list);
         list.add("4");
     }
+
+    /**
+     * retainAll 求两个集合的交集
+     */
+    @Test
+    public void test2(){
+        List<String> list1 = new ArrayList<>();
+        list1.add("a");
+        list1.add("b");
+        list1.add("c");
+        List<String> list2 = new ArrayList<>();
+        list2.add("a");
+        list2.add("b");
+        list2.add("d");
+        list1.retainAll(list2);
+        System.out.println(list1); // 输出[a, b]
+    }
 }
