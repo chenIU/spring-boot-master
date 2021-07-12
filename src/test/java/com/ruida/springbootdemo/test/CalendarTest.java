@@ -85,4 +85,14 @@ public class CalendarTest {
          * amount表示在当前时间上加上对应量,如果为负数,表示在当前时间上减去对应值
          */
     }
+
+    /**
+     * Calendar.DAY_OF_WEEK 获取某天是一周的第几天
+     */
+    @Test
+    public void dayOfWeek(){
+        Calendar calendar = Calendar.getInstance();
+        //Calendar.DAY_OF_WEEK 从周日开始
+        System.out.println(calendar.get(Calendar.DAY_OF_WEEK));
+    }
 }
