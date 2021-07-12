@@ -2,6 +2,8 @@ package com.ruida.springbootdemo.test;
 
 import org.junit.Test;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.UUID;
 
 public class StringTest {
@@ -156,5 +158,14 @@ public class StringTest {
     @Test
     public void test7(){
         System.out.println("12600738747".matches("^1[3,4,5,6,7,8,9]\\d{9}$"));
+    }
+
+    /**
+     * 使用jdk自带方法连接集合内容
+     */
+    @Test
+    public void test8(){
+        List<String> list = Arrays.asList("a", "b", "c");
+        System.out.println(String.join(",", list));
     }
 }
