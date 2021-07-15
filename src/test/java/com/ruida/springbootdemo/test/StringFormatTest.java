@@ -27,4 +27,14 @@ public class StringFormatTest {
         String s5 = "Hi_%f";
         System.out.println(String.format(s5,1.0f));
     }
+
+    /**
+     * 多占位符替换
+     * 实际替换值可以比占位符多，不能比占位符少
+     */
+    @Test
+    public void test2(){
+        String str = "%s，你好，我是%s，我来自%s，我经常逛的网站是：%s";
+        System.out.println(String.format(str, "张三", "李四", "中国","github"));
+    }
 }
