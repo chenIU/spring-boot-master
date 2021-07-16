@@ -4,7 +4,9 @@ import org.junit.Test;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.StringJoiner;
 import java.util.UUID;
+import java.util.stream.IntStream;
 
 public class StringTest {
     public static void main(String[] args) {
@@ -167,5 +169,20 @@ public class StringTest {
     public void test8(){
         List<String> list = Arrays.asList("a", "b", "c");
         System.out.println(String.join(",", list));
+    }
+
+    /**
+     * StringJoiner用于字符串的拼接
+     */
+    @Test
+    public void testStringJoiner(){
+        StringJoiner stringJoiner = new StringJoiner(",");
+        IntStream.range(1,10).forEach(i -> stringJoiner.add(i + ""));
+        System.out.println(stringJoiner);
+
+        // 分隔符、前缀、后缀
+        StringJoiner sj = new StringJoiner(",", "[", "]");
+        sj.add("张三").add("李四");
+        System.out.println(sj);
     }
 }
