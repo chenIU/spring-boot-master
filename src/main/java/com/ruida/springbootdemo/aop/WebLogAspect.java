@@ -2,7 +2,6 @@ package com.ruida.springbootdemo.aop;
 
 import com.alibaba.fastjson.JSONObject;
 import com.ruida.springbootdemo.entity.result.CommonResult;
-import com.ruida.springbootdemo.enums.ErrorEnum;
 import com.ruida.springbootdemo.exception.BaseException;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.JoinPoint;
@@ -64,7 +63,7 @@ public class WebLogAspect {
     }
 
     @Around("log()")
-    public Object around(ProceedingJoinPoint pjp){
+    public Object around(ProceedingJoinPoint pjp) throws Throwable {
         Object result = null;
         Class<?> returnType;
         CommonResult errorResult = null;
@@ -113,16 +112,20 @@ public class WebLogAspect {
             }
         }catch (Throwable e){
             log.error("around 未知异常信息：{}",e.getMessage());
-            if(VOID_TYPE.equals(returnType.getTypeName())){
-                return errorResult;
-            }else if(STR_TYPE.equals(returnType.getTypeName())){
-                //返回页面处理
-
-            }else {
-                errorResult.setCode(ErrorEnum.ERROR.getErrorCode());
-                errorResult.setMsg(ErrorEnum.ERROR.getErrorMsg());
-                return errorResult;
-            }
+            /**
+             * 不能直接返回，应该抛出异常，否则无法被全局拦截异常GlobalExceptionHandler处理
+             */
+            throw e;
+//            if(VOID_TYPE.equals(returnType.getTypeName())){
+//                return errorResult;
+//            }else if(STR_TYPE.equals(returnType.getTypeName())){
+//                //返回页面处理
+//
+//            }else {
+//                errorResult.setCode(ErrorEnum.ERROR.getErrorCode());
+//                errorResult.setMsg(ErrorEnum.ERROR.getErrorMsg());
+//                return errorResult;
+//            }
         }finally {
 
         }

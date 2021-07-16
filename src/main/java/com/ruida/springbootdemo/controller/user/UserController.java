@@ -31,6 +31,8 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -48,6 +50,7 @@ import java.util.Map;
  */
 @RestController()
 @RequestMapping("/user/")
+@Validated
 @Slf4j
 public class UserController extends BaseController {
 
@@ -416,5 +419,14 @@ public class UserController extends BaseController {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    /**
+     * 在多个参数校验，或者@RequestParam时，需要在controller上加@Validated
+     */
+    @GetMapping("validator")
+    public CommonResult validator(@RequestParam("username") @NotBlank(message = "用户姓名不能为空") String username,
+                                  @RequestParam("age")      @NotNull(message = "年龄不能为空")     Integer age){
+        return new CommonResult();
     }
 }
