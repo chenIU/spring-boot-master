@@ -37,11 +37,12 @@ public class GlobalExceptionHandler {
         CommonResult result = new CommonResult();
         BindingResult bindingResult = e.getBindingResult();
 
-        StringBuffer sb = new StringBuffer("Invalid Request:\n");
-
+        StringBuffer sb = new StringBuffer();
         for(FieldError fieldError : bindingResult.getFieldErrors()){
+            if(sb.length() > 0){
+                sb.append(",");
+            }
             sb.append(fieldError.getDefaultMessage());
-            sb.append("\n");
         }
 
         result.setMsg(sb.toString());
