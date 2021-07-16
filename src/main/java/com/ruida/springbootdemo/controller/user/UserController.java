@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.overmind.logging.TimeLog;
 import com.ruida.springbootdemo.config.MultiDataSource;
 import com.ruida.springbootdemo.controller.BaseController;
+import com.ruida.springbootdemo.core.groups.Update;
 import com.ruida.springbootdemo.entity.User;
 import com.ruida.springbootdemo.entity.result.CommonResult;
 import com.ruida.springbootdemo.entity.result.ListResult;
@@ -428,5 +429,15 @@ public class UserController extends BaseController {
     public CommonResult validator(@RequestParam("username") @NotBlank(message = "用户姓名不能为空") String username,
                                   @RequestParam("age")      @NotNull(message = "年龄不能为空")     Integer age){
         return new CommonResult();
+    }
+
+    /**
+     * 更新
+     * 验证分组校验
+     */
+    @PutMapping("update")
+    public CommonResult<Object> update(@RequestBody @Validated(Update.class) User user){
+        userService.update(user);
+        return CommonResult.success();
     }
 }

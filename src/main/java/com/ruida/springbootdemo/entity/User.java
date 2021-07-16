@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.annotation.TableName;
 import com.fasterxml.jackson.annotation.*;
 import com.ruida.springbootdemo.annotation.DesensitizeAnnotation;
 import com.ruida.springbootdemo.annotation.InEnum;
+import com.ruida.springbootdemo.core.groups.Update;
 import com.ruida.springbootdemo.enums.DesensitizationStrategy;
 import com.ruida.springbootdemo.enums.GenderEnum;
 import lombok.Data;
@@ -13,6 +14,7 @@ import lombok.NoArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Date;
@@ -44,6 +46,7 @@ import java.util.List;
 @Getter
 public class User implements Serializable {
 
+    @NotNull(message = "id不能为空", groups = Update.class)
     private Integer id;
 
     @NotEmpty(message = "用户姓名不能为空")

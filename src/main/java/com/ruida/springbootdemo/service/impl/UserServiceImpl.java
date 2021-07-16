@@ -145,4 +145,11 @@ public class UserServiceImpl implements UserService {
         CACHE.put("userId:" + userId , user);
         return user;
     }
+
+    @Override
+    public void update(User user) {
+        User exist = userMapper.selectUserById(user.getId());
+        exist.setUsername(user.getUsername());
+        userMapper.updateById(exist);
+    }
 }

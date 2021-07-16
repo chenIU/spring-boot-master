@@ -27,4 +27,6 @@ public interface UserService {
     List<User> selectAllUsers(String orderBy);
 
     User getUserWithCache(Integer userId);
+
+    void update(User user);
 }
