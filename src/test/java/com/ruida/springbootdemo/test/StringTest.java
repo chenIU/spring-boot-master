@@ -185,4 +185,17 @@ public class StringTest {
         sj.add("张三").add("李四");
         System.out.println(sj);
     }
+
+    @Test
+    public void test9(){
+        String[] arr = new String[]{"jack","mike","tom"};
+        StringBuffer sb = new StringBuffer();
+        for (String str : arr){
+            if(sb.length() > 0 ){
+                sb.append(",");
+            }
+            sb.append(str);
+        }
+        System.out.println(sb);
+    }
 }
