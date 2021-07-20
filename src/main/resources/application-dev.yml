@@ -56,3 +56,7 @@ myApp:
 
 swagger:
   enable: true
+
+test:
+  name: chenjianyin
+  list: aaa,bbb,ccc
