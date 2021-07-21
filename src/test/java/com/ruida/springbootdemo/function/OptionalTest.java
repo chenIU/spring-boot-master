@@ -2,6 +2,7 @@ package com.ruida.springbootdemo.function;
 
 import com.ruida.springbootdemo.entity.User;
 import com.ruida.springbootdemo.exception.BaseException;
+import org.junit.Test;
 
 import java.util.Optional;
 
@@ -65,5 +66,101 @@ public class OptionalTest {
         User user = new User();
         user.setUsername("zhangsan");
         return user;
+    }
+
+    /**
+     * 创建一个空的Optional对象
+     */
+    @Test
+    public void test(){
+        Optional<User> opt = Optional.empty();
+        opt.get();
+    }
+
+    /**
+     * 如果确定对象不为空，调用of；如果不确定对象是否为空，调用ofNullable
+     */
+    @Test
+    public void test2(){
+        User user = new User();
+        user.setId(100);
+        user.setUsername("zhangsan");
+        Optional<User> opt = Optional.of(user);
+        System.out.println(opt.get());
+
+        Optional<User> opt2 = Optional.ofNullable(null);
+        System.out.println(opt2.get());
+    }
+
+    /**
+     * isPresent判断optional对象是否为空
+     */
+    @Test
+    public void test3(){
+        Optional<User> opt = Optional.ofNullable(null);
+        System.out.println(opt.isPresent());
+
+        User user = new User();
+        user.setId(100);
+        user.setUsername("zhangsan");
+        Optional<User> opt2 = Optional.ofNullable(user);
+        System.out.println(opt2.isPresent());
+    }
+
+    /**
+     * 返回默认值
+     *
+     * orElse 不管Optional对象是否为空，都创建对象
+     * orElseGet 只有在Optional对象为空时，才创建对象
+     *
+     * 基于性能考虑，建议使用orElseGet返回默认值
+     *
+     */
+    @Test
+    public void test4(){
+        User user = null;
+        User user1 = new User();
+        user1.setId(200);
+        user1.setUsername("lisi");
+        User user2 = Optional.ofNullable(user).orElse(user1);
+        System.out.println(user2);
+
+        User user3 = Optional.ofNullable(user).orElseGet(() -> user1);
+        System.out.println(user3);
+    }
+
+    /**
+     * orElseThrow 返回异常
+     */
+    @Test
+    public void test5(){
+        User user = null;
+        User user2 = Optional.ofNullable(user).orElseThrow( () -> new BaseException(500, "系统异常"));
+        System.out.println(user2);
+    }
+
+    /**
+     * map 转换
+     */
+    @Test
+    public void test6(){
+        User user = new User();
+        user.setId(100);
+        user.setUsername("zhangsan");
+        String username = Optional.ofNullable(user).map(value -> value.getUsername()).orElse("default");
+        System.out.println(username);
+    }
+
+    /**
+     * filter 过滤
+     */
+    @Test
+    public void test7(){
+        User user = new User();
+        user.setAge(15);
+        user.setUsername("zhangsan");
+
+        Optional<User> user1 = Optional.of(user).filter(e -> e.getAge() > 20);
+        user1.ifPresent(System.out::println);
     }
 }
