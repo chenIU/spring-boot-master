@@ -879,4 +879,15 @@ public class TopTest {
         ImmutableTriple<Integer, String, Date> triple = ImmutableTriple.of(1, "yideng", new Date());
         System.out.println(triple.getLeft() + "," + triple.getMiddle() + "," + triple.getRight());
     }
+
+    /**
+     * Objects.requireNotNull 重载方法
+     */
+    @org.junit.Test
+    public void test14(){
+        String str = null;
+        //Objects.requireNonNull(str);
+        //Objects.requireNonNull(str, "内容不能为空");
+        Objects.requireNonNull(str, () -> "内容不能为空啊");
+    }
 }
