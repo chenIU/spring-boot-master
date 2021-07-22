@@ -18,6 +18,7 @@ import com.ruida.springbootdemo.entity.User;
 import com.ruida.springbootdemo.entity.dto.UserDTO;
 import com.ruida.springbootdemo.entity.fruit.Apple;
 import com.ruida.springbootdemo.enums.ErrorEnum;
+import com.ruida.springbootdemo.enums.strategy.AnimalEnum;
 import com.ruida.springbootdemo.exception.BaseException;
 import com.ruida.springbootdemo.generic.A;
 import com.ruida.springbootdemo.model.Book;
@@ -889,5 +890,11 @@ public class TopTest {
         //Objects.requireNonNull(str);
         //Objects.requireNonNull(str, "内容不能为空");
         Objects.requireNonNull(str, () -> "内容不能为空啊");
+    }
+
+    @org.junit.Test
+    public void testStrategy(){
+        String eat = AnimalEnum.valueOf("CAT").eat();
+        System.out.println(eat);
     }
 }
