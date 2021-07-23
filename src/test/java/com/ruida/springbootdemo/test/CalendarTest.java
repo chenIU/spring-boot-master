@@ -95,4 +95,20 @@ public class CalendarTest {
         //Calendar.DAY_OF_WEEK 从周日开始
         System.out.println(calendar.get(Calendar.DAY_OF_WEEK));
     }
+
+    /**
+     * Calendar.DAY_OF_MONTH、Calendar.DAY_OF_YEAR、Calendar.DATE都可以将当前日期加一天
+     * 但是前两者的用处不是进行日期加减，而是为了获取当前日期在一个月/年的第几天
+     * 进行日期加减要使用Calendar.DATE
+     */
+    @Test
+    public void addDay(){
+        Calendar instance = Calendar.getInstance();
+        instance.add(Calendar.DAY_OF_MONTH, 1);
+        System.out.println(instance.getTime());
+        instance.add(Calendar.DAY_OF_YEAR, 1);
+        System.out.println(instance.getTime());
+        instance.add(Calendar.DATE, 1);
+        System.out.println(instance.getTime());
+    }
 }
